@@ -11,6 +11,16 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.2]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
+      t.string :name, null: false
+      t.string :adress
+      t.boolean :is_deleted, null: false, default: false
+      t.integer :experience, null: false, default: 0
+      t.json :images
+      t.integer :sex, null: false, default: 0
+      t.date :date_of_birth
+      t.text :introduction
+      t.float :rate
+
       ## Rememberable
       t.datetime :remember_created_at
 
