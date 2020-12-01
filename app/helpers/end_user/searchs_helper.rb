@@ -1,0 +1,2 @@
+module EndUser::SearchsHelper
+end
