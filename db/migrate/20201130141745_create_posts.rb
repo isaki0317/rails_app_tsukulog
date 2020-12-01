@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :genre_id, null: false
       t.string :title, null: false
       t.string :subtitle, null: false
+      t.text :tool
       t.json :images, null: false
       t.integer :cost, null: false, default: 0
       t.integer :creation_time, null: false, default: 0

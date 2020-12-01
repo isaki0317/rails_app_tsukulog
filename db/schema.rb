@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_143401) do
     t.integer "genre_id", null: false
     t.string "title", null: false
     t.string "subtitle", null: false
+    t.text "tool"
     t.json "images", null: false
     t.integer "cost", default: 0, null: false
     t.integer "creation_time", default: 0, null: false
