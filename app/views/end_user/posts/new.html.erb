@@ -1,1 +1,105 @@
-<h1 class="index">posts/new</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="col-xs-8">
+        <%= form_with model: @post_new, url: posts_path, method: :post, local: true do |f| %>
+          <div class="col-xs-12">
+            <%= f.label :title, 'タイトル' %>
+            <%= f.text_field :title, autofocus: true, autocomplete: "本棚" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.file_field :images, id: :user_img %>
+            <% if @post_new.images.present? %>
+              <%= image_tag @post_new.images.url, size: '290x230', id: :img_prev %>
+            <% else %>
+              <%= image_tag "sample.jpg", size: '290x230', id: :img_prev %>
+            <% end %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.label :subtitle, 'キャッチフレーズ' %>
+            <%= f.text_area :subtitle %>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>材料・道具</th>
+                  <th>購入先</th>
+                </tr>
+              </thead>
+              <tbody>
+      <!--ここから-->
+              <%= f.fields_for :materials, @post_new.materials.build do |m| %>
+                <tr>
+                  <td><%= m.text_field :material_name, size: "15" %></td>
+                  <td><%= m.text_field :shop, size: "15" %></td>
+                  <%= m.hidden_field :post_id, value: @post_new.id %>
+                </tr>
+              <% end %>
+    　<!--ここまでを複製する-->
+              <%= f.fields_for :materials, @post_new.materials.build do |m| %>
+                <tr>
+                  <td><%= m.text_field :material_name, size: "15" %></td>
+                  <td><%= m.text_field :shop, size: "15" %></td>
+                  <%= m.hidden_field :post_id, value: @post_new.id %>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-xs-12">
+            <h3>作り方</h3>
+            <div class="flex">
+    <!--ここから-->
+            <%= f.fields_for :works, @post_new.works.build do |w| %>
+              <div class="work-form">
+                <h6>1</h6>
+                <%= w.file_field :images, class: "user_img" %>
+                  <% if @works.images.present? %>
+                    <%= image_tag @works.images.url, size: '115x80', class: "img_prev" %>
+                  <% else %>
+                    <%= image_tag "sample.jpg", size: '115x80', class: "img_prev" %>
+                  <% end %><br>
+                <%= w.text_area :detail, size: '14x4', class: "works_detail" %>
+                <%= w.hidden_field :post_id, value: @post_new.id %>
+              </div>
+            <% end %>
+    <!--ここまでを複製する-->
+            <%= f.fields_for :works, @post_new.works.build do |w| %>
+              <div class="work-form">
+                <h6>2</h6>
+                <%= w.file_field :images, class: "user_img" %>
+                  <% if @works.images.present? %>
+                    <%= image_tag @works.images.url, size: '115x80', class: "img_prev" %>
+                  <% else %>
+                    <%= image_tag "sample.jpg", size: '115x80', class: "img_prev" %>
+                  <% end %><br>
+                <%= w.text_area :detail, size: '14x4', class: "works_detail" %>
+                <%= w.hidden_field :post_id, value: @post_new.id %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <%= f.label :genre_id, "ジャンル" %>
+            <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "選択してください"}) %>
+            <%= f.select:cost,["１０００円以下","３０００円以下","５０００円以下","８０００円以下","８０００円以上"] %>
+            <%= f.select:creation_time,["～３０分","～１時間","～２時間","～４時間","～６時間","それ以上"] %>
+            <%= f.select:level,["低い","中","高い","えぐい"] %><br>
+            <%= f.label :link, 'リンク(Youtubeなど)' %>
+            <%= f.text_field :link, size: '38' %><br>
+            <%= f.label :caution, "コツ・注意" %>
+            <%= f.text_area :caution, size: "20x2" %>
+            <%= f.label :post_status, "公開条件" %>
+            <%= f.select :post_status, [["投稿する",true],["下書き保存", false]], {include_blank: true} %>
+            <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+
+            <%= f.submit "投稿する" %>
+            <%= f.submit "下書き保存" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-xs-4">
+        <h3>投稿の書き方をドロップダウンで記述</h3>
+      </div>
+    </div>
+  </div>
+</div>
