@@ -3,11 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // posts/new
-.user_img {
-  font-size: 8px;
-}
 
-.flex {
+.work-area {
     display: flex;
     flex-flow: row wrap;
 }
+
+.material_name .material_shop {
+  padding: 0px;
+}
+
+
