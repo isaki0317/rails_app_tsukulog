@@ -16,6 +16,8 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+// posts.imagesプレビュー
  $(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -30,18 +32,132 @@
         readURL(this);
     });
   });
-  
+
+
+
+//   posts/material/material form追加
+$(function(){
+  function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
+    const html = `<span class="js-material-group" data-index="${index}">
+                  <spam class="material_name"><input size="10" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
+                  <spam class="material_shop"><input size="10" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
+                  <spam class="delete-form-btn">削除</spam>
+                </span><br>`;
+    return html;
+  }
+
+  let fileIndex = [1, 2, 3, 4, 5, 6] // 追加するフォームのインデックス番号を用意
+  var lastIndex = $(".js-material-group:last").data("index"); // 編集フォーム用（すでにデータがある分のインデックス番号が何か取得しておく）
+  fileIndex.splice(0, lastIndex); // 編集フォーム用（データがある分のインデックスをfileIndexから除いておく）
+  let fileCount = $(".hidden-destroy").length; // 編集フォーム用（データがある分のフォームの数を取得する）
+  let displayCount = $(".js-material-group").length // 見えているフォームの数を取得する
+  $(".hidden-destroy").hide(); // 編集フォーム用（削除用のチェックボックスを非表示にしておく）
+  if (fileIndex.length == 0) $(".add-form-btn").css("display","none"); // 編集フォーム用（フォームが５つある場合は追加ボタンを非表示にしておく）
+
+  $(".add-form-btn").on("click", function() { // 追加ボタンクリックでイベント発
+    $(".material-area").append(buildField(fileIndex[0])); // fileIndexの一番小さい数字をインデックス番号に使ってフォームを作成
+    fileIndex.shift(); // fileIndexの一番小さい数字を取り除く
+    if (fileIndex.length == 0) $(".add-form-btn").css("display","none"); // フォームが５つになったら追加ボタンを非表示にする
+    displayCount += 1; // 見えているフォームの数をカウントアップしておく
+  })
+
+  $(".material-area").on("click", ".delete-form-btn", function() { // 削除ボタンクリックでイベント発火
+    $(".add-form-btn").css("display","block"); // どの道フォームは一つ消えるので、追加ボタンを必ず表示させるようにしておく
+    const targetIndex = $(this).parent().data("index") // クリックした箇所のインデックス番号を取得
+    alert("消すと元に戻りません")
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`); // 編集用（クリックした箇所のチェックボックスを取得）
+    var lastIndex = $(".js-material-group:last").data("index"); // フォームの最後に使われているインデックス番号を取得
+    displayCount -= 1; // 表示されているフォーム数を一つカウントダウン
+    if (targetIndex < fileCount) { // 編集用（チェックボックスがある場合の処理）
+      $(this).parent().css("display","none") // フォームを非表示にする
+      hiddenCheck.prop("checked", true); // チェックボックスにチェックを入れる
+    } else { // チェックボックスがない場合の処理
+      $(this).parent().remove(); // フォームを削除する
+    }
+    // ↓はfileIndex（フォーム追加ように用意してある数字の配列）の処理
+    if (fileIndex.length >= 1) { // 数字が一つでも残っている場合
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1); // 配列の一番右側にある数字に１を足した数字を追加
+    } else {
+      fileIndex.push(lastIndex + 1); // フォームの最後の数字に1を足した数字を追加
+    }
+    // ↓はフォームがなくならないための処理
+    if (displayCount == 0) { // 見えてるフォームの数が0になったとき
+      $(".material-area").append(buildField(fileIndex[0] - 1)); // fileIndexの一番左側にある数字から１引いた数字でフォームを作成
+      fileIndex.shift(); // fileIndexの一番小さい数字を取り除く
+      displayCount += 1; // 見えているフォームの数をカウントアップしておく
+    }
+  })
+})
+
+//works.imagesプレビュー
    $(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-    $('.img_prev').attr('src', e.target.result);
+    $('#work_img_prev').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
         }
     }
-    $(".user_img").change(function(){
+    $("#works_img").change(function(){
         readURL(this);
     });
   });
+
+  // posts/index/works form追加
+  $(function(){
+  function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
+    const html = `<div class="js-work-group" date-index="${index}">
+                  <span>1</span>
+                  <spam class="delete-work-btn">削除</spam><br>
+                  <input id="works_img" class="work_img_field" style="display:none;" type="file" name="post[works_attributes][${index}][images]">
+                  <img onclick="$('.work_img_field').click()" id="work_img_prev" src="/assets/sample-50297cd79bb70077c546adcd3eb54941aeff3f79afdfe9a32711d61e9fd12412.jpg" width="115" height="80">
+                  <br>
+                  <textarea class="works_detail" name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="4"></textarea>
+                </div>`;
+    return html;
+  }
+
+  let fileIndex = [1, 2, 3, 4, 5, 6] // 追加するフォームのインデックス番号を用意
+  var lastIndex = $(".js-work-group:last").data("index"); // 編集フォーム用（すでにデータがある分のインデックス番号が何か取得しておく）
+  fileIndex.splice(0, lastIndex); // 編集フォーム用（データがある分のインデックスをfileIndexから除いておく）
+  let fileCount = $(".hidden-destroy").length; // 編集フォーム用（データがある分のフォームの数を取得する）
+  let displayCount = $(".js-work-group").length // 見えているフォームの数を取得する
+  $(".hidden-destroy").hide(); // 編集フォーム用（削除用のチェックボックスを非表示にしておく）
+  if (fileIndex.length == 0) $(".add-form-btn-work").css("display","none"); // 編集フォーム用（フォームが５つある場合は追加ボタンを非表示にしておく）
+
+  $(".add-form-btn-work").on("click", function() { // 追加ボタンクリックでイベント発
+    $(".work-area").append(buildField(fileIndex[0])); // fileIndexの一番小さい数字をインデックス番号に使ってフォームを作成
+    fileIndex.shift(); // fileIndexの一番小さい数字を取り除く
+    if (fileIndex.length == 0) $(".add-form-btn-work").css("display","none"); // フォームが５つになったら追加ボタンを非表示にする
+    displayCount += 1; // 見えているフォームの数をカウントアップしておく
+  })
+
+  $(".work-area").on("click", ".delete-work-btn", function() { // 削除ボタンクリックでイベント発火
+    $(".add-form-btn-work").css("display","block"); // どの道フォームは一つ消えるので、追加ボタンを必ず表示させるようにしておく
+    const targetIndex = $(this).parent().data("index") // クリックした箇所のインデックス番号を取得
+    alert("消すと元に戻りません")
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`); // 編集用（クリックした箇所のチェックボックスを取得）
+    var lastIndex = $(".js-work-group:last").data("index"); // フォームの最後に使われているインデックス番号を取得
+    displayCount -= 1; // 表示されているフォーム数を一つカウントダウン
+    if (targetIndex < fileCount) { // 編集用（チェックボックスがある場合の処理）
+      $(this).parent().css("display","none") // フォームを非表示にする
+      hiddenCheck.prop("checked", true); // チェックボックスにチェックを入れる
+    } else { // チェックボックスがない場合の処理
+      $(this).parent().remove(); // フォームを削除する
+    }
+    // ↓はfileIndex（フォーム追加ように用意してある数字の配列）の処理
+    if (fileIndex.length >= 1) { // 数字が一つでも残っている場合
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1); // 配列の一番右側にある数字に１を足した数字を追加
+    } else {
+      fileIndex.push(lastIndex + 1); // フォームの最後の数字に1を足した数字を追加
+    }
+    // ↓はフォームがなくならないための処理
+    if (displayCount == 0) { // 見えてるフォームの数が0になったとき
+      $(".work-area").append(buildField(fileIndex[0] - 1)); // fileIndexの一番左側にある数字から１引いた数字でフォームを作成
+      fileIndex.shift(); // fileIndexの一番小さい数字を取り除く
+      displayCount += 1; // 見えているフォームの数をカウントアップしておく
+    }
+  })
+})
