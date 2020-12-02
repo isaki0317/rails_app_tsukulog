@@ -16,8 +16,26 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-// 後で消す
-.index {
-  margin-top: 100px;
+body,
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  height: 3vh;
+  width: 100vw;
+  border-top: 1px solid black;
+  margin-top: auto;
+}
+
+.container-fluid {
+  margin-top: 70px;
 }
