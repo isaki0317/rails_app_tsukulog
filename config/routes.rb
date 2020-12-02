@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :end_users, controllers: {
+    sessions: 'end_users/sessions',
+    registrations: 'end_users/registrations'
+  }
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
@@ -14,10 +18,6 @@ Rails.application.routes.draw do
     resources :end_users, only: [:index, :show, :edit, :update, :destroy]
   end
 
-  devise_for :end_users, controllers: {
-    sessions: 'end_users/sessions',
-    registrations: 'end_users/registrations'
-  }
   scope module: :end_user do
     root 'homes#top'
     get 'about' => 'homes#about'
@@ -31,7 +31,6 @@ Rails.application.routes.draw do
     end
     resources :chats, only: [:creata] do   #showの部分を確認する
       get 'show', on: :collection
-      get 'show', on: :member
     end
     resources :contacts, only: [:new, :create]
     resources :posts do
