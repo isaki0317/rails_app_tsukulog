@@ -2,12 +2,118 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// posts/new
-.user_img {
-  font-size: 8px;
+// end_user/posts/new
+
+.post-new-box {
+  border: 1px solid gray;
+  padding: 12px;
+  margin-bottom: 20px;
+  list-style: none;
 }
 
-.flex {
-    display: flex;
-    flex-flow: row wrap;
+.work-area {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.material_name .material_shop {
+  padding: 0px;
+}
+
+.text-form {
+  padding: 0.2em;
+  border-radius: 0.67em;
+  outline: none;
+  border-color: gray;
+  // border: none;
+  // border-bottom: 2px solid gray;
+}
+
+#img_prev, #work_img_prev {
+  border: 2px solid gray;
+  border-radius: 0.67em;
+}
+
+
+// end_user/posts/index
+.post-box {
+  border: 2px solid gray;
+  width: 600px;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  background-color: white;
+}
+
+.post-bottom {
+  padding: 5px 8px 0 10px;
+}
+
+.post-user_name {
+  margin: 10px 5px;
+}
+
+.posts_image {
+  display: flex;
+  justify-content: center;
+}
+
+.icons > i {
+  margin: 5px;
+}
+
+.post-subtitle {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px solid gray;
+  .post-time {
+    min-width: 70%;
+  }
+}
+
+.fixed-menu {
+  width: 300px!important;
+  border: 1px solid gray;
+  background-color: white;
+  position: fixed!important;
+  top: 72px;
+  right: 290px;
+}
+
+// end_user/posts/show
+.post-img-show {
+  min-width: 550px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-detail-box {
+  border: 1px solid gray;
+  padding: 0;
+}
+
+.post-detail-img {
+  width: 550px;
+}
+
+.post-details {
+  list-style: none;
+}
+
+.detail-materials {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.detail-works {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.work-box {
+  width: 120px;
+}
+
+.work_detail {
+  padding: 4px;
 }
