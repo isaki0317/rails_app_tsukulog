@@ -7,9 +7,21 @@ class EndUser::PostsController < ApplicationController
     @genres = Genre.all
   end
 
+  def index
+    @public_posts = Post.where(post_status: "true")
+    @genres = Genre.all
+    @comment_new = Comment.new
+  end
+
+  def show
+    @genres = Genre.all
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post_new = Post.new(post_params)
     @post_new.save
+    
     redirect_to posts_path
   end
 
