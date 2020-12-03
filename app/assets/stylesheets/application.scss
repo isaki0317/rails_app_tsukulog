@@ -27,6 +27,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #f8f8f8;
 }
 
 footer {
@@ -38,4 +39,8 @@ footer {
 
 .container-fluid {
   margin-top: 70px;
+}
+
+.navbar-default {
+  background-color: white;
 }
