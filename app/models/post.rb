@@ -14,6 +14,10 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :materials, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
 
+  default_scope -> { order(created_at: :desc) }
+
+  mount_uploader :images, ImagesUploader
+
   enum cost: {
     １０００円以下: 0,
     ３０００円以下: 1,
@@ -37,5 +41,13 @@ class Post < ApplicationRecord
     高い: 2,
     えぐい: 3
   }
+
+  def favorited_by?(end_user)
+    favorites.where(user_id: end_user.id).exists?
+  end
+
+  def bookmarked_by?(end_user)
+    bookmarks.where(user_id: end_user.id).exists?
+  end
 
 end

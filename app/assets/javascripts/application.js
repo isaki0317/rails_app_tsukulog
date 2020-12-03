@@ -39,8 +39,8 @@
 $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<span class="js-material-group" data-index="${index}">
-                  <spam class="material_name"><input size="10" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
-                  <spam class="material_shop"><input size="10" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
+                  <spam class="material_name"><input size="10" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
+                  <spam class="material_shop"><input size="10" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
                   <spam class="delete-form-btn">削除</spam>
                 </span><br>`;
     return html;
@@ -64,7 +64,7 @@ $(function(){
   $(".material-area").on("click", ".delete-form-btn", function() { // 削除ボタンクリックでイベント発火
     $(".add-form-btn").css("display","block"); // どの道フォームは一つ消えるので、追加ボタンを必ず表示させるようにしておく
     const targetIndex = $(this).parent().data("index") // クリックした箇所のインデックス番号を取得
-    alert("消すと元に戻りません")
+    //alert("消すと元に戻りません")
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`); // 編集用（クリックした箇所のチェックボックスを取得）
     var lastIndex = $(".js-material-group:last").data("index"); // フォームの最後に使われているインデックス番号を取得
     displayCount -= 1; // 表示されているフォーム数を一つカウントダウン
@@ -90,17 +90,25 @@ $(function(){
 })
 
 //works.imagesプレビュー
+function imgClick(obj){
+  var inp = $(obj).parent().children("input");
+  console.log(inp);
+  inp.click();
+}
    $(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-    $('#work_img_prev').attr('src', e.target.result);
+          console.log($(input).parent().children("img"));
+          $(input).parent().children("img").attr('src', e.target.result);
+
+          //$('#work_img_prev').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
         }
     }
-    $("#works_img").change(function(){
+    $(document).on('change', '.work_img_field', function(){
         readURL(this);
     });
   });
@@ -111,10 +119,10 @@ $(function(){
     const html = `<div class="js-work-group" date-index="${index}">
                   <span>1</span>
                   <spam class="delete-work-btn">削除</spam><br>
-                  <input id="works_img" class="work_img_field" style="display:none;" type="file" name="post[works_attributes][${index}][images]">
-                  <img onclick="$('.work_img_field').click()" id="work_img_prev" src="/assets/sample-50297cd79bb70077c546adcd3eb54941aeff3f79afdfe9a32711d61e9fd12412.jpg" width="115" height="80">
+                  <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
+                  <img onclick="imgClick(this)" id="work_img_prev" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
                   <br>
-                  <textarea class="works_detail" name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="4"></textarea>
+                  <textarea class="works_detail text-form" name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="4"></textarea>
                 </div>`;
     return html;
   }
@@ -137,7 +145,7 @@ $(function(){
   $(".work-area").on("click", ".delete-work-btn", function() { // 削除ボタンクリックでイベント発火
     $(".add-form-btn-work").css("display","block"); // どの道フォームは一つ消えるので、追加ボタンを必ず表示させるようにしておく
     const targetIndex = $(this).parent().data("index") // クリックした箇所のインデックス番号を取得
-    alert("消すと元に戻りません")
+    // alert("消すと元に戻りません")
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`); // 編集用（クリックした箇所のチェックボックスを取得）
     var lastIndex = $(".js-work-group:last").data("index"); // フォームの最後に使われているインデックス番号を取得
     displayCount -= 1; // 表示されているフォーム数を一つカウントダウン
