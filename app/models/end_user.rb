@@ -31,6 +31,17 @@ class EndUser < ApplicationRecord
 
   mount_uploader :images, ImagesUploader
 
+  enum sex: {
+    未選択です:0,
+    男性: 1,
+    女性: 2
+  }
 
+  enum experience: {
+    初心者: 0,
+    中級者: 1,
+    上級者: 2,
+    プロ: 3
+  }
 
 end

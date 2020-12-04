@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_143401) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string "name", null: false
-    t.string "adress"
+    t.string "address"
     t.boolean "is_deleted", default: false, null: false
     t.integer "experience", default: 0, null: false
     t.json "images"

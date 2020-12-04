@@ -12,7 +12,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.2]
       t.datetime :reset_password_sent_at
 
       t.string :name, null: false
-      t.string :adress
+      t.string :address
       t.boolean :is_deleted, null: false, default: false
       t.integer :experience, null: false, default: 0
       t.json :images
