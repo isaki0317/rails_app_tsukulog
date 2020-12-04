@@ -1,1 +1,79 @@
-<h1 class="index">end_user/show</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 text-center col-xs-offset-1 end_user_profile">
+      <div class="col-xs-3 col-xs-offset-1">
+        <div class="user-img-box">
+          <div class="user_images">
+            <% if @end_user.images.present? %>
+              <img src='<%= @end_user.images.thumb_big.url %>' class="user_image" alt="プロフ写真">
+            <% else %>
+              <%= image_tag "sample.jpg", size: '150x150' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-7">
+        <div class="edit-link-btn">
+          <%= link_to "プロフィールを編集", edit_end_user_path(@end_user), class: "btn-edit", 'data-turbolinks': false %>
+        </div>
+        <div class="end_user_detail">
+          <h5 class="post-count">
+            投稿<strong><%= @end_user.posts.count %></strong>件
+          </h5>
+          <h5 class="sex">
+            性別：<strong><%= @end_user.sex %></strong>
+          </h5>
+          <h5 class="experience">
+            レベル：<strong><%= @end_user.experience %></strong>
+          </h5>
+        </div>
+        <h4 class="end_user_name">
+          <%= @end_user.name %>
+        </h4>
+        <h6 class="end_user_introduction">
+          <%= @end_user.introduction %>
+        </h6>
+      </div>
+    </div>
+    <div class="col-xs-10 text-center col-xs-offset-1">
+      <div>
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+          <li class="active" role="presentation">
+            <a aria-controls="tab_a" data-toggle="tab" href="#tab_post" role="tab">投稿</a>
+          </li>
+          <li role="presentation">
+            <a aria-controls="tab_b" data-toggle="tab" href="#tab_favorite" role="tab">いいね</a>
+          </li>
+          <li role="presentation">
+            <a aria-controls="tab_c" data-toggle="tab" href="#tab_bookmark" role="tab">ストック</a>
+          </li>
+          <li role="presentation">
+            <a aria-controls="tab_d" data-toggle="tab" href="#tab_friend" role="tab">友達</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_post" role="tabpanel">
+            <p>
+              タブAだよ
+            </p>
+          </div>
+          <div class="tab-pane" id="tab_favorite" role="tabpanel">
+            <p>
+              タブBです
+            </p>
+          </div>
+          <div class="tab-pane" id="tab_bookmark" role="tabpanel">
+            <p>
+              タブC!!
+            </p>
+          </div>
+          <div class="tab-pane" id="tab_friend" role="tabpanel">
+            <p>
+              タブd!!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

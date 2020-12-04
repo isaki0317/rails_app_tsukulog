@@ -17,7 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-// posts.imagesプレビュー
+// posts.imagesメイン写真プレビュー
  $(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -169,3 +169,25 @@ function imgClick(obj){
     }
   })
 })
+
+// 退会モーダルダイアログの呼び出し
+$( function() {
+	$('#quitbutton').click( function () {
+		$('#quitmodal').modal();
+	});
+});
+
+$(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#thumb_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#thumb_img").change(function(){
+        readURL(this);
+    });
+  });

@@ -29,7 +29,7 @@
   // border-bottom: 2px solid gray;
 }
 
-#img_prev, #work_img_prev {
+.img-size, #img_prev {
   border: 2px solid gray;
   border-radius: 0.67em;
 }
@@ -88,8 +88,9 @@
 }
 
 .post-detail-box {
+  background-color: white;
   border: 1px solid gray;
-  padding: 0;
+  padding: 8px 0;
 }
 
 .post-detail-img {
@@ -116,4 +117,13 @@
 
 .work_detail {
   padding: 4px;
+}
+
+.fixed-menu-show {
+  width: 300px!important;
+  border: 1px solid gray;
+  background-color: white;
+  position: fixed!important;
+  top: 72px;
+  right: 250px;
 }

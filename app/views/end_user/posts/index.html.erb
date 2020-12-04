@@ -6,8 +6,14 @@
         <% @public_posts.each do |public_post| %>
         <div class="post-box">
           <div class="post-user_name">
-            <span>プロフ写真</span>
-            <span><%= public_post.title %></span>
+            <span>
+              <% if public_post.images.present? %>
+                <img src='<%= public_post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+              <% else %>
+                <%= image_tag "sample.jpg", size: '50x50' %>
+              <% end %>
+            </span>
+            <span><%= public_post.end_user.name %></span>
           </div>
           <div class="posts_image">
             <img src='<%= public_post.images.big.url %>' class="post_image" alt="ユーザー投稿写真">

@@ -47,9 +47,9 @@
                   <spam class="delete-work-btn">削除</spam><br>
                   <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
                   <% if @works.images.present? %>
-                    <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev" %>
+                    <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
                   <% else %>
-                    <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev" %>
+                    <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
                   <% end %><br>
                   <%= w.text_area :detail, size: '14x4', class: "works_detail text-form" %>
                 </div>

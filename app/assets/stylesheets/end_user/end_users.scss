@@ -1,3 +1,43 @@
 // Place all the styles related to the end_user::end_users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// show
+.user-img-box {
+  min-height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 20px;
+}
+.user_image {
+  width: 150px;
+  min-height: 150px;
+  border: solid 3px gray;
+  border-radius: 50%;
+}
+.btn-edit {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 4px;
+  text-decoration: none!important;
+  color: black;
+  font-weight: 550;
+}
+.end_user_detail {
+  display: flex;
+}
+.end_user_name {
+  font-weight: 550;
+}
+
+// edit
+#thumb_prev, .post_user_image {
+  width: 52px;
+  min-height: 52px;
+  border: solid 3px gray;
+  border-radius: 50%;
+}
+.img-prev {
+  height: 60px;
+}
