@@ -29,7 +29,7 @@
   // border-bottom: 2px solid gray;
 }
 
-#img_prev, #work_img_prev {
+.img-size, #img_prev {
   border: 2px solid gray;
   border-radius: 0.67em;
 }
@@ -39,7 +39,6 @@
 .post-box {
   border: 2px solid gray;
   width: 600px;
-  padding-bottom: 10px;
   margin-bottom: 25px;
   background-color: white;
 }
@@ -88,8 +87,16 @@
 }
 
 .post-detail-box {
+  background-color: white;
   border: 1px solid gray;
-  padding: 0;
+  padding: 8px 0;
+  .show-top {
+    display: flex;
+    justify-content: space-between;
+    .top-right > i {
+      margin-left: 10px;
+    }
+  }
 }
 
 .post-detail-img {
@@ -116,4 +123,61 @@
 
 .work_detail {
   padding: 4px;
+}
+
+// show/comment
+.fixed-menu-show {
+  width: 300px!important;
+  border: 1px solid gray;
+  background-color: white;
+  position: fixed!important;
+  top: 72px;
+  right: 250px;
+  padding: 8px 0 8px 8px;
+  .comment-list {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+}
+p.comment-body {
+  max-width: 270px;
+  height: auto;
+  word-wrap: break-word;
+}
+
+.comment-detail {
+  display: flex;
+  justify-content: flex-start;
+  .commented-user {
+    margin: 0;
+  }
+  .commented-time {
+    font-size: 12px;
+    margin: 0 0 0 5px;
+  }
+}
+
+.comment-form {
+  border: none;
+  outline: none;
+  color: black;
+  font-weight: 400;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.post-comment {
+  border: none;
+  background-color: white;
+  color: lightblue;
+  font-weight: 600;
+}
+
+// favorite
+.heart_red {
+  color:#e54747;
+}
+
+.bookmark_black {
+  color: black;
 }

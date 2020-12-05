@@ -1,0 +1,2 @@
+$('.favorite_<% @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite', locals: {target_post: @post}) %>");
+
