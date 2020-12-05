@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     get 'search' => 'searchs#search', as: 'search'
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
     resources :end_users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get :follows, on: :member
+      get :followers, on: :member
+      get :search, on: :collection
       collection do
         get 'quit'
   	    patch 'out'
@@ -32,12 +36,12 @@ Rails.application.routes.draw do
     resources :chats, only: [:creata] do   #showの部分を確認する
       get 'show', on: :collection
     end
-    resources :contacts, only: [:new, :create]
+    resources :contacts, only: [:create]
     resources :posts do
       resources :works, only: [:destroy]
       resources :materials, only: [:destroy]
       resources :comments, only: [:create, :destroy]
-      resources :bookmarks, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
   end

@@ -16,12 +16,13 @@ class EndUser::PostsController < ApplicationController
   def show
     @genres = Genre.all
     @post = Post.find(params[:id])
+    @comment_new = Comment.new
   end
 
   def create
     @post_new = Post.new(post_params)
     @post_new.save
-    
+
     redirect_to posts_path
   end
 

@@ -7,15 +7,26 @@
             <% if @end_user.images.present? %>
               <img src='<%= @end_user.images.thumb_big.url %>' class="user_image" alt="プロフ写真">
             <% else %>
-              <%= image_tag "sample.jpg", size: '150x150' %>
+              <%= image_tag "sample.jpg", size: '150x150', class: "user_image" %>
             <% end %>
           </div>
         </div>
       </div>
       <div class="col-xs-7">
         <div class="edit-link-btn">
+        <% if current_end_user == @end_user %>
           <%= link_to "プロフィールを編集", edit_end_user_path(@end_user), class: "btn-edit", 'data-turbolinks': false %>
+        <% else %>
+          <p>メッセージを送る</p>
+        <% end %>
         </div>
+        <% if current_end_user != @end_user %>
+          <% if @end_user.followed_by?(current_end_user) %>
+            <p><%= link_to "フォロー解除", end_user_relationships_path(@end_user.id), method: :delete, class: "btn-anfollow btn-sm btn-default" %></p>
+          <% else %>
+            <p><%= link_to "フォローする", end_user_relationships_path(@end_user.id), method: :post, class: "btn-follow btn-sm btn-default" %></p>
+          <% end %>
+        <% end %>
         <div class="end_user_detail">
           <h5 class="post-count">
             投稿<strong><%= @end_user.posts.count %></strong>件
