@@ -44,4 +44,8 @@ class EndUser < ApplicationRecord
     プロ: 3
   }
 
+  def followed_by?(end_user)
+    passive_relationships.find_by(following_id: end_user.id).present?
+  end
+
 end

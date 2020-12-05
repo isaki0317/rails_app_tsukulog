@@ -1,0 +1,6 @@
+<%= form_with(model:[target_post, comment], url: post_comments_path(target_post), method: :post, remote: true) do |f| %>
+ <%= f.text_area :body, autofocus: true, class: "comment-form",placeholder: "コメントを追加..." %>
+ <%= f.hidden_field :post_id, value: target_post.id %>
+ <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+ <%= f.submit "投稿する", class: "post-comment pull-right" %>
+<% end %>

@@ -120,7 +120,7 @@ function imgClick(obj){
                   <span>1</span>
                   <spam class="delete-work-btn">削除</spam><br>
                   <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
-                  <img onclick="imgClick(this)" id="work_img_prev" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
+                  <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
                   <br>
                   <textarea class="works_detail text-form" name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="4"></textarea>
                 </div>`;
@@ -177,6 +177,7 @@ $( function() {
 	});
 });
 
+// プロフィール写真変更プレビュー
 $(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -191,3 +192,10 @@ $(function() {
         readURL(this);
     });
   });
+
+  // お問合せモーダルダイアログ
+$( function() {
+	$('#contact-button').click( function () {
+		$('#contact-modal').modal();
+	});
+});
