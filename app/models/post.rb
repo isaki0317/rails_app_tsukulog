@@ -43,11 +43,11 @@ class Post < ApplicationRecord
   }
 
   def favorited_by?(end_user)
-    favorites.where(user_id: end_user.id).exists?
+    favorites.where(end_user_id: end_user.id).exists?
   end
 
   def bookmarked_by?(end_user)
-    bookmarks.where(user_id: end_user.id).exists?
+    bookmarks.where(end_user_id: end_user.id).exists?
   end
 
 end

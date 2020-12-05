@@ -20,7 +20,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [598, nil]
   end
 
-  version :thumb do
+  version :medium do
     process resize_to_fit: [510, nil]
   end
 
@@ -28,6 +28,17 @@ class ImagesUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [115, nil]
   end
 
+  version :thumb do
+    process resize_to_fit: [50, nil]
+  end
+
+  version :thumb_big do
+    process resize_to_fit: [150, 150]
+  end
+
+  version :thumb_small do
+    process resize_to_fit: [30, 30]
+  end
   # デフォルト画像設定
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
