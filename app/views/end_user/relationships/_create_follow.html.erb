@@ -1,0 +1,12 @@
+<tbody>
+  <% followers.each do |follower| %>
+	<tr>
+	  <td>
+	  	<%= follower.name %>
+	  </td>
+	  <td>
+      <%= link_to "", end_user_relationships_path(follower), method: :post, remote: true, class: "fas fa-user-plus btn-edit" %>
+	  </td>
+	</tr>
+  <% end %>
+</tbody>

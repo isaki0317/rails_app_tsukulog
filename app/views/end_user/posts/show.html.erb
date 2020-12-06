@@ -5,13 +5,15 @@
         <div class="show-top">
           <div class="top-left">
             <span>
-              <% if @post.images.present? %>
-                <img src='<%= @post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
-              <% else %>
-                <%= image_tag "sample.jpg", size: '50x50' %>
-              <% end %>
+              <%= link_to  end_user_path(@post.end_user) do %>
+                <% if @post.images.present? %>
+                  <img src='<%= @post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+                <% else %>
+                  <%= image_tag "sample.jpg", size: '50x50' %>
+                <% end %>
             </span>
             <span><%= @post.end_user.name %></span>
+              <% end %>
           </div>
           <div class="top-right">
             <span class="favorite_<% @post.id %>">

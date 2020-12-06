@@ -1,0 +1,7 @@
+<% if current_end_user != end_user %>
+  <% if end_user.followed_by?(current_end_user) %>
+    <p><%= link_to "", end_user_relationships_path(end_user.id), method: :delete, remote: true, class: "fas fa-user-minus btn-edit" %></p>
+  <% else %>
+    <p><%= link_to "", end_user_relationships_path(end_user.id), method: :post, remote: true, class: "fas fa-user-plus btn-edit" %></p>
+  <% end %>
+<% end %>
