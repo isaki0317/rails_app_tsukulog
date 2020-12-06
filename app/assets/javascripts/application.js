@@ -193,9 +193,16 @@ $(function() {
     });
   });
 
-  // お問合せモーダルダイアログ
+  // お問合せモーダルウィンドウ
 $( function() {
 	$('#contact-button').click( function () {
 		$('#contact-modal').modal();
+	});
+});
+
+// フォロー申請モーダルウィンドウ
+$( function() {
+	$('#request-button').click( function () {
+		$('#request-modal').modal();
 	});
 });
