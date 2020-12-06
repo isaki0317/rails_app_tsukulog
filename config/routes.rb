@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_user do
+    resources :chats  #showの部分を確認する
     root 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'searchs#search', as: 'search'
@@ -32,9 +33,6 @@ Rails.application.routes.draw do
         get 'quit'
   	    patch 'out'
   	  end
-    end
-    resources :chats, only: [:creata] do   #showの部分を確認する
-      get 'show', on: :collection
     end
     resources :contacts, only: [:create]
     resources :posts do

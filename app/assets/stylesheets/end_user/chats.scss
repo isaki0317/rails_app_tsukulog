@@ -1,3 +1,46 @@
 // Place all the styles related to the end_user::chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.chat-rooms {
+  min-height: 600px!important;
+  max-height: 600px!important;
+  border: 1px solid gray;
+  overflow-y: scroll;
+  background-color: white;
+}
+
+.chat-room {
+  min-height: 600px!important;
+  max-height: 600px!important;
+  border: 1px solid gray;
+  background-color: white;
+  .chat-content {
+    margin-top: 4px;
+  }
+  .chat-content {
+    overflow-y: scroll;
+    min-height: 515px;
+    max-height: 515px;
+  }
+  #room {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(192,192,192,0.5);
+  }
+  .chat-form {
+  } .message-form {
+    border: 0.1em solid rgba(192,192,192,0.5);
+    outline: none;
+    border-radius: 0.67em;
+    padding: 5px;
+    height: auto;
+  }
+  .message-btn {
+    margin-left: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: white;
+    color: lightblue;
+  }
+}
+
