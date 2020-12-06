@@ -11,7 +11,7 @@
                 <% if public_post.images.present? %>
                   <img src='<%= public_post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
                 <% else %>
-                  <%= image_tag "sample.jpg", size: '50x50' %>
+                  <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
                 <% end %>
             </span>
             <span><%= public_post.end_user.name %></span>

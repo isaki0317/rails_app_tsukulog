@@ -1,0 +1,37 @@
+<% if mutual_follows.empty? %>
+  <p>相互フォローユーザーはいません。</p>
+<% else %>
+  <h4>相互フォローユーザー一覧</h4>
+<% end %>
+<table class="table">
+  <tbody>
+  <% mutual_follows.each do |mutual_follow| %>
+    <tr>
+      <td>
+        <%= link_to  end_user_path(mutual_follow) do %>
+          <% if mutual_follow.images.present? %>
+            <img src='<%= mutual_follow.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+          <% else %>
+            <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to end_user_path(mutual_follow) do %>
+          <h5><%= mutual_follow.name %></h5>
+        <% end %>
+      </td>
+      <td>
+        <% if end_user == current_end_user %>
+          メッセージを送る
+        <% end %>
+      </td>
+      <td>
+        <% if current_end_user != mutual_follow %>
+          <%= link_to "", end_user_relationships_path(mutual_follow), method: :delete, remote: true, class: "fas fa-user-minus btn-edit" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

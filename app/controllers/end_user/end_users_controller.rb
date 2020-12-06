@@ -2,6 +2,11 @@ class EndUser::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
+    @public_posts = @end_user.posts.where(post_status: "true")
+    @draft_posts = @end_user.posts.where(post_status: "false")
+    @bookmarks = @end_user.bookmarks.all
+    @mutual_follows = @end_user.matchers
+    @followers = current_end_user.followers.where.not(id: current_end_user.followings)
   end
 
   def edit

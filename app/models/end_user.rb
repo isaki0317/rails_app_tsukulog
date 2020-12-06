@@ -48,4 +48,8 @@ class EndUser < ApplicationRecord
     passive_relationships.find_by(following_id: end_user.id).present?
   end
 
+  def matchers
+    followings & followers
+  end
+
 end
