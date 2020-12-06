@@ -17,16 +17,12 @@
         <% if current_end_user == @end_user %>
           <%= link_to "プロフィールを編集", edit_end_user_path(@end_user), class: "btn-edit", 'data-turbolinks': false %>
         <% else %>
-          <p>メッセージを送る</p>
+          <p class="btn-edit">メッセージを送る</p>
+          <div class="follow-btn">
+            <%= render 'end_user/relationships/follow', end_user: @end_user %>
+          </div>
         <% end %>
         </div>
-        <% if current_end_user != @end_user %>
-          <% if @end_user.followed_by?(current_end_user) %>
-            <p><%= link_to "フォロー解除", end_user_relationships_path(@end_user.id), method: :delete, class: "btn-anfollow btn-sm btn-default" %></p>
-          <% else %>
-            <p><%= link_to "フォローする", end_user_relationships_path(@end_user.id), method: :post, class: "btn-follow btn-sm btn-default" %></p>
-          <% end %>
-        <% end %>
         <div class="end_user_detail">
           <h5 class="post-count">
             投稿<strong><%= @end_user.posts.count %></strong>件
@@ -46,15 +42,17 @@
         </h6>
       </div>
     </div>
-    <div class="col-xs-10 text-center col-xs-offset-1">
+    <div class="col-xs-10 col-xs-offset-1">
       <div>
         <ul class="nav nav-tabs nav-justified" role="tablist">
           <li class="active" role="presentation">
             <a aria-controls="tab_a" data-toggle="tab" href="#tab_post" role="tab">投稿</a>
           </li>
-          <li role="presentation">
-            <a aria-controls="tab_b" data-toggle="tab" href="#tab_favorite" role="tab">いいね</a>
-          </li>
+          <% if @end_user == current_end_user %>
+            <li role="presentation">
+              <a aria-controls="tab_b" data-toggle="tab" href="#tab_draft" role="tab">下書き</a>
+            </li>
+          <% end %>
           <li role="presentation">
             <a aria-controls="tab_c" data-toggle="tab" href="#tab_bookmark" role="tab">ストック</a>
           </li>
@@ -63,25 +61,51 @@
           </li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="tab_post" role="tabpanel">
-            <p>
-              タブAだよ
-            </p>
+          <div class="tab-pane active tab-posts" id="tab_post" role="tabpanel">
+            <% @public_posts.each do |public_post| %>
+              <div class="user-post-box">
+                <%= link_to post_path(public_post) do %>
+                  <img src='<%= public_post.images.url %>' class="post-index" alt="投稿写真">
+                <% end %>
+              </div>
+            <% end %>
+            <% if @public_posts.empty? %>
+              <p>投稿はありません</p>
+            <% end %>
           </div>
-          <div class="tab-pane" id="tab_favorite" role="tabpanel">
-            <p>
-              タブBです
-            </p>
+          <div class="tab-pane" id="tab_draft" role="tabpanel">
+            <% @draft_posts.each do |draft_post| %>
+              <div class="user-post-box">
+                <%= link_to post_path(draft_post) do %>
+                  <img src='<%= draft_post.images.url %>' class="post-index" alt="投稿写真">
+                <% end %>
+              </div>
+            <% end %>
+            <% if @draft_posts.empty? %>
+              <p>下書きはありません</p>
+            <% end %>
           </div>
           <div class="tab-pane" id="tab_bookmark" role="tabpanel">
-            <p>
-              タブC!!
-            </p>
+            <% @bookmarks.each do |bookmark| %>
+              <div class="user-post-box">
+                <%= link_to post_path(bookmark) do %>
+                  <img src='<%= bookmark.post.images.url %>' class="post-index" alt="投稿写真">
+                <% end %>
+              </div>
+            <% end %>
+            <% if @bookmarks.empty? %>
+              <p>ストックはありません</p>
+            <% end %>
           </div>
-          <div class="tab-pane" id="tab_friend" role="tabpanel">
-            <p>
-              タブd!!
-            </p>
+          <div class="tab-pane text-center" id="tab_friend" role="tabpanel">
+            <div class="unfollow<%= current_end_user.id %> col-xs-8 col-xs-offset-1">
+              <%= render 'mutual_follow', mutual_follows: @mutual_follows, end_user: @end_user %>
+            </div>
+            <div class="col-xs-2">
+              <% if @end_user == current_end_user %>
+                <%= render 'end_user/relationships/request_follow' %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

@@ -30,6 +30,21 @@
 .end_user_name {
   font-weight: 550;
 }
+.edit-link-btn {
+  display: flex;
+}
+.tab-posts {
+  display: flex;
+  flex-flow: row wrap;
+}
+.post-index {
+  width: 315px;
+}
+.request-follow-btn {
+  border: none;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+}
 
 // edit
 #thumb_prev, .post_user_image {
