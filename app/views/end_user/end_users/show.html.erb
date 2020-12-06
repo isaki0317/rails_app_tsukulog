@@ -17,7 +17,7 @@
         <% if current_end_user == @end_user %>
           <%= link_to "プロフィールを編集", edit_end_user_path(@end_user), class: "btn-edit", 'data-turbolinks': false %>
         <% else %>
-          <p class="btn-edit">メッセージを送る</p>
+          <%= link_to "メッセージを送る", chat_path(@end_user), class: "btn-edit" %>
           <div class="follow-btn">
             <%= render 'end_user/relationships/follow', end_user: @end_user %>
           </div>
