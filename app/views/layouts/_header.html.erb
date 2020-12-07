@@ -1,5 +1,46 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <% if end_user_signed_in? %>
-    <%= link_to "マイページ(仮)", end_user_path(current_end_user.id) %>
-  <% end %>
+  <nav class="nav navbar-nav col-xs-5 text-center nav-left">
+    <h4>
+      <%= link_to "LOGO", posts_path, class: "header-logo" %>
+    </h4>
+  </nav>
+  <nav class="nav navbar-nav col-xs-7 nav-right">
+    <% if end_user_signed_in? %>
+      <div class="navigation">
+        <%= link_to "", posts_path, class: "fas fa-home fa-size" %>
+      </div>
+      <div class="navigation">
+        <i class="far fa-bell fa-size"></i>
+      </div>
+      <div class="navigation dropdown">
+        <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">
+        	<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-header">ユーザー選択</li>
+            <li role="presentation" class="dropdown-header">(相互フォローのみ)</li>
+        	<% @mutual_follow.each do |follow| %>
+            <li role="presentation">
+              <%= link_to follow.name, chat_path(follow) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="navigation">
+        <%= link_to end_user_path(current_end_user.id) do %>
+          <% if current_end_user.images.present? %>
+            <img src='<%= current_end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+          <% else %>
+            <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% elsif admin_signed_in? %>
+    <% else %>
+      <%= link_to "ログイン", new_end_user_session_path %>
+      <%= link_to "新規登録", new_end_user_registration_path %>
+      <%= link_to "About", about_path %>
+      <%= link_to "Top", root_path %>
+    <% end %>
+  </nav>
 </nav>

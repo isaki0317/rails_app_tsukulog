@@ -24,19 +24,19 @@
             <div class="inline-icon">
               <span class="icons">
                 <%= link_to post_path(public_post) do %>
-                  <i class="far fa-comment-dots fa-lg" aria-hidden="true"></i>
+                  <i class="far fa-comment-dots fa-size-post" aria-hidden="true"></i>
                 <% end %>
                 <span class="favorite_<% public_post.id %>">
                   <%= render 'end_user/favorites/favorite', target_post: public_post %>
                 </span>
-                <i class="fas fa-sms fa-lg" aria-hidden="true"></i>
+                <%= link_to "", chat_path(public_post.end_user), class: "fas fa-sms fa-size-post" %>
                 <span class="bookmark_<% public_post.id %>">
                   <%= render 'end_user/bookmarks/bookmark', target_post: public_post %>
                 </span>
               </span>
             </div>
             <div class="favorites-count">
-              <p><%= public_post.favorites.count %>人が「いいね」しました！</p>
+              <%= render 'end_user/favorites/favorite_count', target_post: public_post %>
             </div>
             <div class="post-body_index">
               <div class="post-body">
@@ -59,9 +59,19 @@
       </main>
     </div>
     <div class="col-xs-3 fixed-menu">
-      <h5>検索フォーム(User/Post)</h5>
       <h5>並び替え機能をつける</h5>
-      <table>
+      <div class="search-box">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <i class="fas fa-search"></i>
+          <%= f.text_field 'search[value]', placeholder: "検索ワードを入力...", size: "29" %><br>
+          <div class="text-right search-select">
+            <%= f.select 'search[model]', options_for_select({ "投稿を探す" => "post", "ユーザーを探す" => "end_user" }) %>
+            <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
+            <%= f.submit :"検索" %>
+          </div>
+        <% end %>
+      </div>
+      <table class="table">
         <thead>
           <tr>
             <th>ジャンルから探す</th>
@@ -71,8 +81,8 @@
           <% @genres.each do |genre| %>
           <tr>
             <td>
-              <!--リンクにして検索機能を付ける-->
-              <%= genre.name %>
+              <!--modelの値も送ったほうが良い、適当な文字列で良いかと思う-->
+              <%= link_to genre.name, search_path('search[value]': genre.id, 'search[how]': "match", 'search[model]': "post") %>
             </td>
           </tr>
           <% end %>

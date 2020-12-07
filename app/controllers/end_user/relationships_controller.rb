@@ -1,4 +1,5 @@
 class EndUser::RelationshipsController < ApplicationController
+  skip_before_action :get_current_chat_room
 
   def create
     @end_user = EndUser.find(params[:end_user_id])

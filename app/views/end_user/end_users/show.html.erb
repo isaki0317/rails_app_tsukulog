@@ -5,7 +5,7 @@
         <div class="user-img-box">
           <div class="user_images">
             <% if @end_user.images.present? %>
-              <img src='<%= @end_user.images.thumb_big.url %>' class="user_image" alt="プロフ写真">
+              <img src='<%= @end_user.images.thumb_big.url %>' class="user_image" alt="プロフ写真" size="150x150">
             <% else %>
               <%= image_tag "sample.jpg", size: '150x150', class: "user_image" %>
             <% end %>

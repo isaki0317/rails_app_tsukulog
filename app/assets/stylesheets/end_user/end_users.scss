@@ -12,7 +12,7 @@
 }
 .user_image {
   width: 150px;
-  min-height: 150px;
+  min-height: 150px!important;
   border: solid 3px gray;
   border-radius: 50%;
 }
@@ -53,6 +53,7 @@
   border: solid 3px gray;
   border-radius: 50%;
 }
+
 .img-prev {
   height: 60px;
 }

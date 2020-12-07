@@ -1,1 +1,45 @@
-<h1 class="index">searchs/search</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1"></div>
+    <div class="col-xs-7 col-xs-offset-1">
+      <% if @model == 'end_user' %>
+        <%= render 'end_user/end_users/index', end_users: @data %>
+      <% elsif @model == 'post' %>
+        <%= render 'end_user/posts/search_index', public_posts: @data, comment_new: @comment_new %>
+      <% end %>
+    </div>
+
+    <!--部分テンプレ-->
+    <div class="col-xs-3 fixed-menu">
+      <h5>並び替え機能をつける</h5>
+      <div class="search-box">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <i class="fas fa-search"></i>
+          <%= f.text_field 'search[value]', placeholder: "検索ワードを入力...", size: "29" %><br>
+          <div class="text-right search-select">
+            <%= f.select 'search[model]', options_for_select({ "投稿を探す" => "post", "ユーザーを探す" => "end_user" }) %>
+            <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
+            <%= f.submit :"検索" %>
+          </div>
+        <% end %>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ジャンルから探す</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre.name, search_path('search[value]': genre.id, 'search[how]': "match", 'search[model]': "post") %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -9,6 +9,7 @@
   padding: 12px;
   margin-bottom: 20px;
   list-style: none;
+  background-color: white;
 }
 
 .work-area {
@@ -56,8 +57,14 @@
   justify-content: center;
 }
 
-.icons > i {
-  margin: 5px;
+.fa-size-post {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4em;
+  margin: 6px;
+  }
+  .fa-size-post:hover {
+    color: black;
 }
 
 .post-subtitle {
