@@ -2,36 +2,58 @@
   <div class="row">
     <div class="col-xs-3 col-xs-offset-1 chat-rooms">
       <h5 class="text-center"><%= current_end_user.name %></h5>
-      <table class="table">
-        <tbody>
-          <% @user_rooms.each do |user_room| %>
-            <tr>
-              <td class="text-right col-xs-1">
-              <%= link_to chat_path(user_room.end_user.id) do %>
-                <% if user_room.end_user.images.present? %>
-                  <img src='<%= user_room.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
-                <% else %>
-                  <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
+      <div class="chat-list">
+        <table class="table">
+          <tbody>
+            <% @user_rooms.each do |user_room| %>
+              <tr>
+                <td class="text-right col-xs-1">
+                <%= link_to chat_path(user_room.end_user.id) do %>
+                  <% if user_room.end_user.images.present? %>
+                    <img src='<%= user_room.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+                  <% else %>
+                    <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-              </td>
-              <td style="vertical-align: middle;">
-                <%= link_to user_room.end_user.name, chat_path(user_room.end_user.id) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                </td>
+                <td style="vertical-align: middle;">
+                  <%= link_to user_room.end_user.name, chat_path(user_room.end_user.id) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-xs-7 chat-room">
       <h5 id="room" data-room="<%= @room.id %>" data-user="<%= current_end_user.id %>"><%= @end_user.name %> さん</h5>
       <div class="chat-content">
-
+        <table class="message">
+          <% @chats.each do |chat| %>
+            <% if chat.end_user_id == current_end_user.id %>
+            <tbody class="message-body text-right">
+              <tr>
+                <td class="text-right message-right">
+                  <p class="message-box-right" style="text-align: right; font-weight: normal;"><%= chat.message %></p>
+                </td>
+              </tr>
+            </tbody>
+            <% else %>
+            <tbody class="message-body text-left">
+              <tr>
+                <td class="text-left message-left">
+                  <p class="message-box-left" style="text-align: left; font-weight: normal;"><%= chat.message %></p>
+                </td>
+              </tr>
+            </tbody>
+            <% end %>
+          <% end %>
+        </table>
       </div>
       <div class="chat-form">
-        <%= form_with model: @chat, url: chats_path, method: :post, local: true do |f| %>
+        <%= form_with model: @chat, url: chats_path, method: :post, remote: true do |f| %>
           <%= f.hidden_field :room_id %>
-          <%= f.text_field :message, size: '74', class: "message-form" %><%= f.submit "送信", class: "message-btn" %>
+          <%= f.text_field :message, autofocus: true, placeholder: "ここに入力...", size: '74', class: "message-form" %><%= f.submit "送信", class: "message-btn" %>
         <% end %>
       </div>
     </div>

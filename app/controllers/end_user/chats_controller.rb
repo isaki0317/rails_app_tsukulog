@@ -18,7 +18,7 @@ class EndUser::ChatsController < ApplicationController
   end
 
   def create
-    @chat.current_end_user.chats.new(chat_params)
+    @chat = current_end_user.chats.new(chat_params)
     @chat.save
   end
 
