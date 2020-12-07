@@ -19,7 +19,7 @@
             <span class="favorite_<% @post.id %>">
               <%= render 'end_user/favorites/favorite', target_post: @post %>
             </span>
-            <i class="fas fa-sms fa-lg" aria-hidden="true"></i>
+            <%= link_to "", chat_path(@post.end_user), class: "fas fa-sms fa-size-post" %>
             <span class="bookmark_<% @post.id %>">
               <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
             </span>

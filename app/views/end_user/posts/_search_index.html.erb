@@ -1,0 +1,55 @@
+<main class="posts-all">
+  <% public_posts.each do |public_post| %>
+  <div class="post-box">
+    <div class="post-user_name">
+      <span>
+        <%= link_to  end_user_path(public_post.end_user) do %>
+          <% if public_post.images.present? %>
+            <img src='<%= public_post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+          <% else %>
+            <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
+          <% end %>
+      </span>
+      <span><%= public_post.end_user.name %></span>
+        <% end %>
+    </div>
+    <div class="posts_image">
+      <img src='<%= public_post.images.big.url %>' class="post_image" alt="ユーザー投稿写真">
+    </div>
+    <div class="post-bottom">
+      <div class="inline-icon">
+        <span class="icons">
+          <%= link_to post_path(public_post) do %>
+            <i class="far fa-comment-dots fa-size-post" aria-hidden="true"></i>
+          <% end %>
+          <span class="favorite_<% public_post.id %>">
+            <%= render 'end_user/favorites/favorite', target_post: public_post %>
+          </span>
+          <%= link_to "", chat_path(public_post.end_user), class: "fas fa-sms fa-size-post" %>
+          <span class="bookmark_<% public_post.id %>">
+            <%= render 'end_user/bookmarks/bookmark', target_post: public_post %>
+          </span>
+        </span>
+      </div>
+      <div class="favorites-count">
+        <%= render 'end_user/favorites/favorite_count', target_post: public_post %>
+      </div>
+      <div class="post-body_index">
+        <div class="post-body">
+          <h4 class="title_index"><%= public_post.title %>【<%= public_post.genre.name %>】</h4>
+          <h5 class="subtitle"><%= public_post.subtitle %></h5>
+          <ul class="post-subtitle">
+            <li class="post-time"><%= public_post.created_at.strftime('%Y/%m/%d') %></li>
+            <li class="view-detail-btn">
+              <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right" %>
+            </li>
+          </ul>
+          <div class="post-comment">
+            <%= render 'end_user/comments/form', target_post: public_post, comment: comment_new %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</main>

@@ -28,7 +28,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: rgba(236,236,236,0.2);
 }
 
 footer {
@@ -44,4 +44,42 @@ footer {
 
 .navbar-default {
   background-color: white;
+}
+
+.header-logo {
+  text-decoration: none;
+  color: black;
+  }
+  .header-logo:hover {
+    color: black;
+}
+
+.nav-left {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-right {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .navigation {
+    margin-left: 30px;
+  }
+}
+.header-user-image {
+  border: solid 1px rgba(192,192,192,0.7);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.fa-size {
+  text-decoration: none;
+  color: black;
+  font-size: 1.6em
+  }
+  .fa-size:hover {
+    color: black;
 }
