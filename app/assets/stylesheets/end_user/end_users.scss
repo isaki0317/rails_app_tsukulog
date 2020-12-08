@@ -2,21 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// show
-.user-img-box {
-  min-height: 200px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 20px;
-}
+// 使いまわしの可能性あり
 .user_image {
   width: 150px;
   min-height: 150px!important;
   border: solid 3px gray;
   border-radius: 50%;
 }
-.btn-edit {
+.follow-btn-style {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 4px;
@@ -24,21 +17,71 @@
   color: black;
   font-weight: 550;
 }
-.end_user_detail {
+
+// show
+
+.profile {
+  min-height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 20px;
+
+  &_image {
+
+    .user_image {
+      width: 150px;
+      min-height: 150px!important;
+      border: solid 3px gray;
+      border-radius: 50%;
+    }
+  }
+}
+.link {
+  display: flex;
+
+  &_edit-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none!important;
+    color: black;
+    font-weight: 550;
+  }
+  &_chat-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none!important;
+    color: black;
+    font-weight: 550;
+  }
+  .follow-btn {
+
+    .follow-btn-style {
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 4px;
+      text-decoration: none!important;
+      color: black;
+      font-weight: 550;
+    }
+  }
+}
+.profile-detail {
   display: flex;
 }
-.end_user_name {
+.user-name {
   font-weight: 550;
 }
-.edit-link-btn {
-  display: flex;
-}
-.tab-posts {
-  display: flex;
+// ここまで
+.tab-flex {
+  display: flex!important;
   flex-flow: row wrap;
 }
-.post-index {
+.post-image {
   width: 315px;
+  margin: 5px 5px 0 0;
 }
 .request-follow-btn {
   border: none;

@@ -52,7 +52,7 @@ class Post < ApplicationRecord
 
   def self.search_for(value, how)
     if how == 'match'
-      Post.where(title: value).or(Post.where(genre_id: value))
+      Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
     elsif how == 'partical'
       Post.where('title LIKE ?', '%'+value+'%')
     end
