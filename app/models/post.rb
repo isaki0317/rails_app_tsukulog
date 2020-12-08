@@ -50,4 +50,12 @@ class Post < ApplicationRecord
     bookmarks.where(end_user_id: end_user.id).exists?
   end
 
+  def self.search_for(value, how)
+    if how == 'match'
+      Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
+    elsif how == 'partical'
+      Post.where('title LIKE ?', '%'+value+'%')
+    end
+  end
+
 end

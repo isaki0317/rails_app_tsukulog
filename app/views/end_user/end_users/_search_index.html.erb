@@ -1,0 +1,32 @@
+<main class="search-all col-xs-11">
+  <table class="table">
+    <tbody>
+    <% end_users.each do |end_user| %>
+      <tr>
+        <td style="vertical-align: middle;">
+          <%= link_to  end_user_path(end_user) do %>
+            <% if end_user.images.present? %>
+              <img src='<%= end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+            <% else %>
+              <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
+            <% end %>
+          <% end %>
+        </td>
+        <td style="vertical-align: middle;">
+          <%= link_to end_user_path(end_user) do %>
+            <h5><%= end_user.name %></h5>
+          <% end %>
+        </td>
+        <td style="vertical-align: middle;">
+          <% if end_user != current_end_user %>
+            <%= link_to "メッセージを送る", chat_path(end_user) %>
+          <% end %>
+        </td>
+        <td class="follow-btn" style="vertical-align: middle;">
+          <%= render 'end_user/relationships/follow', end_user: end_user %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</main>

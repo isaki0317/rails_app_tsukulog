@@ -1,13 +1,13 @@
 <% if mutual_follows.empty? %>
-  <p>相互フォローユーザーはいません。</p>
+  <p>相互フォローユーザーはまだいません。</p>
 <% else %>
-  <h4>相互フォローユーザー一覧</h4>
+  <h4>相互フォローユーザー</h4>
 <% end %>
 <table class="table">
   <tbody>
   <% mutual_follows.each do |mutual_follow| %>
     <tr>
-      <td>
+      <td style="vertical-align: middle;">
         <%= link_to  end_user_path(mutual_follow) do %>
           <% if mutual_follow.images.present? %>
             <img src='<%= mutual_follow.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
@@ -16,20 +16,22 @@
           <% end %>
         <% end %>
       </td>
-      <td>
+      <td style="vertical-align: middle;">
         <%= link_to end_user_path(mutual_follow) do %>
           <h5><%= mutual_follow.name %></h5>
         <% end %>
       </td>
-      <td>
+      <td style="vertical-align: middle;">
         <% if end_user == current_end_user %>
-          メッセージを送る
+          <%= link_to "メッセージを送る", chat_path(mutual_follow) %>
         <% end %>
       </td>
-      <td>
-        <% if current_end_user != mutual_follow %>
-          <%= link_to "", end_user_relationships_path(mutual_follow), method: :delete, remote: true, class: "fas fa-user-minus btn-edit" %>
+      <td class="follow-btn" style="vertical-align: middle;">
+        <% if current_end_user == end_user %>
+          <%= link_to "", end_user_relationships_path(mutual_follow, user: "user"), method: :delete, remote: true, class: "fas fa-user-minus follow-btn-style" %>
         <% end %>
+
+        <!--余裕があれば他人のホームでフォローボタンを表示する(前回ややこしくて諦めた)-->
       </td>
     </tr>
   <% end %>

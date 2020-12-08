@@ -1,9 +1,9 @@
 <% if target_post.bookmarked_by?(current_end_user) %>
   <%= link_to post_bookmarks_path(target_post.id), method: :delete, remote: true do %>
-  	<i class="fas fa-bookmark fa-lg bookmark_black" aria-hidden="true"></i>
+  	<i class="fas fa-bookmark icon-size bookmark_black" aria-hidden="true"></i>
   <% end %>
 <% else %>
   <%= link_to post_bookmarks_path(target_post.id), method: :post, remote: true do %>
-  	<i class="far fa-bookmark fa-lg" aria-hidden="true"></i>
+  	<i class="far fa-bookmark icon-size" aria-hidden="true"></i>
   <% end %>
 <% end %>

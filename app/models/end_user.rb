@@ -52,4 +52,12 @@ class EndUser < ApplicationRecord
     followings & followers
   end
 
+  def self.search_for(value, how)
+    if how == 'match'
+      EndUser.where(name: value)
+    elsif how == 'partical'
+      EndUser.where('name LIKE ?', '%'+value+'%')
+    end
+  end
+
 end
