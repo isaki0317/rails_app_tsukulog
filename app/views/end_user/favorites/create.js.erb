@@ -1,3 +1,4 @@
-$('.favorite_<% @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite', locals: {target_post: @post}) %>");
-$('.favorites-count').html("<%= j(render partial: 'end_user/favorites/favorite_count', locals: {target_post: @post}) %>");
+$('#favorites-count_<%= @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite_count', locals: {target_post: @post}) %>");
+$('#favorite_<%= @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite', locals: {target_post: @post}) %>");
+
 

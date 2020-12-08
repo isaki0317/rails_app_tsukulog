@@ -1,106 +1,102 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="col-xs-8 post-detail-box">
-        <div class="show-top">
-          <div class="top-left">
-            <span>
-              <%= link_to  end_user_path(@post.end_user) do %>
-                <% if @post.images.present? %>
-                  <img src='<%= @post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
-                <% else %>
-                  <%= image_tag "sample.jpg", size: '50x50' %>
-                <% end %>
-            </span>
-            <span><%= @post.end_user.name %></span>
-              <% end %>
-          </div>
-          <div class="top-right">
-            <span class="favorite_<% @post.id %>">
-              <%= render 'end_user/favorites/favorite', target_post: @post %>
-            </span>
-            <%= link_to "", chat_path(@post.end_user), class: "fas fa-sms fa-size-post" %>
-            <span class="bookmark_<% @post.id %>">
-              <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
-            </span>
-          </div>
-        </div>
-        <h4 class="title_show"><%= @post.title %>【<%= @post.genre.name %>】</h4>
-        <div class="post-img-show">
-          <div class="post-detail-img">
-            <img src='<%= @post.images.medium.url %>' class="img-size" alt="ユーザー投稿写真">
-          </div>
-          <ul class="post-details">
-            <li class="subtitle-label">キャッチフレーズ</li>
-            <li class="detail-subtitle">
-              <%= @post.subtitle %>
-            </li>
-            <li class="caution-label">コツ・注意点</li>
-            <li class="detail-caution">
-              <%= @post.caution %>
-            </li>
-            <li>
-              <span class="cost-label">費用：</span>
-              <span class="detail-cost">
-                <%= @post.cost %>
-              </span>
-            </li>
-            <li>
-              <span class="creation_time-label">制作時間：</sspan>
-              <span class="detail-creation_time">
-                <%= @post.creation_time %>
-              </span>
-            </li>
-            <li>
-              <span class="level-label">難易度：</sspan>
-              <span class="detail-level">
-                <%= @post.level %>
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div class="detail-body">
-          <h4>材料(購入先)</h4>
-          <div class="detail-materials">
-          <% @post.materials.each do |material| %>
-            <div>
-              <span class="material_name-show">
-                <%= material.material_name %>
-              </span>
-              <span class="shop-show">
-                (<%= material.shop %>)
-              </span>
-            </div>
+<div class="col-xs-12">
+  <div class="col-xs-8 post-detail-box">
+    <div class="show-top">
+      <div class="top-left">
+        <span>
+          <%= link_to  end_user_path(@post.end_user) do %>
+            <% if @post.images.present? %>
+              <img src='<%= @post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
+            <% else %>
+              <%= image_tag "sample.jpg", size: '50x50' %>
+            <% end %>
+        </span>
+        <span><%= @post.end_user.name %></span>
           <% end %>
-          </div>
-          <h4>詳細工程</h4>
-          <div class="detail-works">
-          <% @post.works.each do |work| %>
-            <div class="work-box">
-              <div class="work_image text-center">
-                <% if work.images.present? %>
-                  <img src='<%= work.images.small.url %>' class="img-size" alt="工程の詳細写真">
-                <% else %>
-                  <%= image_tag "sample.jpg", size: '115x75', class: "img-size" %>
-                <% end %>
-              </div>
-              <div class="work_detail">
-                <%= work.detail %>
-              </div>
-            </div>
-          <% end %>
-          </div>
-        </div>
       </div>
-      <div class="fixed-menu-show">
-        <div class="comment-list_<% @post.id %> comment-list">
-          <%= render 'end_user/comments/comment', target_post: @post %>
-        </div>
-        <hr>
-        <div class="post-comment">
-          <%= render 'end_user/comments/form', target_post: @post, comment: @comment_new %>
-        </div>
+      <div class="top-right">
+        <span id="favorite_<%= @post.id %>">
+          <%= render 'end_user/favorites/favorite', target_post: @post %>
+        </span>
+        <%= link_to "", chat_path(@post.end_user), class: "fas fa-sms icon-size" %>
+        <span id="bookmark_<%= @post.id %>">
+          <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
+        </span>
       </div>
+    </div>
+    <h4 class="title_show"><%= @post.title %>【<%= @post.genre.name %>】</h4>
+    <div class="post-img-show">
+      <div class="post-detail-img">
+        <img src='<%= @post.images.medium.url %>' class="img-size" alt="ユーザー投稿写真">
+      </div>
+      <ul class="post-details">
+        <li class="subtitle-label">キャッチフレーズ</li>
+        <li class="detail-subtitle">
+          <%= @post.subtitle %>
+        </li>
+        <li class="caution-label">コツ・注意点</li>
+        <li class="detail-caution">
+          <%= @post.caution %>
+        </li>
+        <li>
+          <span class="cost-label">費用：</span>
+          <span class="detail-cost">
+            <%= @post.cost %>
+          </span>
+        </li>
+        <li>
+          <span class="creation_time-label">制作時間：</sspan>
+          <span class="detail-creation_time">
+            <%= @post.creation_time %>
+          </span>
+        </li>
+        <li>
+          <span class="level-label">難易度：</sspan>
+          <span class="detail-level">
+            <%= @post.level %>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="detail-body">
+      <h4>材料(購入先)</h4>
+      <div class="detail-materials">
+      <% @post.materials.each do |material| %>
+        <div>
+          <span class="material_name-show">
+            <%= material.material_name %>
+          </span>
+          <span class="shop-show">
+            (<%= material.shop %>)
+          </span>
+        </div>
+      <% end %>
+      </div>
+      <h4>詳細工程</h4>
+      <div class="detail-works">
+      <% @post.works.each do |work| %>
+        <div class="work-box">
+          <div class="work_image text-center">
+            <% if work.images.present? %>
+              <img src='<%= work.images.small.url %>' class="img-size" alt="工程の詳細写真">
+            <% else %>
+              <%= image_tag "sample.jpg", size: '115x75', class: "img-size" %>
+            <% end %>
+          </div>
+          <div class="work_detail">
+            <%= work.detail %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="fixed-menu-show">
+    <div id="comment-list_<%= @post.id %>" class="comment-section">
+      <%= render 'end_user/comments/comment', target_post: @post %>
+    </div>
+    <hr>
+    <div class="comment-text">
+      <%= render 'end_user/comments/form', target_post: @post, comment: @comment_new %>
     </div>
   </div>
 </div>

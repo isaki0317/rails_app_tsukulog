@@ -26,8 +26,6 @@
   border-radius: 0.67em;
   outline: none;
   border-color: gray;
-  // border: none;
-  // border-bottom: 2px solid gray;
 }
 
 .img-size, #img_prev {
@@ -37,47 +35,75 @@
 
 
 // end_user/posts/index
-.post-box {
-  border: 2px solid gray;
-  width: 600px;
-  margin-bottom: 25px;
-  background-color: white;
-}
-
-.post-bottom {
-  padding: 5px 8px 0 10px;
-}
-
-.post-user_name {
-  margin: 10px 5px;
-}
-
-.posts_image {
-  display: flex;
-  justify-content: center;
-}
-
-.fa-size-post {
+.icon-size {
   text-decoration: none;
   color: black;
   font-size: 1.4em;
   margin: 6px;
-  }
-  .fa-size-post:hover {
-    color: black;
 }
 
-.post-subtitle {
+.heart_red {
+  color:#e54747;
+}
+
+.bookmark_black {
+  color: black;
+}
+.icon-size:hover {
+  color: black;
+}
+
+.content {
+  border: 2px solid gray;
+  width: 600px;
+  margin-bottom: 25px;
+  background-color: white;
+
+  &_user {
+    margin: 10px 5px;
+}
+  &_image {
+    display: flex;
+    justify-content: center;
+}
+  &_foot {
+    padding: 5px 8px 0 10px;
+
+    .list-icon {
+
+      .icon {
+
+        .icon-size {
+          text-decoration: none;
+          color: black;
+          font-size: 1.4em;
+          margin: 6px;
+        }
+
+        .heart_red {
+          color:#e54747;
+        }
+
+        .bookmark_black {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.detail-list {
   display: flex;
   justify-content: space-between;
   list-style: none;
   border-bottom: 1px solid gray;
-  .post-time {
+
+  .create-time {
     min-width: 70%;
   }
 }
 
-.fixed-menu {
+.fixed-sidebar {
   width: 300px!important;
   border: 1px solid gray;
   background-color: white;
@@ -141,26 +167,27 @@
   top: 72px;
   right: 250px;
   padding: 8px 0 8px 8px;
-  .comment-list {
+  .comment-section {
     max-height: 400px;
     overflow-y: scroll;
-  }
-}
-p.comment-body {
-  max-width: 270px;
-  height: auto;
-  word-wrap: break-word;
-}
 
-.comment-detail {
-  display: flex;
-  justify-content: flex-start;
-  .commented-user {
-    margin: 0;
+    &_head {
+      display: flex;
+      justify-content: flex-start;
+
+      .commented-user {
+        margin: 0;
+      }
+      .commented-time {
+        font-size: 12px;
+        margin: 0 0 0 5px;
+      }
+    }
   }
-  .commented-time {
-    font-size: 12px;
-    margin: 0 0 0 5px;
+  &_body {
+    max-width: 270px;
+    height: auto;
+    word-wrap: break-word;
   }
 }
 
@@ -181,10 +208,3 @@ p.comment-body {
 }
 
 // favorite
-.heart_red {
-  color:#e54747;
-}
-
-.bookmark_black {
-  color: black;
-}

@@ -38,7 +38,7 @@ footer {
   margin-top: auto;
 }
 
-.container-fluid {
+.container {
   margin-top: 70px;
 }
 
@@ -82,4 +82,44 @@ footer {
   }
   .fa-size:hover {
     color: black;
+}
+
+// header-admin
+#wrapper {
+margin-left: 230px;
+}
+
+#sidebar-wrapper {
+width: 230px;
+background: #555;
+height: 100%;
+position: fixed;
+left: 0;
+top: 0;
+}
+
+#sidebar-wrapper .logo {
+text-transform: uppercase;
+color: #FFF;
+text-align: center;
+padding: 15px 0;
+font-size: 36px;
+font-weight: bold;
+border-bottom: 1px solid #666;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked {
+margin-top: 30px;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li {
+
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li a {
+color: #FFF;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li a:hover {
+background: #333;
 }
