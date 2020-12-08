@@ -1,1 +1,2 @@
-$('.bookmark_<% @post.id %>').html("<%= j(render partial: 'end_user/bookmarks/bookmark', locals: {target_post: @post}) %>");
+$('#bookmark_<%= @post.id %>').html("<%= j(render partial: 'end_user/bookmarks/bookmark', locals: {target_post: @post}) %>");
+

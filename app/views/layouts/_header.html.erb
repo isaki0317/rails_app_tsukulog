@@ -1,5 +1,65 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <% if end_user_signed_in? %>
-    <%= link_to "マイページ(仮)", end_user_path(current_end_user.id) %>
-  <% end %>
+  <nav class="nav navbar-nav col-xs-5 text-center nav-left">
+    <h4>
+      <% if end_user_signed_in? %>
+        <%= link_to "LOGO", posts_path, class: "header-logo" %>
+      <% else %>
+        LOGO
+      <% end %>
+    </h4>
+  </nav>
+  <nav class="nav navbar-nav col-xs-7 nav-right">
+    <% if end_user_signed_in? %>
+      <div class="navigation">
+        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size" %>
+      </div>
+      <div class="navigation">
+        <i class="far fa-bell fa-size"></i>
+      </div>
+      <div class="navigation dropdown">
+        <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">
+        	<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li role="presentation" class="dropdown-header">-既存のトークルーム-</li>
+            <% if @user_rooms.empty? %>
+              <li role="presentation" class="dropdown-header">ありません。</li>
+            <% else %>
+              <% @user_rooms.each do |room| %>
+                <li role="presentation">
+                  <%= link_to room.end_user.name, chat_path(room.end_user) %>
+                </li>
+              <% end %>
+            <% end %>
+          <li role="presentation" class="dropdown-header">-トークを始める-</li>
+            <% if @mutual_follows.empty? %>
+              <li role="presentation" class="dropdown-header">相互フォローユーザー<br>がいません。</li>
+            <% else %>
+        	      <% @mutual_follows.each do |follow| %>
+                <li role="presentation">
+                  <%= link_to follow.name, chat_path(follow) %>
+                </li>
+              <% end %>
+            <% end %>
+        </ul>
+      </div>
+      <div class="navigation">
+        <%= link_to end_user_path(current_end_user.id), 'data-turbolinks': false do %>
+          <% if current_end_user.images.present? %>
+            <img src='<%= current_end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+          <% else %>
+            <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="navigation">
+        <%= link_to "", destroy_end_user_session_path, method: :delete, class: "fas fa-sign-out-alt fa-size" %>
+      </div>
+    <% else %>
+      <%= link_to "ログイン", new_end_user_session_path %>
+      <%= link_to "新規登録", new_end_user_registration_path %>
+      <%= link_to "About", about_path %>
+      <%= link_to "Top", root_path %>
+    <% end %>
+  </nav>
 </nav>

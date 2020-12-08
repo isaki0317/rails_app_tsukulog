@@ -28,7 +28,7 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: rgba(236,236,236,0.2);
 }
 
 footer {
@@ -38,10 +38,88 @@ footer {
   margin-top: auto;
 }
 
-.container-fluid {
+.container {
   margin-top: 70px;
 }
 
 .navbar-default {
   background-color: white;
+}
+
+.header-logo {
+  text-decoration: none;
+  color: black;
+  }
+  .header-logo:hover {
+    color: black;
+}
+
+.nav-left {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-right {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .navigation {
+    margin-left: 30px;
+  }
+}
+.header-user-image {
+  border: solid 1px rgba(192,192,192,0.7);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.fa-size {
+  text-decoration: none;
+  color: black;
+  font-size: 1.6em
+  }
+  .fa-size:hover {
+    color: black;
+}
+
+// header-admin
+#wrapper {
+margin-left: 230px;
+}
+
+#sidebar-wrapper {
+width: 230px;
+background: #555;
+height: 100%;
+position: fixed;
+left: 0;
+top: 0;
+}
+
+#sidebar-wrapper .logo {
+text-transform: uppercase;
+color: #FFF;
+text-align: center;
+padding: 15px 0;
+font-size: 36px;
+font-weight: bold;
+border-bottom: 1px solid #666;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked {
+margin-top: 30px;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li {
+
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li a {
+color: #FFF;
+}
+
+#sidebar-wrapper .nav.nav-pills.nav-stacked li a:hover {
+background: #333;
 }

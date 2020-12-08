@@ -1,3 +1,11 @@
 // Place all the styles related to the end_user::searchs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.search-box {
+  border-bottom: 1px solid rgba(192,192,192,0.7);
+  border-top: 1px solid rgba(192,192,192,0.7);
+  padding: 10px 0;
+  .search-select {
+    margin-top: 6px;
+  }
+}

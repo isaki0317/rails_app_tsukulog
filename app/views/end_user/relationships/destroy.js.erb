@@ -1,4 +1,8 @@
 $('.follow-btn').html("<%= j(render partial: 'end_user/relationships/follow', locals: {end_user: @end_user}) %>");
-$('.unfollow<%= current_end_user.id %>').html("<%= j(render partial: 'end_user/end_users/mutual_follow', locals: {mutual_follows: @mutual_follows, end_user: @user}) %>");
 $('.follow-btn2').html("<%= j(render partial: 'end_user/relationships/create_follow', locals: {followers: @followers}) %>");
+$('.unfollow<%= current_end_user.id %>').html("<%= j(render partial: 'end_user/end_users/mutual_follow', locals: {mutual_follows: @mutual_follows, end_user: @end_user}) %>");
+
+
+
+console.log("destroy")
 

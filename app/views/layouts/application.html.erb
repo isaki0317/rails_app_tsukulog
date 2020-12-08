@@ -11,11 +11,22 @@
 
   <body>
     <div class="body">
-      <%= render 'layouts/header' %>
-      <div class="container-fluid">
-        <%= yield %>
-      </div>
-      <%= render 'layouts/footer' %>
+      <% if admin_signed_in? %>
+        <%= render 'layouts/header_admin' %>
+        <div class="container">
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <%= render 'layouts/header' %>
+        <div class="container">
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+        <%= render 'layouts/footer' %>
+      <% end %>
     </div>
   </body>
 </html>

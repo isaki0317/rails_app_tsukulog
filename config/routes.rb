@@ -11,11 +11,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes', as: 'top'
     get 'search' => 'searchs', as: 'search'
-    resources :genres, only: [:index, :create, :updete, :destroy]
+    resources :genres, only: [:index, :create, :updete, :show]
     resources :contacts, only: [:index, :show, :update]
     resources :comments, only: [:destroy]
-    resources :posts, only: [:index, :show, :update, :destroy]
+    resources :posts, only: [:index, :show, :update, :destroy, :edit]
     resources :end_users, only: [:index, :show, :edit, :update, :destroy]
+    resources :chats, only: [:show, :destroy]
   end
 
   scope module: :end_user do
@@ -26,9 +27,6 @@ Rails.application.routes.draw do
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
     resources :end_users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      get :follows, on: :member
-      get :followers, on: :member
-      get :search, on: :collection
       collection do
         get 'quit'
   	    patch 'out'
