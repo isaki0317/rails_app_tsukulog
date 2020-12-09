@@ -103,21 +103,21 @@
   }
 }
 
+// 検索・並び替えサイドバー
 .fixed-sidebar {
   width: 300px!important;
   border: 1px solid gray;
   background-color: white;
-  position: fixed!important;
+  position: fixed;
   top: 72px;
   right: 290px;
 }
+.sort-menu {
+  margin: 10px 0;
+}
+
 
 // end_user/posts/show
-.post-img-show {
-  min-width: 550px;
-  display: flex;
-  justify-content: space-between;
-}
 
 .post-detail-box {
   background-color: white;
@@ -132,13 +132,18 @@
   }
 }
 
-.post-detail-img {
-  width: 550px;
+.content_image {
+  min-width: 550px;
+  display: flex;
+  justify-content: space-between;
+  .post-img {
+    width: 550px;
+  }
+  .post-details {
+    list-style: none;
+  }
 }
 
-.post-details {
-  list-style: none;
-}
 
 .detail-materials {
   display: flex;
@@ -148,14 +153,14 @@
 .detail-works {
   display: flex;
   flex-flow: row wrap;
-}
 
-.work-box {
-  width: 120px;
-}
+  .work-box {
+    width: 120px;
 
-.work_detail {
-  padding: 4px;
+    .work_detail {
+      padding: 4px;
+    }
+  }
 }
 
 // show/comment
