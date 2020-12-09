@@ -103,6 +103,7 @@
   }
 }
 
+// 検索・並び替えサイドバー
 .fixed-sidebar {
   width: 300px!important;
   border: 1px solid gray;
@@ -110,14 +111,50 @@
   position: fixed!important;
   top: 72px;
   right: 290px;
+
+  .search {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+
+    .search_form {
+      padding: 4px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #666;
+      margin-bottom: 5px;
+    }
+
+    .search_select {
+
+      #search_model, #search_how {
+        padding: 3px;
+        border-radius: 0.67em;
+        outline: none;
+      }
+      .search-btn {
+        padding: 3px;
+        border-radius: 0.67em;
+        border: none;
+        border: 1px solid gray;
+        outline: none;
+      }
+    }
+  }
+  .sort-menu {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom : 2px solid gray;
+
+    .btn-default {
+      padding: 7px 12px;
+      font-size: 15px;
+    }
+  }
 }
 
+
 // end_user/posts/show
-.post-img-show {
-  min-width: 550px;
-  display: flex;
-  justify-content: space-between;
-}
 
 .post-detail-box {
   background-color: white;
@@ -132,13 +169,18 @@
   }
 }
 
-.post-detail-img {
-  width: 550px;
+.content_image {
+  min-width: 550px;
+  display: flex;
+  justify-content: space-between;
+  .post-img {
+    width: 550px;
+  }
+  .post-details {
+    list-style: none;
+  }
 }
 
-.post-details {
-  list-style: none;
-}
 
 .detail-materials {
   display: flex;
@@ -148,14 +190,14 @@
 .detail-works {
   display: flex;
   flex-flow: row wrap;
-}
 
-.work-box {
-  width: 120px;
-}
+  .work-box {
+    width: 120px;
 
-.work_detail {
-  padding: 4px;
+    .work_detail {
+      padding: 4px;
+    }
+  }
 }
 
 // show/comment

@@ -23,9 +23,9 @@
         </span>
       </div>
     </div>
-    <h4 class="title_show"><%= @post.title %>【<%= @post.genre.name %>】</h4>
-    <div class="post-img-show">
-      <div class="post-detail-img">
+    <h4 class="content_title"><%= @post.title %>【<%= @post.genre.name %>】</h4>
+    <div class="content_image">
+      <div class="post-img">
         <img src='<%= @post.images.medium.url %>' class="img-size" alt="ユーザー投稿写真">
       </div>
       <ul class="post-details">
@@ -44,7 +44,7 @@
           </span>
         </li>
         <li>
-          <span class="creation_time-label">制作時間：</sspan>
+          <span class="creation_time-label">制作時間：</span>
           <span class="detail-creation_time">
             <%= @post.creation_time %>
           </span>
@@ -77,7 +77,7 @@
         <div class="work-box">
           <div class="work_image text-center">
             <% if work.images.present? %>
-              <img src='<%= work.images.small.url %>' class="img-size" alt="工程の詳細写真">
+              <img src='<%= work.images.small.url %>' class="img-size" alt="工程の写真">
             <% else %>
               <%= image_tag "sample.jpg", size: '115x75', class: "img-size" %>
             <% end %>
