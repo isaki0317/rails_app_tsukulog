@@ -8,7 +8,11 @@ class EndUser::PostsController < ApplicationController
   end
 
   def index
-    @public_posts = Post.where(post_status: "true")
+    @order = params["order"]
+    @terms = params["terms"]
+    public_posts = Post.sort_for(@order, @terms)
+    @public_posts = public_posts.where(post_status: "true")
+
     @genres = Genre.all
     @comment_new = Comment.new
   end
