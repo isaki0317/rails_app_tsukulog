@@ -2,7 +2,7 @@
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
     <h4>
       <% if end_user_signed_in? %>
-        <%= link_to "LOGO", posts_path, class: "header-logo" %>
+        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo" %>
       <% else %>
         LOGO
       <% end %>
