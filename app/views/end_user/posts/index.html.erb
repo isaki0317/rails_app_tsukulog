@@ -1,5 +1,5 @@
 <div class="col-xs-7 col-xs-offset-1">
-  <main class="main">
+  <main class="main jscroll posts-list">
     <% @public_posts.each do |public_post| %>
     <div class="content">
       <div class="content_user">
@@ -49,6 +49,7 @@
       </div>
     </div>
     <% end %>
+  <%= paginate @public_posts %>
   </main>
 </div>
 <!--検索用サイドバー-->
