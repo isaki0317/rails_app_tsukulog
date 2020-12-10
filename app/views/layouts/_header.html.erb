@@ -2,7 +2,7 @@
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
     <h4>
       <% if end_user_signed_in? %>
-        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo" %>
+        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
       <% else %>
         LOGO
       <% end %>
@@ -11,7 +11,7 @@
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
       <div class="navigation">
-        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size" %>
+        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
       </div>
       <div class="navigation">
         <i class="far fa-bell fa-size"></i>
