@@ -52,6 +52,18 @@ class EndUser < ApplicationRecord
     followings & followers
   end
 
+  # フォローに対する通知
+  def create_notification_follow!(current_end_user)
+    temp = Notification.where(["visitor_id = ? visited_id = ? and action = ?, current_end_user.id, id, 'follow"])
+    if temp.blank?
+      notification = current_end_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
   def self.search_for(value, how)
     if how == 'match'
       EndUser.where(name: value)

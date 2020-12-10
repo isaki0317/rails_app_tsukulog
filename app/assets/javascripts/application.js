@@ -10,12 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
+//= require jquery_ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
-//= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.jscroll.min.js
+//= require bootstrap-sprockets
 
 // posts.imagesメイン写真プレビュー
  $(function() {
@@ -205,4 +207,16 @@ $( function() {
 	$('#request-button').click( function () {
 		$('#request-modal').modal();
 	});
+});
+
+// 無限スクロール
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.posts-list',
+            nextSelector: 'span.next:last a'
+          });
+    }
 });

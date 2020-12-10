@@ -206,7 +206,7 @@
 }
 
 .content {
-  border: 2px solid gray;
+  border: 2px solid rgba(211,211,211,0.5);
   width: 600px;
   margin-bottom: 25px;
   background-color: white;
@@ -258,7 +258,7 @@
 // 検索・並び替えサイドバー
 .fixed-sidebar {
   width: 300px!important;
-  border: 1px solid gray;
+  border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
   top: 72px;
@@ -310,8 +310,9 @@
 
 .post-detail-box {
   background-color: white;
-  border: 1px solid gray;
+  border: 2px solid rgba(211,211,211,0.5);
   padding: 8px 0;
+  margin-bottom: 20px;
   .show-top {
     display: flex;
     justify-content: space-between;
@@ -355,7 +356,7 @@
 // show/comment
 .fixed-menu-show {
   width: 300px!important;
-  border: 1px solid gray;
+  border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
   top: 72px;
