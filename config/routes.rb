@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'search' => 'searchs#search', as: 'search'
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
+    get 'notifications' => 'notifications#index'
     resources :end_users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       collection do

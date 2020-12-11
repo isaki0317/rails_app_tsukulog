@@ -20,6 +20,9 @@ class EndUser::ChatsController < ApplicationController
   def create
     @chat = current_end_user.chats.new(chat_params)
     @chat.save
+    @room = @chat.room
+    @chat.create_notification_chat!(current_end_user, @room, @chat)
+    respond_to :js
   end
 
   private

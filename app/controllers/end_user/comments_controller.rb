@@ -2,8 +2,15 @@ class EndUser::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
     @post = Post.find(params[:post_id])
+    if @comment.save
+      @post.create_notification_comment!(current_end_user, @comment.id)
+      respond_to :js
+    else
+      @genres = Genre.all
+      @comment_new = Comment.new
+      render 'end_user/posts/show'
+    end
   end
 
   def destroy

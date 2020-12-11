@@ -2,7 +2,7 @@
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
     <h4>
       <% if end_user_signed_in? %>
-        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo" %>
+        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
       <% else %>
         LOGO
       <% end %>
@@ -11,26 +11,16 @@
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
       <div class="navigation">
-        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size" %>
+        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
       </div>
       <div class="navigation">
-        <i class="far fa-bell fa-size"></i>
+        <%= link_to "", notifications_path, class: "far fa-bell fa-size" %>
       </div>
       <div class="navigation dropdown">
         <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">
         	<span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-          <li role="presentation" class="dropdown-header">-既存のトークルーム-</li>
-            <% if @user_rooms.empty? %>
-              <li role="presentation" class="dropdown-header">ありません。</li>
-            <% else %>
-              <% @user_rooms.each do |room| %>
-                <li role="presentation">
-                  <%= link_to room.end_user.name, chat_path(room.end_user) %>
-                </li>
-              <% end %>
-            <% end %>
           <li role="presentation" class="dropdown-header">-トークを始める-</li>
             <% if @mutual_follows.empty? %>
               <li role="presentation" class="dropdown-header">相互フォローユーザー<br>がいません。</li>
