@@ -3,36 +3,188 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // end_user/posts/new
+.title-form, .subtitle-form, .text-form {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #666;
+  border-color: gray;
+}
 
 .post-new-box {
-  border: 1px solid gray;
+  border: 1px solid rgba(211,211,211,0.5);
+  border-radius: 0.2em;
   padding: 12px;
   margin-bottom: 20px;
   list-style: none;
   background-color: white;
 }
-
-.work-area {
+.form-top {
   display: flex;
-  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px dotted gray;
+  .title-form {
+    padding: 0.2rem;
+    font-size: 19px;
+  }
+  .subtitle-form {
+    padding: 0.2rem;
+    font-size: 14px;
+    margin-left: 20px;
+  }
 }
+.form-half-left {
+  padding: 16px 0;
+}
+.img-size, #img_prev {
+  border: 1px solid gray;
+  border-radius: 0.67em;
+  cursor: pointer;
+}
+
+.form-half-right {
+  padding: 0 0 0 20px!important;
+  .material-label {
+  }
+}
+
 
 .material_name .material_shop {
   padding: 0px;
 }
-
-.text-form {
-  padding: 0.2em;
-  border-radius: 0.67em;
-  outline: none;
-  border-color: gray;
+.delete-form-btn {
+  font-size: 12px;
+}
+.add-btn {
+  padding-top: 5px;
+}
+.add-form-btn, .add-form-btn-work {
+  font-size: 12px;
+}
+.add-form-btn-work:hover,.add-form-btn:hover, .delete-form-btn:hover, .delete-work-btn:hover {
+  cursor: pointer;
+  color: #cc0f2e;
+  font-size: 14px;
+}
+.js-material-group {
+  margin-bottom: 5px;
+}
+.post-form-title {
+  font-weight: 600;
+}
+.work-content {
+    border-bottom: 1px dotted gray;
+    border-top: 1px dotted gray;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  .work-area {
+    display: flex;
+    flex-flow: row wrap;
+    .js-work-group {
+      margin: 0 24px 5px 0;
+    }
+  }
 }
 
-.img-size, #img_prev {
-  border: 2px solid gray;
-  border-radius: 0.67em;
+#post_genre_id, #post_cost, #post_creation_time, #post_level, #post_post_status {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  margin-right: 6px;
+}
+.post_link, #post_link, .post_caution, #post_caution {
+  margin-top: 1rem;
+}
+.post_link {
+  margin-right: 1.4rem;
+}
+#post_link, #post_caution {
+  padding: 0.2rem;
+}
+.form-bottom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  .post_status {
+    margin: 0;
+  }
+  #post_post_status {
+    margin-left: 0.4rem;
+  }
+  .works_detail {
+    font-size: 5px;
+  }
+  .btn-sm {
+    margin-left: auto;
+  }
+}
+// アコーディイオンメニュー
+.post-nav {
+  padding: 0!important;
+  width: 280px!important;
+  margin-left: 20px;
+  border: 1px solid rgba(211,211,211,0.5);
+  border-radius: 0.2em;
+  position: fixed!important;
+  top: 72px;
+  right: 290px;
+}
+.post-nav > h5.title_bar {
+  background-color: rgba(255,235,205,0.3);
+  margin: 0;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(211,211,211,0.5);
+}
+.fa-chevron-down {
+  font-size: 1rem;
+  margin-right: 10px;
 }
 
+.acd-check{
+    display: none;
+}
+.acd-label{
+    background: white;
+    color: black;
+    display: block;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    border-bottom: 1px solid rgba(211,211,211,0.5);
+    font-weight: 500;
+}
+.acd-label:after{
+    background: white;
+    box-sizing: border-box;
+    content: '\f067';
+    display: none;
+    // font-family: "Font Awesome 5 Free";
+    padding: 8px 20px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+.acd-content{
+    border-bottom: 1px solid rgba(211,211,211,0.5);
+    background-color: white;
+    display: block;
+    height: 0;
+    opacity: 0;
+    padding: 0 10px;
+    transition: .5s;
+    visibility: hidden;
+}
+.acd-check:checked + .acd-label:after{
+    content: '\f068';
+}
+.acd-check:checked + .acd-label + .acd-content{
+    height: 80px;
+    opacity: 1;
+    padding: 10px;
+    visibility: visible;
+    background-color: rgba(255,235,205,0.2);
+}
 
 // end_user/posts/index
 .icon-size {
@@ -54,7 +206,7 @@
 }
 
 .content {
-  border: 2px solid gray;
+  border: 2px solid rgba(211,211,211,0.5);
   width: 600px;
   margin-bottom: 25px;
   background-color: white;
@@ -106,7 +258,7 @@
 // 検索・並び替えサイドバー
 .fixed-sidebar {
   width: 300px!important;
-  border: 1px solid gray;
+  border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
   top: 72px;
@@ -158,8 +310,9 @@
 
 .post-detail-box {
   background-color: white;
-  border: 1px solid gray;
+  border: 2px solid rgba(211,211,211,0.5);
   padding: 8px 0;
+  margin-bottom: 20px;
   .show-top {
     display: flex;
     justify-content: space-between;
@@ -203,7 +356,7 @@
 // show/comment
 .fixed-menu-show {
   width: 300px!important;
-  border: 1px solid gray;
+  border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
   top: 72px;
@@ -249,4 +402,4 @@
   font-weight: 600;
 }
 
-// favorite
+

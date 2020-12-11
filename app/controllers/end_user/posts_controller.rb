@@ -10,9 +10,9 @@ class EndUser::PostsController < ApplicationController
   def index
     @order = params["order"]
     @terms = params["terms"]
-    public_posts = Post.sort_for(@order, @terms)
-    @public_posts = public_posts.where(post_status: "true")
-
+    posts = Post.sort_for(@order, @terms)
+    public_posts = posts.where(post_status: "true")
+    @public_posts = public_posts.page(params[:page]).per(2)
     @genres = Genre.all
     @comment_new = Comment.new
   end

@@ -1,3 +1,6 @@
+<% if target_post.comments.empty? %>
+  <p>コメントはありません...</p>
+<% end %>
 <% target_post.comments.each do |comment| %>
   <div class="comment-section_head">
     <h5 class="commented-user">

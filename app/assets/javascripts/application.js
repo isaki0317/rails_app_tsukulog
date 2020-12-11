@@ -10,12 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
-//= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.jscroll.min.js
+//= require bootstrap-sprockets
 
 // posts.imagesメイン写真プレビュー
  $(function() {
@@ -39,14 +40,14 @@
 $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<span class="js-material-group" data-index="${index}">
-                  <spam class="material_name"><input size="10" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
-                  <spam class="material_shop"><input size="10" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
+                  <spam class="material_name"><input placeholder="材料or道具..." size="12" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
+                  <spam class="material_shop"><input placeholder="購入先..." size="12" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
                   <spam class="delete-form-btn">削除</spam>
                 </span><br>`;
     return html;
   }
 
-  let fileIndex = [1, 2, 3, 4, 5, 6] // 追加するフォームのインデックス番号を用意
+  let fileIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9] // 追加するフォームのインデックス番号を用意
   var lastIndex = $(".js-material-group:last").data("index"); // 編集フォーム用（すでにデータがある分のインデックス番号が何か取得しておく）
   fileIndex.splice(0, lastIndex); // 編集フォーム用（データがある分のインデックスをfileIndexから除いておく）
   let fileCount = $(".hidden-destroy").length; // 編集フォーム用（データがある分のフォームの数を取得する）
@@ -117,17 +118,17 @@ function imgClick(obj){
   $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<div class="js-work-group" date-index="${index}">
-                  <span>1</span>
+                  <span>〖${index}〗</span>
                   <spam class="delete-work-btn">削除</spam><br>
                   <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
                   <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
                   <br>
-                  <textarea class="works_detail text-form" name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="4"></textarea>
+                  <textarea class="works_detail text-form" placeholder="説明をここに..." name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="5"></textarea>
                 </div>`;
     return html;
   }
 
-  let fileIndex = [1, 2, 3, 4, 5, 6] // 追加するフォームのインデックス番号を用意
+  let fileIndex = [2, 3, 4, 5, 6, 7, 8] // 追加するフォームのインデックス番号を用意
   var lastIndex = $(".js-work-group:last").data("index"); // 編集フォーム用（すでにデータがある分のインデックス番号が何か取得しておく）
   fileIndex.splice(0, lastIndex); // 編集フォーム用（データがある分のインデックスをfileIndexから除いておく）
   let fileCount = $(".hidden-destroy").length; // 編集フォーム用（データがある分のフォームの数を取得する）
@@ -205,4 +206,16 @@ $( function() {
 	$('#request-button').click( function () {
 		$('#request-modal').modal();
 	});
+});
+
+// 無限スクロール
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.posts-list',
+            nextSelector: 'span.next:last a'
+          });
+    }
 });
