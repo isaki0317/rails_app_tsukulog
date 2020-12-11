@@ -12,12 +12,9 @@ class EndUser::RelationshipsController < ApplicationController
       @end_user = current_end_user
     end
     @followers = current_end_user.followers.where.not(id: current_end_user.followings)
-    @end_user.create_notification_follow!(current_end_user)
+    @end_user.create_notification_follow!(current_end_user, @end_user)
     # respond_to :jsだけでいけないか完成後に試す
-    respond_to do |format|
-      format.html { redirect_to @end_user }
-      format.js
-    end
+    respond_to :js
   end
 
   def destroy

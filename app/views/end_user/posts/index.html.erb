@@ -5,7 +5,7 @@
       <div class="content_user">
         <span>
           <%= link_to  end_user_path(public_post.end_user) do %>
-            <% if public_post.images.present? %>
+            <% if public_post.end_user.images.present? %>
               <img src='<%= public_post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
             <% else %>
               <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
