@@ -9,12 +9,10 @@ class EndUser::RelationshipsController < ApplicationController
       @mutual_follows = @end_user.matchers
     else
       @mutual_follows = current_end_user.matchers
-      @end_user = current_end_user
+      @user = current_end_user
     end
     @followers = current_end_user.followers.where.not(id: current_end_user.followings)
     @end_user.create_notification_follow!(current_end_user, @end_user)
-    # respond_to :jsだけでいけないか完成後に試す
-    respond_to :js
   end
 
   def destroy

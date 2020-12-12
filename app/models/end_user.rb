@@ -72,4 +72,12 @@ class EndUser < ApplicationRecord
     end
   end
 
+  # guestログイン
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.password = SecureRandom.urlsafe_base64
+      end_user.name = "ゲスト太郎"
+    end
+  end
+
 end

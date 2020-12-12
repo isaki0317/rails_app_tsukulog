@@ -4,8 +4,8 @@ class EndUser::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
     if @comment.save
-      @post.create_notification_comment!(current_end_user, @comment.id)
-      respond_to :js
+      @post.create_notification_comment!(current_end_user, @comment.id, @post.end_user.id)
+      # respond_to :js
     else
       @genres = Genre.all
       @comment_new = Comment.new

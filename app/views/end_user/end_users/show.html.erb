@@ -77,8 +77,8 @@
         <div class="tab-flex">
           <% @draft_posts.each do |draft_post| %>
             <div class="">
-              <%= link_to post_path(draft_post) do %>
-                <img src='<%= draft_post.images.url %>' class="post-index" alt="投稿写真">
+              <%= link_to edit_post_path(draft_post) do %>
+                <img src='<%= draft_post.images.url %>' class="post-image" alt="投稿写真">
               <% end %>
             </div>
           <% end %>

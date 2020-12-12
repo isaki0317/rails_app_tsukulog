@@ -1,4 +1,4 @@
-<main class="main">
+<main class="main jscroll posts-list">
   <% public_posts.each do |public_post| %>
   <div class="content">
     <div class="content_user">
@@ -48,4 +48,5 @@
     </div>
   </div>
   <% end %>
+  <%= paginate public_posts %>
 </main>
