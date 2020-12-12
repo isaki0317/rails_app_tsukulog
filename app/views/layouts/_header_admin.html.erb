@@ -3,11 +3,11 @@
     LOGO
   </div>
   <div class="admin-search text-center">
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field 'search[value]', placeholder: "検索ワードを入力...", size: "25", class: "admin-search-form" %><br>
+    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field 'search_value', placeholder: "検索ワードを入力...", size: "25", class: "admin-search-form" %><br>
       <div class="text-right admin-search-select">
-        <%= f.select 'search[model]', options_for_select({ "投稿" => "post", "ユーザー" => "end_user" }), class: "select-model" %>
-        <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward" }), class: "select-how" %>
+        <%= f.select 'search_model', options_for_select({ "投稿" => "post", "ユーザー" => "end_user" }), class: "select-model" %>
+        <%= f.select 'search_how', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }), class: "select-how" %>
         <%= f.submit "検索", class: "admin-search-btn" %>
       </div>
     <% end %>
