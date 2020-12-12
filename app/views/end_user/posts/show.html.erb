@@ -14,6 +14,11 @@
           <% end %>
       </div>
       <div class="top-right">
+        <% if @post.end_user == current_end_user %>
+          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.title }を、Twitterでみんなに広めよう！", class: 'btn btn-default', target: '_blank' do %>
+            <i class="fab fa-twitter"><span class="twitter-btn">Twitterでシェア</span></i>
+          <% end %>
+        <% end %>
         <span id="favorite_<%= @post.id %>">
           <%= render 'end_user/favorites/favorite', target_post: @post %>
         </span>

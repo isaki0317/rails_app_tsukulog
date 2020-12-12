@@ -1,3 +1,5 @@
 <h1 class="index">homes/top</h1>
 <%= link_to 'ログアウト(仮)', destroy_end_user_session_path, method: :delete %>
 <%= link_to '管理者', new_admin_session_path %>
+<%= link_to "ゲストログイン", end_users_guest_sign_in_path, method: :post %>
+<%= link_to "管理者ゲストログイン", admin_guest_sign_in_path, method: :post %>

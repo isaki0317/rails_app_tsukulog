@@ -212,10 +212,15 @@ $( function() {
 $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log(scrollHeight)
+    console.log(scrollPosition)
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+      console.log('inscrol')
+      console.log($('.posts-list').html())
+      console.log($('span.next:last a').html())
           $('.jscroll').jscroll({
             contentSelector: '.posts-list',
-            nextSelector: 'span.next:last a'
+            nextSelector: 'li.next:last a'
           });
     }
 });

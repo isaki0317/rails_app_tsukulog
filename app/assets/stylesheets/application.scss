@@ -83,6 +83,13 @@ footer {
   .fa-size:hover {
     color: black;
 }
+.n-circle {
+  position: absolute;
+  right: 485px;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: rgba(255,240,0,0.7);
+}
 
 // header-admin
 #wrapper {
@@ -124,3 +131,7 @@ color: #FFF;
 background: #333;
 }
 
+// 無限スクロール
+ul.pagination {
+  display: none;
+}

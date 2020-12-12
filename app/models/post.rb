@@ -64,15 +64,15 @@ class Post < ApplicationRecord
     end
   end
 
-  # コメントに対する通知
-  def create_notification_comment!(current_end_user, comment_id)
-    temp_ids = Comment.select(:end_user_id).where(post_id: id).where.not(end_user_id: current_end_user.id).distinct
-    temp_ids.each do |temp_id|
-      save_notification_comment!(current_end_user, comment_id, temp_id['end_user_id'])
-    end
-    save_notification_comment!(current_end_user, comment_id, end_user_id) if temp_ids.blank?
-  end
-  def save_notification_comment!(current_end_user, comment_id, visited_id)
+  # コメントに対する通知　この部分は他のコメント者へ通知が行くが、肝心の投稿者に行かない
+  # def create_notification_comment!(current_end_user, comment_id)
+  #   temp_ids = Comment.select(:end_user_id).where(post_id: id).where.not(end_user_id: current_end_user.id).distinct
+  #   temp_ids.each do |temp_id|
+  #     save_notification_comment!(current_end_user, comment_id, temp_id['end_user_id'])
+  #   end
+  #   save_notification_comment!(current_end_user, comment_id, end_user_id) if temp_ids.blank?
+  # end
+  def create_notification_comment!(current_end_user, comment_id, visited_id)
     notification = current_end_user.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
@@ -94,20 +94,22 @@ class Post < ApplicationRecord
         if terms == 'desc'
           Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :desc)
         else
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :asc)
+          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :asc)
         end
       elsif order == 'level'
         if terms == 'desc'
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :desc)
+          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(level: :desc)
         else
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :asc)
+          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(level: :asc)
         end
       elsif order == 'time'
         if terms == 'desc'
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :desc)
+          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :desc)
         else
           Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :asc)
         end
+      else
+        Post.where(title: value)
       end
     elsif how == 'partical'
       if order == nil && terms == nil
@@ -130,6 +132,8 @@ class Post < ApplicationRecord
         else
           Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(creation_time: :asc)
         end
+      else
+        Post.where('title LIKE ?', '%'+value+'%')
       end
     end
   end

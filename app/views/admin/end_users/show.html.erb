@@ -147,7 +147,7 @@
                     </td>
                     <td><%= user_room.created_at.strftime('%Y/%m/%d') %></td>
                     <td>
-                      <%= link_to "詳細(編集)", admin_chat_path('chat[user_a]': user_room.end_user.id, 'chat[user_b]': @end_user.id) %>
+                      <%= link_to "詳細(編集)", admin_chat_path('chat_user_a': user_room.end_user.id, 'chat_user_b': @end_user.id) %>
                     </td>
                   </tr>
                 <% end %>

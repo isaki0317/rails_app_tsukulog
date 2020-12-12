@@ -31,4 +31,11 @@ class Admin::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  def new_guest
+    admin = Admin.guest
+    sign_in admin
+    redirect_to admin_top_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 end
