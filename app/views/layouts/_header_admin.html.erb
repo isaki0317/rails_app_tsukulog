@@ -1,0 +1,42 @@
+<div id="sidebar-wrapper">
+  <div class="logo">
+    LOGO
+  </div>
+  <div class="admin-search text-center">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field 'search[value]', placeholder: "検索ワードを入力...", size: "25", class: "admin-search-form" %><br>
+      <div class="text-right admin-search-select">
+        <%= f.select 'search[model]', options_for_select({ "投稿" => "post", "ユーザー" => "end_user" }), class: "select-model" %>
+        <%= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward" }), class: "select-how" %>
+        <%= f.submit "検索", class: "admin-search-btn" %>
+      </div>
+    <% end %>
+  </div>
+  <ul class="nav nav-pills nav-stacked">
+    <li>
+      <%= link_to admin_posts_path do %>
+        <span class="glyphicon glyphicon-th-list">投稿一覧</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_end_users_path do %>
+        <span class="glyphicon glyphicon-user">ユーザー一覧</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_genres_path do %>
+        <span class="glyphicon glyphicon-calendar">ジャンル管理</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_contacts_path do %>
+        <span class="glyphicon glyphicon-envelope">お問合せ一覧</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to destroy_admin_session_path, method: :delete do %>
+        <span class="glyphicon glyphicon-log-out">ログアウト</span>
+      <% end %>
+    </li>
+  </ul>
+</div>

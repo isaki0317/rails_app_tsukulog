@@ -1,0 +1,13 @@
+<div class="col-xs-10 offset-1">
+  <h5>通知</h5>
+  <%= link_to notifications_destroy_all_path, method: :delete do %>
+      <i class="fas fa-trash" style="color: black;"></i>
+      <h7 style="color: black;">全削除</h7>
+    <% end %>
+  <% if @notifications.exists? %>
+    <%= render @notifications %>
+    <%= paginate @notifications %>
+  <% else %>
+    <p>未読通知はありません</p>
+  <% end %>
+</div>

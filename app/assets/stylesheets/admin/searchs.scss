@@ -1,0 +1,28 @@
+// Place all the styles related to the admin::searchs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admin-search {
+  padding-top: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #666;
+  .admin-search-form {
+    padding: 4px;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  .admin-search-select {
+    margin-right: 4px;
+    select {
+      border-radius: 0.6em;
+      border: none;
+      padding: 2px;
+    }
+    .admin-search-btn {
+      padding: 1px;
+      border-radius: 0.4em;
+    }
+  }
+}

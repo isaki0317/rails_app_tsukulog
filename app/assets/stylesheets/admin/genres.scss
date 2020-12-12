@@ -1,0 +1,33 @@
+// Place all the styles related to the admin::genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.genre-head {
+  margin: 35px 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+
+  &_title {
+    margin-bottom: 16px;
+  }
+  &_form {
+    padding: 5px;
+    border-radius: 1em;
+    outline: none;
+    border: none;
+    border: 1px solid gray;
+  }
+  &_select {
+    padding: 2px;
+    border-radius: 1em;
+    outline: none;
+    border: none;
+    border: 1px solid gray;
+  }
+  &_btn {
+    padding: 2px;
+    border-radius: 0.3em;
+    outline: none;
+    border: none;
+    border: 1px solid gray;
+  }
+}

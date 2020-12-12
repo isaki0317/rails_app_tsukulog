@@ -1,0 +1,102 @@
+// Place all the styles related to the end_user::end_users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 使いまわしの可能性あり
+.user_image {
+  width: 150px;
+  min-height: 150px!important;
+  border: solid 3px gray;
+  border-radius: 50%;
+}
+.follow-btn-style {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 4px;
+  text-decoration: none!important;
+  color: black;
+  font-weight: 550;
+}
+
+// show
+
+.profile {
+  min-height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 20px;
+
+  &_image {
+
+    .user_image {
+      width: 150px;
+      min-height: 150px!important;
+      border: solid 3px gray;
+      border-radius: 50%;
+    }
+  }
+}
+.link {
+  display: flex;
+
+  &_edit-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none!important;
+    color: black;
+    font-weight: 550;
+  }
+  &_chat-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none!important;
+    color: black;
+    font-weight: 550;
+  }
+  .follow-btn {
+
+    .follow-btn-style {
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 4px;
+      text-decoration: none!important;
+      color: black;
+      font-weight: 550;
+    }
+  }
+}
+.profile-detail {
+  display: flex;
+}
+.user-name {
+  font-weight: 550;
+}
+// ここまで
+.tab-flex {
+  display: flex!important;
+  flex-flow: row wrap;
+}
+.post-image {
+  width: 310px;
+  margin: 5px 5px 0 0;
+}
+.request-follow-btn {
+  border: none;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+}
+
+// edit
+#thumb_prev, .post_user_image {
+  width: 52px;
+  min-height: 52px;
+  border: solid 3px gray;
+  border-radius: 50%;
+}
+
+.img-prev {
+  height: 60px;
+}

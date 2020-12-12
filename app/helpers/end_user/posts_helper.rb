@@ -1,0 +1,2 @@
+module EndUser::PostsHelper
+end

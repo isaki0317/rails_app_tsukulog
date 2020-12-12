@@ -1,0 +1,33 @@
+<div class="col-xs-8 col-xs-offset-3">
+  <h4>お問い合わせ一覧</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>問い合わせ</th>
+        <th>お問合せ日</th>
+        <th>対応</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody style="background-color: white;">
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.end_user.name %></td>
+          <td><%= contact.title %></td>
+          <td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+          <td>
+            <% if contact.checked == true %>
+              <p>対応済み</p>
+            <% else %>
+              <p class="denger-message"><strong>対応前</strong></p>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "詳細(編集)", admin_contact_path(contact.id), class: "" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

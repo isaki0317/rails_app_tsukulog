@@ -1,0 +1,15 @@
+<% genres.each do |genre| %>
+  <tr>
+    <td><%= genre.name %></td>
+    <td>
+      <% if genre.is_active == true %>
+        有効
+      <% else %>
+        無効
+      <% end %>
+    </td>
+    <td>
+      編集
+    </td>
+  </tr>
+<% end %>
