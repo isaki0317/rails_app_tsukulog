@@ -1,0 +1,85 @@
+<div class="col-xs-10 col-xs-offset-2 admin-content">
+  <div class="text-left admin-content_top">
+    <img src='<%= @post.images.thumb_big.url %>' class="admin-content-image" alt="ユーザー投稿写真">
+    <%= link_to "投稿編集", edit_admin_post_path(@post.id), class: "btn-sm btn-default btn-info" %>
+    <%= link_to "マイページ", admin_end_user_path(@post.end_user.id), class: "btn-sm btn-default btn-primary" %>
+    <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, class: "btn-sm btn-default btn-danger" %>
+  </div>
+  <div class="admin-content_main">
+    <ul class="response-list">
+      <li class="response-list_detail">
+        <%= @favorites.count %>件のいいね<span class="link-btn btn-sm btn-default btn">詳細(仮)</span>
+      </li>
+      <li class="response-list_detail">
+        <%= @bookmarks.count %>件のストック<span class="link-btn btn-sm btn-default btn">詳細(仮)</span>
+      </li>
+      <li class="response-list_detail">
+        <%= @comments.count %>件のコメント<span class="link-btn btn-sm btn-default btn">詳細(仮)</span>
+      </li>
+    </ul>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>タイトル</th>
+          <td class="td-color"><%= @post.title %>【<%= @post.genre.name %>】</td>
+          <th>キャッチフレーズ</th>
+          <td class="td-color"><%= @post.subtitle %></td>
+        </tr>
+        <tr>
+          <th>難易度</th>
+          <td class="td-color"><%= @post.level %></td>
+          <th>リンク</th>
+          <td class="td-color"><%= @post.link %></td>
+        </tr>
+        <tr>
+          <th>費用</th>
+          <td class="td-color"><%= @post.cost %></td>
+          <th>制作時間</th>
+          <td class="td-color"><%= @post.creation_time %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-left col-xs-5">
+      <table class="left-menu table table-bordered">
+        <thead>
+          <tr>
+            <th>工程写真</th>
+            <th>詳細説明</th>
+          </tr>
+        </thead>
+        <tbody style="background-color: white;">
+          <% @post.works.each do |work| %>
+            <tr>
+              <td>
+                <% if work.images.present? %>
+                  <img src='<%= work.images.small.url %>' class="" alt="工程の写真">
+                <% else %>
+                  写真はありません。
+                <% end %>
+              </td>
+              <td><%= work.detail %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="main-right col-xs-5 col-xs-offset-1">
+      <table class="right-menu table table-bordered">
+        <thead>
+          <tr>
+            <th>材料</th>
+            <th>購入先</th>
+          </tr>
+        </thead>
+        <tbody style="background-color: white;">
+          <% @post.materials.each do |material| %>
+            <tr>
+              <td><%= material.material_name %></td>
+              <td><%= material.shop %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

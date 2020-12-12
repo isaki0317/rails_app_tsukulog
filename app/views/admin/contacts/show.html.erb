@@ -1,0 +1,50 @@
+<div class="col-xs-8 col-xs-offset-3">
+  <h4>お問い合わせ詳細</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>問い合わせ</th>
+        <th>お問合せ日</th>
+        <th>対応</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody style="background-color: white;">
+      <tr>
+        <td><%= @contact.end_user.name %></td>
+        <td><%= @contact.title %></td>
+        <td><%= @contact.created_at.strftime('%Y/%m/%d') %></td>
+        <td>
+          <% if @contact.checked == true %>
+            <p>対応済み</p>
+          <% else %>
+            <p>対応前</p>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "詳細(編集)", admin_contact_path(@contact.id), class: "" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>お問合せ本文</th>
+      </tr>
+    </thead>
+    <tbody style="background-color: white;">
+      <tr>
+        <td><%= @contact.body %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="contact-update">
+    <h5>編集する</h5>
+    <%= form_with model: @contact, url: admin_contact_path(@contact.id), local: true do |f| %>
+      <%= f.select :checked, [["対応前", false],["対応済み", true]], {include_blank: false} %>
+      <%= f.submit "更新" %>
+    <% end %>
+  </div>
+</div>

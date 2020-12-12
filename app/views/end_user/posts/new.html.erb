@@ -1,0 +1,114 @@
+<div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-8 post-new-box">
+    <%= form_with model: @post_new, url: posts_path, method: :post, local: true do |f| %>
+      <div class="col-xs-12 form-top">
+        <%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力...【必須】", size: '28', class: "title-form" %>
+        <%= f.text_area :subtitle, placeholder: "キャッチコピーを入力...【必須】", size: '28x2', class: "subtitle-form" %>
+      </div>
+      <div class="col-xs-6 form-half-left">
+        <%= f.file_field :images, id: :user_img, class: 'img_field', style: 'display:none;' %>
+        <% if @post_new.images.present? %>
+          <%= image_tag @post_new.images.big.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+        <% else %>
+          <%= image_tag "sample.jpg", size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+        <% end %>
+      </div>
+      <div class="col-xs-6 form-half-right">
+        <div class="material-label">
+          <h6 class="post-form-title">材料【必須】</h6>
+        </div>
+  <!--ここから-->
+        <div class="material-area">
+          <%= f.fields_for :materials, @post_new.materials.build do |m| %>
+          <span class="js-material-group" data-index="0">
+            <spam class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "12", class: "text-form" %></spam>
+            <spam class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "12", class: "text-form" %></spam>
+            <spam class="delete-form-btn">削除</spam>
+          </span><br>
+            <%= m.hidden_field :post_id, value: @post_new.id %>
+          <% end %>
+        </div>
+        <div class="add-btn"><span class="add-form-btn">タブを追加</span></div>
+　<!--ここまでを複製する-->
+      </div>
+      <div class="col-xs-12 work-content">
+        <h5 class="post-form-title">作り方【必須】</h5>
+<!--ここから-->
+        <%= f.fields_for :works, @post_new.works.build do |w| %>
+          <div class="work-area">
+            <div class="js-work-group" date-index="0">
+              <span>〖1〗</span>
+              <spam class="delete-work-btn">削除</spam><br>
+              <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
+              <% if @works.images.present? %>
+                <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+              <% else %>
+                <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+              <% end %><br>
+              <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
+            </div>
+          </div>
+          <div><span class="add-form-btn-work">タブを追加</span></div>
+          <%= w.hidden_field :post_id, value: @post_new.id %>
+        <% end %>
+<!--ここまでを複製する-->
+      </div>
+      <div class="col-xs-12">
+        <span class="post-form-title">選択項目【必須】</span>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "ジャンルを選択"}) %>
+        <%= f.select:cost,["１０００円以下","３０００円以下","５０００円以下","８０００円以下","８０００円以上"] %>
+        <%= f.select:creation_time,["～３０分","～１時間","～２時間","～４時間","～６時間","それ以上"] %>
+        <%= f.select:level,["低い","中","高い","えぐい"] %><br>
+        <%= f.label :link, 'リンク【任意】', class: "post_link" %>
+        <%= f.text_field :link, size: '55', class: "text-form", placeholder: "YouTube・Instagram・他..." %><br>
+        <%= f.label :caution, "自由記入【任意】", class: "post_caution" %>
+        <%= f.text_field :caution, size: "55", class: "text-form", placeholder: "注意点・こつ..." %><br>
+        <div class="form-bottom">
+          <%= f.label :post_status, "公開条件【必須】", class: "post_status" %>
+          <%= f.select :post_status, [["投稿する",true],["下書き保存", false]], {include_blank: true} %>
+          <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+          <%= f.submit "送信", class: "btn-sm btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-4 post-nav">
+    <h5 class="title_bar">投稿の書き方</h5>
+    <input id="acd-check1" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check1"><i class="fas fa-chevron-down"></i>投稿のタイトル</label>
+    <div class="acd-content">
+        <p>投稿するDIYに合ったタイトルを付けてください。</p>
+    </div>
+    <input id="acd-check2" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check2"><i class="fas fa-chevron-down"></i>キャッチコピー</label>
+    <div class="acd-content">
+        <p>投稿するDIYの魅力や工夫した点などを端的にまとめて記載しましょう。</p>
+    </div>
+    <input id="acd-check3" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check3"><i class="fas fa-chevron-down"></i>DIYの写真</label>
+    <div class="acd-content">
+        <p>DIYの完成品を載せてください。友達や他のアプリ利用者にイメージが伝わるような写真がベストです。</p>
+    </div>
+    <input id="acd-check4" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check4"><i class="fas fa-chevron-down"></i>材料・購入店</label>
+    <div class="acd-content">
+        <p>材料が細かく、多い場合は作り方の欄に記載してください。購入店はわかる範囲で問題ありません。</p>
+    </div>
+    <input id="acd-check5" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check5"><i class="fas fa-chevron-down"></i>作り方</label>
+    <div class="acd-content">
+        <p>初心者の方でもわかるように書いてください。写真はある場合のみ添付してください。</p>
+    </div>
+    <input id="acd-check6" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check6"><i class="fas fa-chevron-down"></i>リンク貼り付け</label>
+    <div class="acd-content">
+        <p>参考にしたYouTube、自身のYouTubeチャンネル、Instagram等などご自由に載せてください。</p>
+    </div>
+    <input id="acd-check7" class="acd-check" type="checkbox">
+    <label class="acd-label" for="acd-check7"><i class="fas fa-chevron-down"></i>自由記入欄</label>
+    <div class="acd-content">
+        <p>注意点やこつ、その他にも上記に記載しきれなかった内容などご自由に記載してください。</p>
+    </div>
+  </div>
+</div>
+

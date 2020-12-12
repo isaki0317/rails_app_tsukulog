@@ -1,0 +1,405 @@
+// Place all the styles related to the end_user::posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// end_user/posts/new
+.title-form, .subtitle-form, .text-form {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #666;
+  border-color: gray;
+}
+
+.post-new-box {
+  border: 1px solid rgba(211,211,211,0.5);
+  border-radius: 0.2em;
+  padding: 12px;
+  margin-bottom: 20px;
+  list-style: none;
+  background-color: white;
+}
+.form-top {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px dotted gray;
+  .title-form {
+    padding: 0.2rem;
+    font-size: 19px;
+  }
+  .subtitle-form {
+    padding: 0.2rem;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+}
+.form-half-left {
+  padding: 16px 0;
+}
+.img-size, #img_prev {
+  border: 1px solid gray;
+  border-radius: 0.67em;
+  cursor: pointer;
+}
+
+.form-half-right {
+  padding: 0 0 0 20px!important;
+  .material-label {
+  }
+}
+
+
+.material_name .material_shop {
+  padding: 0px;
+}
+.delete-form-btn {
+  font-size: 12px;
+}
+.add-btn {
+  padding-top: 5px;
+}
+.add-form-btn, .add-form-btn-work {
+  font-size: 12px;
+}
+.add-form-btn-work:hover,.add-form-btn:hover, .delete-form-btn:hover, .delete-work-btn:hover {
+  cursor: pointer;
+  color: #cc0f2e;
+  font-size: 14px;
+}
+.js-material-group {
+  margin-bottom: 5px;
+}
+.post-form-title {
+  font-weight: 600;
+}
+.work-content {
+    border-bottom: 1px dotted gray;
+    border-top: 1px dotted gray;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  .work-area {
+    display: flex;
+    flex-flow: row wrap;
+    .js-work-group {
+      margin: 0 24px 5px 0;
+    }
+  }
+}
+
+#post_genre_id, #post_cost, #post_creation_time, #post_level, #post_post_status {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  margin-right: 6px;
+}
+.post_link, #post_link, .post_caution, #post_caution {
+  margin-top: 1rem;
+}
+.post_link {
+  margin-right: 1.4rem;
+}
+#post_link, #post_caution {
+  padding: 0.2rem;
+}
+.form-bottom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  .post_status {
+    margin: 0;
+  }
+  #post_post_status {
+    margin-left: 0.4rem;
+  }
+  .works_detail {
+    font-size: 5px;
+  }
+  .btn-sm {
+    margin-left: auto;
+  }
+}
+// アコーディイオンメニュー
+.post-nav {
+  padding: 0!important;
+  width: 280px!important;
+  margin-left: 20px;
+  border: 1px solid rgba(211,211,211,0.5);
+  border-radius: 0.2em;
+  position: fixed!important;
+  top: 72px;
+  right: 290px;
+}
+.post-nav > h5.title_bar {
+  background-color: rgba(255,235,205,0.3);
+  margin: 0;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(211,211,211,0.5);
+}
+.fa-chevron-down {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.acd-check{
+    display: none;
+}
+.acd-label{
+    background: white;
+    color: black;
+    display: block;
+    margin: 0;
+    padding: 8px;
+    position: relative;
+    border-bottom: 1px solid rgba(211,211,211,0.5);
+    font-weight: 500;
+}
+.acd-label:after{
+    background: white;
+    box-sizing: border-box;
+    content: '\f067';
+    display: none;
+    // font-family: "Font Awesome 5 Free";
+    padding: 8px 20px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+.acd-content{
+    border-bottom: 1px solid rgba(211,211,211,0.5);
+    background-color: white;
+    display: block;
+    height: 0;
+    opacity: 0;
+    padding: 0 10px;
+    transition: .5s;
+    visibility: hidden;
+}
+.acd-check:checked + .acd-label:after{
+    content: '\f068';
+}
+.acd-check:checked + .acd-label + .acd-content{
+    height: 80px;
+    opacity: 1;
+    padding: 10px;
+    visibility: visible;
+    background-color: rgba(255,235,205,0.2);
+}
+
+// end_user/posts/index
+.icon-size {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4em;
+  margin: 6px;
+}
+
+.heart_red {
+  color:#e54747;
+}
+
+.bookmark_black {
+  color: black;
+}
+.icon-size:hover {
+  color: black;
+}
+
+.content {
+  border: 2px solid rgba(211,211,211,0.5);
+  width: 600px;
+  margin-bottom: 25px;
+  background-color: white;
+
+  &_user {
+    margin: 10px 5px;
+}
+  &_image {
+    display: flex;
+    justify-content: center;
+}
+  &_foot {
+    padding: 5px 8px 0 10px;
+
+    .list-icon {
+
+      .icon {
+
+        .icon-size {
+          text-decoration: none;
+          color: black;
+          font-size: 1.4em;
+          margin: 6px;
+        }
+
+        .heart_red {
+          color:#e54747;
+        }
+
+        .bookmark_black {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.detail-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px solid gray;
+
+  .create-time {
+    min-width: 70%;
+  }
+}
+
+// 検索・並び替えサイドバー
+.fixed-sidebar {
+  width: 300px!important;
+  border: 1px solid rgba(211,211,211,0.5);
+  background-color: white;
+  position: fixed!important;
+  top: 72px;
+  right: 290px;
+
+  .search {
+    margin: 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+
+    .search_form {
+      padding: 4px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #666;
+      margin-bottom: 5px;
+    }
+
+    .search_select {
+
+      #search_model, #search_how {
+        padding: 3px;
+        border-radius: 0.67em;
+        outline: none;
+      }
+      .search-btn {
+        padding: 3px;
+        border-radius: 0.67em;
+        border: none;
+        border: 1px solid gray;
+        outline: none;
+      }
+    }
+  }
+  .sort-menu {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom : 2px solid gray;
+
+    .btn-default {
+      padding: 7px 12px;
+      font-size: 15px;
+    }
+  }
+}
+
+
+// end_user/posts/show
+
+.post-detail-box {
+  background-color: white;
+  border: 2px solid rgba(211,211,211,0.5);
+  padding: 8px 0;
+  margin-bottom: 20px;
+  .show-top {
+    display: flex;
+    justify-content: space-between;
+    .top-right > i {
+      margin-left: 10px;
+    }
+  }
+}
+
+.content_image {
+  min-width: 550px;
+  display: flex;
+  justify-content: space-between;
+  .post-img {
+    width: 550px;
+  }
+  .post-details {
+    list-style: none;
+  }
+}
+
+
+.detail-materials {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.detail-works {
+  display: flex;
+  flex-flow: row wrap;
+
+  .work-box {
+    width: 120px;
+
+    .work_detail {
+      padding: 4px;
+    }
+  }
+}
+
+// show/comment
+.fixed-menu-show {
+  width: 300px!important;
+  border: 1px solid rgba(211,211,211,0.5);
+  background-color: white;
+  position: fixed!important;
+  top: 72px;
+  right: 250px;
+  padding: 8px 0 8px 8px;
+  .comment-section {
+    max-height: 400px;
+    overflow-y: scroll;
+
+    &_head {
+      display: flex;
+      justify-content: flex-start;
+
+      .commented-user {
+        margin: 0;
+      }
+      .commented-time {
+        font-size: 12px;
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+  &_body {
+    max-width: 270px;
+    height: auto;
+    word-wrap: break-word;
+  }
+}
+
+.comment-form {
+  border: none;
+  outline: none;
+  color: black;
+  font-weight: 400;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.post-comment {
+  border: none;
+  background-color: white;
+  color: lightblue;
+  font-weight: 600;
+}
+
+

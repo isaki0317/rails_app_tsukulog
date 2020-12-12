@@ -4,12 +4,29 @@
     <title>DiyApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/32c3e3eeaa.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="body">
+      <% if admin_signed_in? %>
+        <%= render 'layouts/header_admin' %>
+        <div class="container">
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <%= render 'layouts/header' %>
+        <div class="container">
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+        <%= render 'layouts/footer' %>
+      <% end %>
+    </div>
   </body>
 </html>

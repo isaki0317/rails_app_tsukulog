@@ -1,0 +1,12 @@
+<div class="col-xs-10 col-xs-offset-1"></div>
+<div class="col-xs-7 col-xs-offset-1">
+  <% if @model == 'end_user' %>
+    <%= render 'end_user/end_users/search_index', end_users: @data %>
+  <% elsif @model == 'post' %>
+    <%= render 'end_user/posts/search_index', public_posts: @data, comment_new: @comment_new %>
+  <% end %>
+  <% if @data.empty? %>
+    <p>該当する検索結果はありません。</p>
+  <% end %>
+</div>
+<%= render 'search_sidebar', genres: @genres %>

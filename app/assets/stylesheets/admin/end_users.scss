@@ -1,0 +1,54 @@
+// Place all the styles related to the admin::end_users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// admin/end_user/index
+.admin-users {
+  margin: 30px 0 20px 10px;
+}
+
+// admin/end_user/show
+.top-style {
+  margin-top: 30px;
+  .profile-foot {
+    padding-top: 20px;
+  }
+}
+
+.admin-profile {
+  min-height: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 20px;
+
+  &_image {
+
+    &_avatar {
+      width: 150px;
+      min-height: 150px!important;
+      border: solid 3px gray;
+      border-radius: 50%;
+    }
+  }
+}
+.admin-link {
+  display: flex;
+
+  &_edit-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none!important;
+    color: black;
+    font-weight: 550;
+  }
+}
+
+.admin-profile-detail {
+  display: flex;
+}
+.admin-user-name {
+  font-weight: 550;
+}
+// ここまで

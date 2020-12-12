@@ -1,0 +1,209 @@
+<div class="col-xs-10 col-xs-offset-2 top-style">
+  <div class="col-xs-3 col-xs-offset-1">
+    <div class="admin-profile text-right">
+      <div class="admin-profile_image">
+        <% if @end_user.images.present? %>
+          <img src='<%= @end_user.images.thumb_big.url %>' class="admin-profile_image_avatar" alt="プロフ写真" size="150x150">
+        <% else %>
+          <%= image_tag "sample.jpg", size: '150x150', class: "admin-profile_image_avatar" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-7 profile-foot">
+    <div class="admin-link">
+      <%= link_to "プロフィールを編集", edit_admin_end_user_path(@end_user), class: "admin-link_edit-btn", 'data-turbolinks': false %>
+    </div>
+    <div class="admin-profile-detail">
+      <h5 class="post-count">
+        投稿<strong><%= @end_user.posts.count %></strong>件
+      </h5>
+      <h5 class="sex">
+        性別：<strong><%= @end_user.sex %></strong>
+      </h5>
+      <h5 class="experience">
+        レベル：<strong><%= @end_user.experience %></strong>
+      </h5>
+    </div>
+    <h4 class="admin-user-name">
+      <%= @end_user.name %>
+    </h4>
+    <h6 class="user-introduction">
+      <%= @end_user.introduction %>
+    </h6>
+  </div>  <div class="col-xs-10">
+    <div>
+      <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="active" role="presentation">
+          <a aria-controls="tab_post" data-toggle="tab" href="#tab_post" role="tab">投稿</a>
+        </li>
+          <li role="presentation">
+            <a aria-controls="tab_friend" data-toggle="tab" href="#tab_friend" role="tab">友達</a>
+          </li>
+        <li role="presentation">
+          <a aria-controls="tab_chat" data-toggle="tab" href="#tab_chat" role="tab">トークルーム</a>
+        </li>
+        <li role="presentation">
+          <a aria-controls="tab_favorite" data-toggle="tab" href="#tab_favorite" role="tab">いいね・ストック</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active tab-posts" id="tab_post" role="tabpanel">
+          <div class="tab-box col-xs-10 col-xs-offset-1">
+            <h4>投稿一覧</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>タイトル</th>
+                  <th>ジャンル</th>
+                  <th>公開状況</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @posts.each do |user_post| %>
+                  <tr>
+                    <td><%= user_post.title %></td>
+                    <td><%= user_post.genre.name %></td>
+                    <td>
+                      <% if user_post.post_status == true %>
+                        一般公開
+                      <% else %>
+                        下書き
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to "詳細", admin_post_path(user_post) %>
+                    </td>
+                    <td>
+                      <%= link_to "編集", edit_admin_post_path(user_post) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane tab-posts" id="tab_friend" role="tabpanel">
+          <div class="tab-box col-xs-10 col-xs-offset-1">
+            <h4>相互フォロー一覧</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>名前</th>
+                  <th>Email</th>
+                  <th>ステータス</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @mutual_follows.each do |mutual_follow| %>
+                  <tr>
+                    <td><%= mutual_follow.name %></td>
+                    <td><%= mutual_follow.email %></td>
+                    <td>
+                      <% if mutual_follow.is_deleted == true %>
+                        退会済み
+                      <% else %>
+                        活動中
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to "詳細", admin_end_user_path(mutual_follow) %>
+                    </td>
+                    <td>
+                      <%= link_to "編集", edit_admin_end_user_path(mutual_follow) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane tab-posts" id="tab_chat" role="tabpanel">
+          <div class="tab-box col-xs-10 col-xs-offset-1">
+            <h4>トーク一覧</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>トーク相手</th>
+                  <th>ステータス</th>
+                  <th>ルーム作成日</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user_rooms.each do |user_room| %>
+                  <tr>
+                    <td><%= user_room.end_user.name %></td>
+                    <td>
+                      <% if user_room.end_user.is_deleted == true %>
+                        退会済み
+                      <% else %>
+                        活動中
+                      <% end %>
+                    </td>
+                    <td><%= user_room.created_at.strftime('%Y/%m/%d') %></td>
+                    <td>
+                      <%= link_to "詳細(編集)", admin_chat_path('chat[user_a]': user_room.end_user.id, 'chat[user_b]': @end_user.id) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab_favorite" role="tabpanel">
+          <div class="col-xs-6">
+            <h5 class="text-center">いいねした投稿</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>投稿</th>
+                  <th>投稿者</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @favorites.each do |favorite| %>
+                  <tr>
+                    <td><%= favorite.post.title %></td>
+                    <td><%= favorite.end_user.name %></td>
+                    <td>
+                      <%= link_to "投稿詳細", admin_post_path(favorite.post) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-xs-6">
+            <h5 class="text-center">ストックした投稿</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>投稿</th>
+                  <th>投稿者</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @bookmarks.each do |bookmark| %>
+                  <tr>
+                    <td><%= bookmark.post.title %></td>
+                    <td><%= bookmark.end_user.name %></td>
+                    <td>
+                      <%= link_to "投稿詳細", admin_post_path(bookmark.post) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
