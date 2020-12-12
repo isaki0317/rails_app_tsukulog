@@ -3,7 +3,13 @@ class EndUser::PostsController < ApplicationController
   def new
     @post_new = Post.new
     @works = @post_new.works.new
-    @post_new.materials.new
+    # @post_new.materials.new
+    @genres = Genre.all
+  end
+
+  def edit
+    @draft_post = Post.find(params[:id])
+    @works = @draft_post.works
     @genres = Genre.all
   end
 
@@ -26,8 +32,11 @@ class EndUser::PostsController < ApplicationController
   def create
     @post_new = Post.new(post_params)
     @post_new.save
-
-    redirect_to posts_path
+    if @post_new.post_status == true
+      redirect_to posts_path
+    elsif @post_new.post_status == false
+      redirect_to end_user_path(@post_new.end_user)
+    end
   end
 
   private

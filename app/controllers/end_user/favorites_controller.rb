@@ -5,7 +5,7 @@ class EndUser::FavoritesController < ApplicationController
     favorite.save
     @post = Post.find(params[:post_id])
     @post.create_notification_favorite!(current_end_user, @post.end_user)
-    respond_to :js
+    # respond_to :js
   end
 
   def destroy
