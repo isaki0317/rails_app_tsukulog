@@ -74,3 +74,8 @@ gem 'letter_opener_web', '~> 1.0'
 gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
