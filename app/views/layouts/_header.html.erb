@@ -14,7 +14,14 @@
         <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
       </div>
       <div class="navigation">
-        <%= link_to "", notifications_path, class: "far fa-bell fa-size" %>
+        <%= link_to notifications_path do %>
+          <% if unchecked_notifications.any? %>
+            <i class="far fa-bell fa-size"></i>
+            <i class="fas fa-circle n-circle"></i>
+          <% else %>
+            <i class="far fa-bell fa-size"></i>
+          <% end %>
+        <% end %>
       </div>
       <div class="navigation dropdown">
         <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">

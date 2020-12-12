@@ -1,7 +1,7 @@
 module EndUser::NotificationsHelper
 
   def unchecked_notifications
-     @notifications = current_user.passive_notifications.where(checked: false)
+     @notifications = current_end_user.passive_notifications.where(checked: false)
   end
 
   def notification_form(notification)
