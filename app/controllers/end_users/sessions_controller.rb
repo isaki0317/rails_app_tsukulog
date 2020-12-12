@@ -29,7 +29,13 @@ class EndUsers::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    new_end_user_registration_path
+    root_path
+  end
+
+  def new_guest
+    end_user = EndUser.guest
+    sign_in end_user
+    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # def reject_inactive_customer

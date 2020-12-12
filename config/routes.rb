@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
+  devise_scope :end_user do
+    post 'end_users/guest_sign_in', to: 'end_users/sessions#new_guest'
+  end
+  
+  devise_scope :admin do
+    post 'admin/guest_sign_in', to: 'admin/sessions#new_guest'
+  end
   #チャット機能に関するAdmin側のルーティングを追加する必要がある
   namespace :admin do
     get 'top' => 'homes', as: 'top'

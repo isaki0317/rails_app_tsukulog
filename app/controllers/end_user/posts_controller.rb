@@ -33,7 +33,7 @@ class EndUser::PostsController < ApplicationController
     @post_new = Post.new(post_params)
     @post_new.save
     if @post_new.post_status == true
-      redirect_to posts_path
+      redirect_to post_path(@post_new.id)
     elsif @post_new.post_status == false
       redirect_to end_user_path(@post_new.end_user)
     end

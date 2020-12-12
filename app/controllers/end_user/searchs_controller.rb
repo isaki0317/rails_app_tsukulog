@@ -9,7 +9,7 @@ class EndUser::SearchsController < ApplicationController
     if @model == 'end_user'
       data = EndUser.search_for(@value, @how)
       @data = data.page(params[:page]).per(2)
-    elsif @model == 'post'
+    else
       data = Post.search_for(@value, @how, @order, @terms)
       @data = data.page(params[:page]).per(2)
     end
