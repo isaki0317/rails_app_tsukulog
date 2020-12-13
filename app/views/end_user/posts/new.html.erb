@@ -8,7 +8,7 @@
       <div class="col-xs-6 form-half-left">
         <%= f.file_field :images, id: :user_img, class: 'img_field', style: 'display:none;' %>
         <% if @post_new.images.present? %>
-          <%= image_tag @post_new.images.big.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+          <%= image_tag @post_new.images.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
         <% else %>
           <%= image_tag "sample.jpg", size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
         <% end %>
@@ -36,8 +36,8 @@
 <!--ここから-->
         <%= f.fields_for :works, @post_new.works.build do |w| %>
           <div class="work-area">
-            <div class="js-work-group" date-index="0">
-              <span>〖1〗</span>
+            <div class="js-work-group" date-index="1">
+              <span class="js-work-num">〖1〗</span>
               <spam class="delete-work-btn">削除</spam><br>
               <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
               <% if @works.images.present? %>

@@ -7,7 +7,6 @@ class Admin::SearchsController < ApplicationController
     if @model == 'end_user'
       @data = EndUser.search_for(@value, @how)
     else
-      # nilを運ぶ必要があるのか
       @data = Post.search_for(@value, @how, 'admin', 'admin')
     end
   end

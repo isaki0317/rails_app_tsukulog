@@ -9,16 +9,22 @@ class EndUser::PostsController < ApplicationController
 
   def edit
     @draft_post = Post.find(params[:id])
-    @works = @draft_post.works
     @genres = Genre.all
   end
 
   def index
     @order = params["order"]
     @terms = params["terms"]
-    posts = Post.sort_for(@order, @terms)
-    public_posts = posts.where(post_status: "true")
-    @public_posts = public_posts.page(params[:page]).per(2)
+    if @order == "favorite"
+      post_favorite_count = Post.joins(:favorites).group(:post_id).count
+      post_favorited_ids = Hash[post_favorite_count.sort_by{ |_, v| -v }].keys
+      public_posts = Post.where(id: post_favorited_ids)
+      @public_posts = public_posts.page(params[:page]).per(3)
+    else
+      posts = Post.sort_for(@order, @terms)
+      public_posts = posts.where(post_status: "true")
+      @public_posts = public_posts.page(params[:page]).per(3)
+    end
     @genres = Genre.all
     @comment_new = Comment.new
   end
@@ -39,10 +45,22 @@ class EndUser::PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to post_path(@post.id)
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
   private
   def post_params
     params.require(:post).permit(:end_user_id, :genre_id, :title, :images, :subtitle, :cost, :creation_time, :level, :caution, :link, :post_status,
-    materials_attributes: [:post_id, :material_name, :shop], works_attributes: [:post_id, :detail, :images])
+    materials_attributes: [:id, :post_id, :material_name, :shop], works_attributes: [:id, :post_id, :detail, :images])
   end
 
 end

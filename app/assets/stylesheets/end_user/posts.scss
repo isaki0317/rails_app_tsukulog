@@ -212,7 +212,7 @@
   background-color: white;
 
   &_user {
-    margin: 10px 5px;
+    margin: 10px 5px 2px 5px;
 }
   &_image {
     display: flex;
@@ -248,10 +248,34 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px dotted gray;
 
   .create-time {
     min-width: 70%;
+  }
+}
+.favorite-count {
+  display: flex;
+  justify-conten: flex-start;
+  p {
+    margin: 0;
+  }
+}
+#favorite-button {
+  cursor: pointer;
+  font-size: 12px;
+  margin: 10px 0 0 0;
+}
+.favorite-user {
+  display: flex;
+  justify-content: center;
+  &_image {
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+  }
+  &_name {
+    margin-left: 8px;
   }
 }
 
@@ -307,6 +331,16 @@
 
 
 // end_user/posts/show
+.post-img > .img-size {
+  width: 340px;
+  border: 1px solid gray;
+  border-radius: 0.67em;
+  cursor: pointer;
+}
+.top-right > .btn-default {
+  padding: 3px;
+  margin-right: 10px;
+}
 
 .fa-twitter {
   color: #3399FF;
@@ -328,24 +362,63 @@
     }
   }
 }
+.content_title {
+  font-size: 17px;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px dotted gray;
+}
 
 .content_image {
   min-width: 550px;
   display: flex;
   justify-content: space-between;
+  padding: 10px 0;
   .post-img {
-    width: 550px;
-  }
-  .post-details {
-    list-style: none;
+    width: 350px;
   }
 }
-
 
 .detail-materials {
-  display: flex;
-  flex-flow: row wrap;
+  min-width: 260px;
+  padding-right: 30px;
 }
+.table-style {
+  font-size: 12px;
+}
+.post-details, .inline-list {
+  list-style: none;
+}
+
+.detail-body {
+  .post-details {
+    list-style: none;
+    .label {
+      font-size: 12px;
+      color: black;
+      font-weight: bolder;
+      padding: 8px 0 5px 0;
+    }
+    .detail-list {
+      font-size: 12px;
+      border-bottom: 1px solid rgba(211,211,211,0.8);
+    }
+    .inline-list {
+      display: flex;
+      justify-content: flex-start;
+      .detail-list-foot {
+        font-size: 12px;
+        padding: 6px 0 5px 0;
+        margin-right: 20px;
+      }
+    }
+  }
+  .work-top {
+    font-size: 16px;
+    font-weight: bolder;
+  }
+}
+
 
 .detail-works {
   display: flex;

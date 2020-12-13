@@ -1,82 +1,96 @@
 <div class="col-xs-12">
-  <div class="col-xs-8 post-detail-box">
+  <div class="col-xs-7 col-xs-offset-1 post-detail-box">
     <div class="show-top">
       <div class="top-left">
         <span>
-          <%= link_to  end_user_path(@post.end_user) do %>
+          <%= link_to end_user_path(@post.end_user), 'data-turbolinks': false do %>
             <% if @post.end_user.images.present? %>
               <img src='<%= @post.end_user.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
             <% else %>
-              <%= image_tag "sample.jpg", size: '50x50' %>
+              <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
             <% end %>
         </span>
         <span><%= @post.end_user.name %></span>
           <% end %>
       </div>
       <div class="top-right">
-        <% if @post.end_user == current_end_user %>
+        <% if @post.end_user == current_end_user && @post.post_status == true %>
           <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.title }を、Twitterでみんなに広めよう！", class: 'btn btn-default', target: '_blank' do %>
-            <i class="fab fa-twitter"><span class="twitter-btn">Twitterでシェア</span></i>
+            <i class="fab fa-twitter"><span class="twitter-btn">Twitterに投稿</span></i>
           <% end %>
+        <% end %>
+        <% if @post.end_user == current_end_user %>
+          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-default", 'data-turbolinks': false %>
+          <%= link_to "削除する", post_path(@post.id), class: "btn btn-default", method: :delete %>
         <% end %>
         <span id="favorite_<%= @post.id %>">
           <%= render 'end_user/favorites/favorite', target_post: @post %>
         </span>
-        <%= link_to "", chat_path(@post.end_user), class: "fas fa-sms icon-size" %>
+        <% if @post.end_user != current_end_user %>
+          <%= link_to "", chat_path(@post.end_user), class: "fas fa-sms icon-size" %>
+        <% end %>
         <span id="bookmark_<%= @post.id %>">
           <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
         </span>
+        <%= render 'end_user/favorites/favorite_user', target_post: @post %>
       </div>
     </div>
-    <h4 class="content_title"><%= @post.title %>【<%= @post.genre.name %>】</h4>
+    <h5 class="content_title"><%= @post.title %>【<%= @post.genre.name %>】</h5>
     <div class="content_image">
-      <div class="post-img">
-        <img src='<%= @post.images.medium.url %>' class="img-size" alt="ユーザー投稿写真">
+      <div class="post-img text-center">
+        <img src='<%= @post.images.url %>' class="img-size" alt="ユーザー投稿写真" >
       </div>
-      <ul class="post-details">
-        <li class="subtitle-label">キャッチフレーズ</li>
-        <li class="detail-subtitle">
-          <%= @post.subtitle %>
-        </li>
-        <li class="caution-label">コツ・注意点</li>
-        <li class="detail-caution">
-          <%= @post.caution %>
-        </li>
-        <li>
-          <span class="cost-label">費用：</span>
-          <span class="detail-cost">
-            <%= @post.cost %>
-          </span>
-        </li>
-        <li>
-          <span class="creation_time-label">制作時間：</span>
-          <span class="detail-creation_time">
-            <%= @post.creation_time %>
-          </span>
-        </li>
-        <li>
-          <span class="level-label">難易度：</sspan>
-          <span class="detail-level">
-            <%= @post.level %>
-          </span>
-        </li>
-      </ul>
+
+      <div class="detail-materials">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="table-style">材料・道具</th>
+              <th class="table-style">購入先</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @post.materials.each do |material| %>
+            <tr>
+              <td class="table-style"><%= material.material_name %></td>
+              <td class="table-style"><%= material.shop %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
     </div>
     <div class="detail-body">
-      <h4>材料(購入先)</h4>
-      <div class="detail-materials">
-      <% @post.materials.each do |material| %>
-        <div>
-          <span class="material_name-show">
-            <%= material.material_name %>
-          </span>
-          <span class="shop-show">
-            (<%= material.shop %>)
-          </span>
-        </div>
-      <% end %>
-      </div>
-      <h4>詳細工程</h4>
+      <ul class="post-details">
+        <li class="label">キャッチフレーズ</li>
+        <li class="detail-list">
+          <%= @post.subtitle %>
+        </li>
+        <li class="label">コツ・注意点</li>
+        <li class="detail-list">
+          <%= @post.caution %>
+        </li>
+        <li class="label">参考リンク</li>
+        <li class="detail-list">
+          <%= @post.link %>
+        </li>
+        <ul class="inline-list">
+            <li class="label">費用：</li>
+            <li class="detail-list-foot">
+              <%= @post.cost %>
+            </li>
+            <li class="label">制作時間：</li>
+            <li class="detail-list-foot">
+              <%= @post.creation_time %>
+            </li>
+            <li class="label">難易度：</li>
+            <li class="detail-list-foot">
+              <%= @post.level %>
+            </li>
+        </ul>
+      </ul>
+      <h4 class="work-top">詳細工程</h4>
       <div class="detail-works">
       <% @post.works.each do |work| %>
         <div class="work-box">
