@@ -16,6 +16,10 @@
 		<span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu" role="menu">
+	    <li role="presentation" class="dropdown-header">いいね！のから並び替え</li>
+	  	<li role="presentation">
+        <%= link_to "いいね！多い順", posts_path('order': "favorite", 'terms': "desc") %>
+	  	</li>
 	  	<li role="presentation" class="dropdown-header">費用から並び替え</li>
 	  	<li role="presentation">
         <%= link_to "費用の高い順", posts_path('order': "cost", 'terms': "desc") %>

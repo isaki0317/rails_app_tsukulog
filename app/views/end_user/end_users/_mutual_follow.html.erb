@@ -8,7 +8,7 @@
   <% mutual_follows.each do |mutual_follow| %>
     <tr>
       <td style="vertical-align: middle;">
-        <%= link_to  end_user_path(mutual_follow) do %>
+        <%= link_to  end_user_path(mutual_follow), 'data-turbolinks': false do %>
           <% if mutual_follow.images.present? %>
             <img src='<%= mutual_follow.images.thumb.url %>' class="post_user_image" alt="プロフ写真">
           <% else %>
@@ -17,7 +17,7 @@
         <% end %>
       </td>
       <td style="vertical-align: middle;">
-        <%= link_to end_user_path(mutual_follow) do %>
+        <%= link_to end_user_path(mutual_follow), 'data-turbolinks': false do %>
           <h5><%= mutual_follow.name %></h5>
         <% end %>
       </td>
