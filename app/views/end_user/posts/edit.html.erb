@@ -1,6 +1,6 @@
 <div class="col-xs-10 col-xs-offset-1">
   <div class="col-xs-8 post-new-box">
-    <%= form_with model: @draft_post, url: posts_path, method: :post, local: true do |f| %>
+    <%= form_with model: @draft_post, url: post_path(@draft_post.id), local: true do |f| %>
       <div class="col-xs-12 form-top">
         <%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力...【必須】", size: '28', class: "title-form" %>
         <%= f.text_area :subtitle, placeholder: "キャッチコピーを入力...【必須】", size: '28x2', class: "subtitle-form" %>
@@ -8,7 +8,7 @@
       <div class="col-xs-6 form-half-left">
         <%= f.file_field :images, id: :user_img, class: 'img_field', style: 'display:none;' %>
         <% if @draft_post.images.present? %>
-          <%= image_tag @draft_post.images.big.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+          <%= image_tag @draft_post.images.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
         <% else %>
           <%= image_tag "sample.jpg", size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
         <% end %>
@@ -20,7 +20,7 @@
   <!--ここから-->
         <div class="material-area">
           <%= f.fields_for :materials, @draft_post.materials do |m| %>
-            <span class="js-material-group" data-index="0">
+            <span class="js-material-group" data-index="<%= m.index %>">
               <spam class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "12", class: "text-form" %></spam>
               <spam class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "12", class: "text-form" %></spam>
               <spam class="delete-form-btn">削除</spam>
@@ -34,23 +34,25 @@
       <div class="col-xs-12 work-content">
         <h5 class="post-form-title">作り方【必須】</h5>
 <!--ここから-->
-        <%= f.fields_for :works, @draft_post.works do |w| %>
-            <div class="work-area">
-              <div class="js-work-group" date-index="0">
-                <span>〖1〗</span>
-                <spam class="delete-work-btn">削除</spam><br>
-                <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
-                <% if @works.images.present? %>
-                  <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
-                <% else %>
-                  <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
-                <% end %><br>
-                <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
-              </div>
-            </div>
-            <div><span class="add-form-btn-work">タブを追加</span></div>
-            <%= w.hidden_field :post_id, value: @draft_post.id %>
+      <div class="work-area">
+        <% @draft_post.works.each do |pw| %>
+          <%= f.fields_for :works, pw do |w| %>
+                <div class="js-work-group" data-index="<%= w.index %>">
+                  <span class="js-work-num">〖<%= w.index + 1 %>〗</span>
+                  <spam class="delete-work-btn">削除</spam><br>
+                    <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
+                    <% if pw.images? %>
+                      <%= image_tag pw.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                    <% else %>
+                      <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                    <% end %><br>
+                    <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
+                </div>
+              <%= w.hidden_field :post_id, value: @draft_post.id %>
+          <% end %>
         <% end %>
+      </div>
+      <div><span class="add-form-btn-work">タブを追加</span></div>
 <!--ここまでを複製する-->
       </div>
       <div class="col-xs-12">
@@ -72,5 +74,5 @@
       </div>
     <% end %>
   </div>
-  <% render 'nav_sidebar' %>
+  <%= render 'nav_sidebar' %>
 </div>
