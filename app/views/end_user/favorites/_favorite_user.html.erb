@@ -1,0 +1,34 @@
+<p type="" id="favorite-button" class="text-right">
+  いいね一覧を見る...
+</p>
+
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="favorite-modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h5 class="modal-title text-center">いいね！一覧</h5>
+			</div>
+			<div class="modal-body text-center">
+            <% target_post.favorite_end_user.each do |end_user| %>
+              <%= link_to end_user_path(end_user), 'data-turbolinks': false do %>
+                <div class="favorite-user">
+			            <div class="favorite-user_image">
+			              <% if end_user.images.present? %>
+                      <img src='<%= end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+                    <% else %>
+                      <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
+                    <% end %>
+			            </div>
+                  <h5 class="favorite-user_name"><%= end_user.name %></h5>
+                </div>
+              <% end %>
+            <% end %>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
+</div>

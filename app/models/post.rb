@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :materials, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
 
+  # default_scope -> { order(created_at: :desc) }
+
   mount_uploader :images, ImagesUploader
 
   enum cost: {

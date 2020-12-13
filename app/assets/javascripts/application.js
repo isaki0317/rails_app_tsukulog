@@ -90,6 +90,15 @@ $(function(){
   })
 })
 
+// フォーム削除時に番号再発行
+// $( function() {
+//   var i = 0;
+//   $('.delete-work-btn').on('click', function(){
+//     i += 1
+//     $('.js-work-group').attr("data-index", ([i += 1]));
+//   });
+// });
+
 //works.imagesプレビュー
 function imgClick(obj){
   var inp = $(obj).parent().children("input");
@@ -118,7 +127,7 @@ function imgClick(obj){
   $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<div class="js-work-group" date-index="${index}">
-                  <span>〖${index}〗</span>
+                  <span class="js-work-num">〖${index}〗</span>
                   <spam class="delete-work-btn">削除</spam><br>
                   <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
                   <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
@@ -134,9 +143,16 @@ function imgClick(obj){
   let fileCount = $(".hidden-destroy").length; // 編集フォーム用（データがある分のフォームの数を取得する）
   let displayCount = $(".js-work-group").length // 見えているフォームの数を取得する
   $(".hidden-destroy").hide(); // 編集フォーム用（削除用のチェックボックスを非表示にしておく）
-  if (fileIndex.length == 0) $(".add-form-btn-work").css("display","none"); // 編集フォーム用（フォームが５つある場合は追加ボタンを非表示にしておく）
+  if (fileIndex.length == 0) $(".add-form-btn-work").css("display","none"); // 編集フォーム用（フォームが8つある場合は追加ボタンを非表示にしておく）
 
   $(".add-form-btn-work").on("click", function() { // 追加ボタンクリックでイベント発
+    // var index_list =  []
+    // $(".js-work-group").each(function() {
+    //   index_list.push($(this).data('index').val())
+    // })
+    // console.log(index_list)
+    // var max_index = Math.max.apply(null, index_list)
+    // console.log(max_index)
     $(".work-area").append(buildField(fileIndex[0])); // fileIndexの一番小さい数字をインデックス番号に使ってフォームを作成
     fileIndex.shift(); // fileIndexの一番小さい数字を取り除く
     if (fileIndex.length == 0) $(".add-form-btn-work").css("display","none"); // フォームが５つになったら追加ボタンを非表示にする
@@ -170,6 +186,7 @@ function imgClick(obj){
     }
   })
 })
+
 
 // 退会モーダルダイアログの呼び出し
 $( function() {
@@ -208,19 +225,25 @@ $( function() {
 	});
 });
 
+// いいね数モーダルウィンドウ
+$(document).on("turbolinks:load", function() {
+	$('#favorite-button').click( function () {
+		$('#favorite-modal').modal();
+	});
+});
+
 // 無限スクロール
 $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
-    console.log(scrollHeight)
-    console.log(scrollPosition)
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-      console.log('inscrol')
-      console.log($('.posts-list').html())
-      console.log($('span.next:last a').html())
           $('.jscroll').jscroll({
             contentSelector: '.posts-list',
             nextSelector: 'li.next:last a'
           });
     }
 });
+// ツールチップ
+$(document).on("turbolinks:load",function(){
+  $('[data-toggle="tooltip"]').tooltip();
+})

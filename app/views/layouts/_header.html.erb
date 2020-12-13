@@ -2,7 +2,9 @@
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
     <h4>
       <% if end_user_signed_in? %>
-        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
+        <span data-toggle="tooltip" data-placement="bottom" title="投稿一覧">
+          <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
+        </span>
       <% else %>
         LOGO
       <% end %>
@@ -10,10 +12,10 @@
   </nav>
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="新規投稿">
         <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
       </div>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="通知">
         <%= link_to notifications_path do %>
           <% if unchecked_notifications.any? %>
             <i class="far fa-bell fa-size"></i>
@@ -23,7 +25,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="navigation dropdown">
+      <div class="navigation dropdown" data-toggle="tooltip" data-placement="bottom" title="トーク">
         <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">
         	<span class="caret"></span>
         </a>
@@ -40,7 +42,7 @@
             <% end %>
         </ul>
       </div>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="マイページ">
         <%= link_to end_user_path(current_end_user.id), 'data-turbolinks': false do %>
           <% if current_end_user.images.present? %>
             <img src='<%= current_end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
@@ -49,7 +51,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="ログアウト">
         <%= link_to "", destroy_end_user_session_path, method: :delete, class: "fas fa-sign-out-alt fa-size" %>
       </div>
     <% else %>
