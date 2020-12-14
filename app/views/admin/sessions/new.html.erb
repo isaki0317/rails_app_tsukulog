@@ -1,0 +1,33 @@
+<div class="col-xs-6 col-xs-offset-3 admin-login-container text-center">
+  <div class="admin-login-container_box">
+    <h3 class="admin-head-en">Log in</h3>
+    <h5 class="admin-head-ja">ログイン</h5>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email, "メールアドレス", class: "admin-label" %><br />
+        <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス...", autocomplete: "email", class: "admin-mail-form" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード", class: "admin-label" %><br />
+        <%= f.password_field :password, placeholder: "パスワード...", autocomplete: "current-password", class: "admin-password-form" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="admin-actions">
+        <%= f.submit "Log in", class: "btn-default admin-login-btn btn" %>
+      </div>
+    <% end %>
+      <div class="admin-guest-login">
+        <%= link_to "管理者ゲストログイン", admin_guest_sign_in_path, method: :post, class: "btn btn-default admin-guest-btn" %>
+      </div>
+  </div>
+</div>
+
