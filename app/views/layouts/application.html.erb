@@ -18,13 +18,17 @@
             <%= yield %>
           </div>
         </div>
-      <% else %>
+      <% elsif end_user_signed_in? %>
         <%= render 'layouts/header' %>
         <div class="container">
           <div class="row">
             <%= yield %>
           </div>
         </div>
+        <%= render 'layouts/footer' %>
+      <% else %>
+        <%= render 'layouts/header' %>
+        <%= yield %>
         <%= render 'layouts/footer' %>
       <% end %>
     </div>

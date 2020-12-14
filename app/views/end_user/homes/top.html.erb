@@ -1,5 +1,30 @@
-<h1 class="index">homes/top</h1>
-<%= link_to 'ログアウト(仮)', destroy_end_user_session_path, method: :delete %>
-<%= link_to '管理者', new_admin_session_path %>
-<%= link_to "ゲストログイン", end_users_guest_sign_in_path, method: :post %>
-<%= link_to "管理者ゲストログイン", admin_guest_sign_in_path, method: :post %>
+<div class="top-head">
+  <div class="circle-image-1"></div>
+  <div class="circle-image-2"></div>
+  <div class="circle-image-3"></div>
+  <div class="circle-image-4"></div>
+  <div class="circle-image-5"></div>
+  <div class="circle-image-6"></div>
+  <div class="circle-image-7"></div>
+  <h3 class="top-head_title">DIYを通じてあなたの心と生活を豊かに。</h3>
+  <ul class="top-head_nav">
+    <%= link_to new_end_user_session_path, class: "" do %>
+      <li class="top-head_nav_manu login-color">
+        <p>ログイン</p>
+      </li>
+    <% end %>
+    <%= link_to new_end_user_registration_path do %>
+      <li class="top-head_nav_manu signup-color">
+        <p>新規登録</p>
+      </li>
+    <% end %>
+    <%= link_to new_admin_session_path do %>
+      <li class="top-head_nav_manu admin-color">
+        <p>管理者</p>
+      </li>
+    <% end %>
+    <li class="scroll-event"><a href="#" class="scroll-btn"><i class="fas fa-long-arrow-alt-up"></i></a></li>
+  </ul>
+</div>
+<div class="top-main">あああああああああああ</div>
+

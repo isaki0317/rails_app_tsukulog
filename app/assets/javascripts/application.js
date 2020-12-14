@@ -247,3 +247,13 @@ $(window).on('scroll', function() {
 $(document).on("turbolinks:load",function(){
   $('[data-toggle="tooltip"]').tooltip();
 })
+
+// スクロールボタン
+$(document).on("turbolinks:load",function() {
+  $('.scroll-event a').on('click',function(event){
+    $('body, html').animate({
+      scrollTop:0
+    }, 600);
+    event.preventDefault();
+  });
+});
