@@ -6,7 +6,7 @@
           <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
         </span>
       <% else %>
-        LOGO
+        <h4 class="header-logo-position">Do it yourself!</h4>
       <% end %>
     </h4>
   </nav>
@@ -55,10 +55,18 @@
         <%= link_to "", destroy_end_user_session_path, method: :delete, class: "fas fa-sign-out-alt fa-size" %>
       </div>
     <% else %>
-      <%= link_to "ログイン", new_end_user_session_path %>
-      <%= link_to "新規登録", new_end_user_registration_path %>
-      <%= link_to "About", about_path %>
-      <%= link_to "Top", root_path %>
+      <div class="head-right-nav-login">
+        <i class="fas fa-sign-in-alt head-nav-icon"></i>
+        <%= link_to "Login", new_end_user_session_path, class: "head-nav" %>
+      </div>
+      <div class="head-right-nav">
+        <i class="fas fa-user-plus"></i>
+        <%= link_to "Sign up", new_end_user_registration_path, class: "head-nav" %>
+      </div>
+      <div class="head-right-nav">
+        <i class="fas fa-home"></i>
+        <%= link_to "Top", root_path, class: "head-nav" %>
+      </div>
     <% end %>
   </nav>
 </nav>

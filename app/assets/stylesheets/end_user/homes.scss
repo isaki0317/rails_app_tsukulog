@@ -1,3 +1,160 @@
 // Place all the styles related to the end_user::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.top-head {
+  margin-top: 50px;
+  max-width: 100vw!important;
+  height: 90vh;
+  position: relative;
+  background: white;
+  background-image: url("../diy_app_back.jpg");
+}
+.circle-image-1 {
+  background-image: url("../diy_app1.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-2 {
+  background-image: url("../diy_app2.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 310px;
+  height: 310px;
+  position: absolute;
+  bottom: 20px;
+  left: 340px;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-3 {
+  background-image: url("../diy_app3.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 310px;
+  height: 310px;
+  position: absolute;
+  top: 20px;
+  right: 200px;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-4 {
+  background-image: url("../diy_app4.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 270px;
+  height: 270px;
+  position: absolute;
+  top: -120px;
+  right: 45%;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-5 {
+  background-image: url("../diy_app5.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  bottom: 70px;
+  right: 35%;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-6 {
+  background-image: url("../diy_app7.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  bottom: -70px;
+  left: -70px;
+  box-shadow: 0 0 8px gray;
+}
+.circle-image-7 {
+  background-image: url("../diy_app6.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: 85px;
+  right: 5px;
+  box-shadow: 0 0 8px gray;
+}
+.top-head_title {
+  position: absolute;
+  top: 200px;
+  left: 26%;
+  font-family: 'Kosugi Maru', sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  padding: 20px 30px;
+  border-radius: 1em;
+  background-color: rgba(255,255,255,0.6);
+}
+.top-head_nav {
+  position: fixed;
+  bottom: 55px;
+  right: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.login-color {
+  background-color: rgba(0,255,0,0.5);
+}
+.signup-color {
+  background-color: rgba(65,105,225,0.8);
+}
+.admin-color {
+  background-color: rgba(218,112,214,0.7);
+}
+.top-head_nav_manu {
+  margin: 0 15px;
+  min-width: 70px;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 8px gray;
+  p {
+      margin: 0;
+      color: black;
+      font-family: 'Kosugi Maru', sans-serif;
+  }
+}
+.scroll-btn {
+  margin: 0 10px;
+  min-width: 50px;
+  min-height: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 8px gray;
+}.fa-long-arrow-alt-up {
+  color: black;
+  font-size: 1.5em;
+}
+
+
+.top-main {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../diy_app_back.jpg");
+}
