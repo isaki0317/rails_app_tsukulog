@@ -1,3 +1,71 @@
 // Place all the styles related to the admin::chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.admin-chat-rooms {
+  min-height: 600px!important;
+  max-height: 600px!important;
+  border: 1px solid gray;
+  background-color: white;
+  .admin-chat-list {
+    margin-top: 0px;
+    overflow-y: scroll!important;
+    min-height: 550px;
+  }
+}
+
+.admin-chat-room {
+  min-height: 600px!important;
+  max-height: 600px!important;
+  border: 1px solid gray;
+  background-color: white;
+  .admin-chat-content {
+    margin-top: 4px;
+  }
+  .admin-chat-content {
+    overflow-y: scroll;
+    min-height: 542px;
+    max-height: 542px;
+  }
+  #admin-room {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(192,192,192,0.5);
+  }
+}
+
+.admin-messege {
+  display: flex;
+  justify-content: space-between!important;
+  min-width: 620px!important;
+  max-width: 620px!important;
+  .admin-message-body {
+    width: 620px!important;
+  }
+}
+.admin-message-left, .admin-message-right {
+  width: 620px!important;
+}
+
+.admin-message-box-left {
+  max-width: 280px;
+  border: 1px solid rgba(192,192,192,0.3);
+  border-radius: 1em;
+  padding: 7px;
+}
+.admin-message-box-right {
+  max-width: 280px;
+  border: 1px solid rgba(192,192,192,0.2);
+  border-radius: 1em;
+  padding: 7px;
+  background-color: rgba(192,192,192,0.2);
+}
+
+.admin-message-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.admin-message-left {
+  display: flex;
+  justify-content: flex-start;
+}

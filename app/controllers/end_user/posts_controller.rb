@@ -3,7 +3,6 @@ class EndUser::PostsController < ApplicationController
   def new
     @post_new = Post.new
     @works = @post_new.works.new
-    # @post_new.materials.new
     @genres = Genre.all
   end
 
@@ -15,16 +14,8 @@ class EndUser::PostsController < ApplicationController
   def index
     @order = params["order"]
     @terms = params["terms"]
-    if @order == "favorite"
-      post_favorite_count = Post.joins(:favorites).group(:post_id).count
-      post_favorited_ids = Hash[post_favorite_count.sort_by{ |_, v| -v }].keys
-      public_posts = Post.where(id: post_favorited_ids)
-      @public_posts = public_posts.page(params[:page]).per(3)
-    else
-      posts = Post.sort_for(@order, @terms)
-      public_posts = posts.where(post_status: "true")
-      @public_posts = public_posts.page(params[:page]).per(3)
-    end
+    public_posts = Post.sort_for(@order, @terms)
+    @public_posts = public_posts.page(params[:page]).per(3)
     @genres = Genre.all
     @comment_new = Comment.new
   end
