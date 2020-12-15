@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
     get 'notifications' => 'notifications#index'
     resources :end_users, only: [:show, :edit, :update] do
+      resource :blocks, only: [:create, :destroy]
+      get 'blockers' => 'blocks#index', on: :collection
       resource :relationships, only: [:create, :destroy]
       collection do
         get 'quit'
