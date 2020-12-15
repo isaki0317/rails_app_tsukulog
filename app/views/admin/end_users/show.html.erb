@@ -13,6 +13,7 @@
   <div class="col-xs-7 profile-foot">
     <div class="admin-link">
       <%= link_to "プロフィールを編集", edit_admin_end_user_path(@end_user), class: "admin-link_edit-btn", 'data-turbolinks': false %>
+      <%= link_to "ブロック一覧", admin_end_user_blockers_path(@end_user.id), class: "btn btn-default" %>
     </div>
     <div class="admin-profile-detail">
       <h5 class="post-count">
@@ -146,9 +147,7 @@
                       <% end %>
                     </td>
                     <td><%= user_room.created_at.strftime('%Y/%m/%d') %></td>
-                    <td>
-                      <%= link_to "詳細(編集)", admin_chat_path('chat_user_a': user_room.end_user.id, 'chat_user_b': @end_user.id) %>
-                    </td>
+                    <td><%= link_to "移動", admin_end_user_chats_path(end_user_id: @end_user.id, pair_user_id: user_room.end_user.id) %></td>
                   </tr>
                 <% end %>
               </tbody>
