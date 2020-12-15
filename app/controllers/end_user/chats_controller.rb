@@ -9,12 +9,14 @@ class EndUser::ChatsController < ApplicationController
       @room.save
       UserRoom.create(end_user_id: @end_user.id, room_id: @room.id)
       UserRoom.create(end_user_id: current_end_user.id, room_id: @room.id)
+      # 既存のroomsを使うと新規作成した部屋が一覧にでないため上記create後に再定義
+      rooms = current_end_user.user_rooms.pluck(:room_id)
     else
       @room = user_rooms.room
     end
+    @user_rooms = UserRoom.where(room_id: rooms).where.not(end_user_id: current_end_user.id)
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
-    @user_rooms = UserRoom.where(room_id: rooms).where.not(end_user_id: current_end_user.id)
   end
 
   def create
