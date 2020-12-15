@@ -14,10 +14,14 @@
     <div class="link">
     <% if current_end_user == @end_user %>
       <%= link_to "プロフィールを編集", edit_end_user_path(@end_user), class: "link_edit-btn", 'data-turbolinks': false %>
+      <%= link_to "ブロック一覧", blockers_end_users_path, class: "btn btn-default" %>
     <% else %>
       <%= link_to "メッセージを送る", chat_path(@end_user), class: "link_chat-btn" %>
       <div class="follow-btn">
         <%= render 'end_user/relationships/follow', end_user: @end_user %>
+      </div>
+      <div class="block-btn">
+        <%= link_to "ブロックする", end_user_blocks_path(@end_user.id), method: :post, class: "btn btn-default" %>
       </div>
     <% end %>
     </div>
@@ -91,11 +95,13 @@
       <div class="tab-pane tab-posts" id="tab_bookmark" role="tabpanel">
         <div class="tab-flex">
           <% @bookmarks.each do |bookmark| %>
-            <div class="">
-              <%= link_to post_path(bookmark.post) do %>
-                <img src='<%= bookmark.post.images.url %>' class="post-image" alt="投稿写真">
-              <% end %>
-            </div>
+            <% unless bookmark.post.end_user.blocked_by?(current_end_user) || bookmark.post.end_user.blocker_by?(current_end_user) %>
+              <div class="">
+                <%= link_to post_path(bookmark.post) do %>
+                  <img src='<%= bookmark.post.images.url %>' class="post-image" alt="投稿写真">
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
           <% if @bookmarks.empty? %>
             <p>ストックはありません</p>

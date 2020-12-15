@@ -1,3 +1,11 @@
 // Place all the styles related to the end_user::notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.notice-main {
+  margin-bottom: 40px;
+}
+.user-notice {
+  padding: 5px 0px;
+  border-bottom: 1px solid gray;
+  min-width: 200px;
+}

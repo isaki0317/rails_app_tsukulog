@@ -25,7 +25,14 @@ class EndUser < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
 
-  # 通知機能↓
+  # ブロック機能
+  # 自分がブロックしているユーザーとの関連
+  has_many :active_blocks, class_name: "Block", foreign_key: :blocker_id
+  has_many :blockers, through: :active_blocks, source: :blocked
+  # 自分をブロックしているユーザーとの関連
+  has_many :passive_blocks, class_name: "Block", foreign_key: :blocked_id
+
+  # 通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: :visitor_id, dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: :visited_id, dependent: :destroy
 
@@ -43,13 +50,33 @@ class EndUser < ApplicationRecord
     上級者: 2,
     プロ: 3
   }
-
+  # フォロー機能で使用
+  # 特定のユーザーのpassive_relationshipsの中のfollowing_idが引数で渡したユーザーのものがあるかの判定
   def followed_by?(end_user)
     passive_relationships.find_by(following_id: end_user.id).present?
   end
-
+  # 相互フォローを探すメソッド
   def matchers
     followings & followers
+  end
+
+  # ブロック機能で使用↓
+  # 特定のユーザー(投稿者など)のpassive_blocksのblocker_idの中に、引数で渡したユーザーが存在するかの判定
+  def blocked_by?(end_user)
+    passive_blocks.find_by(blocker_id: end_user.id).present?
+  end
+  # 特定のユーザー(投稿者など)のactive_blocksのblocked_idの中に、引数で渡したユーザーが存在するかの判定
+  def blocker_by?(end_user)
+    active_blocks.find_by(blocked_id: end_user.id).present?
+  end
+  # 特定のユーザーのactive_relationshipsの中のfollower_idが引数で渡したユーザーのものがあるかの判定
+  def follower_by?(end_user)
+    active_relationships.find_by(follower_id: end_user.id).present?
+  end
+  # ログインユーザーブロックしたユーザーが、自分のfollowerにいる場合は削除する
+  def destry_follow!(end_user)
+    follow = active_relationships.find_by(follower_id: end_user.id)
+    follow.destroy
   end
 
   # フォローに対する通知
