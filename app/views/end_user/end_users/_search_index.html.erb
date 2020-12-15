@@ -2,6 +2,7 @@
   <table class="table">
     <tbody>
     <% end_users.each do |end_user| %>
+      <% unless end_user.blocked_by?(current_end_user) || end_user.blocker_by?(current_end_user) %>
       <tr>
         <td style="vertical-align: middle;">
           <%= link_to  end_user_path(end_user) do %>
@@ -26,6 +27,9 @@
           <%= render 'end_user/relationships/follow', end_user: end_user %>
         </td>
       </tr>
+      <% else %>
+        <p>該当する検索結果はありません</p>
+      <% end %>
     <% end %>
     </tbody>
   </table>

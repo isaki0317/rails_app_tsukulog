@@ -2,20 +2,22 @@
   <p>コメントはありません...</p>
 <% end %>
 <% target_post.comments.each do |comment| %>
-  <div class="comment-section_head">
-    <h5 class="commented-user">
-      <strong><%= comment.end_user.name %></strong>
-    </h5>
-    <p class="commented-time"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-    <div>
-      <% if current_end_user == comment.end_user or current_end_user == target_post.end_user %>
-        <%= link_to "削除", post_comment_path(comment.post, comment.id), method: :delete, remote: true %>
-      <% end %>
+  <% unless comment.end_user.blocked_by?(current_end_user) || comment.end_user.blocker_by?(current_end_user) %>
+    <div class="comment-section_head">
+      <h5 class="commented-user">
+        <strong><%= comment.end_user.name %></strong>
+      </h5>
+      <p class="commented-time"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+      <div>
+        <% if current_end_user == comment.end_user or current_end_user == target_post.end_user %>
+          <%= link_to "削除", post_comment_path(comment.post, comment.id), method: :delete, remote: true %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <p class="comment-section_body">
-    <%= comment.body %>
-  </p>
+    <p class="comment-section_body">
+      <%= comment.body %>
+    </p>
+  <% end %>
 <% end %>
 
 

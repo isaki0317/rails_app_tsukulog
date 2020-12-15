@@ -32,7 +32,9 @@
         <span id="bookmark_<%= @post.id %>">
           <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
         </span>
-        <%= render 'end_user/favorites/favorite_user', target_post: @post %>
+        <span id="favorite_user_<%= @post.id %>">
+          <%= render 'end_user/favorites/favorite_user', target_post: @post %>
+        </span>
       </div>
     </div>
     <h5 class="content_title"><%= @post.title %>【<%= @post.genre.name %>】</h5>

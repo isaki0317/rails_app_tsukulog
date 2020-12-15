@@ -238,7 +238,7 @@ $(window).on('scroll', function() {
     scrollPosition = $(window).height() + $(window).scrollTop();
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
           $('.jscroll').jscroll({
-            contentSelector: '.posts-list',
+            contentSelector: '.jscroll-select',
             nextSelector: 'li.next:last a'
           });
     }
@@ -253,7 +253,7 @@ $(document).on("turbolinks:load",function() {
   $('.scroll-event a').on('click',function(event){
     $('body, html').animate({
       scrollTop:0
-    }, 600);
+    }, 450);
     event.preventDefault();
   });
 });
