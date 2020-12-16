@@ -18,12 +18,17 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes', as: 'top'
     get 'search' => 'searchs', as: 'search'
+    resources :chats, only: [:destroy] do
+    end
+    # delete 'destroy_room' => 'admin/chats#destroy_room', on: :member
     resources :genres, only: [:index, :create, :updete, :show]
     resources :contacts, only: [:index, :show, :update]
     resources :comments, only: [:destroy]
     resources :posts, only: [:index, :show, :update, :destroy, :edit]
-    resources :end_users, only: [:index, :show, :edit, :update, :destroy]
-    resources :chats, only: [:show, :destroy]
+    resources :end_users, only: [:index, :show, :edit, :update, :destroy] do
+      resource :chats, only: [:show]
+      get 'blockers' => 'blocks#index'
+    end
   end
 
   scope module: :end_user do

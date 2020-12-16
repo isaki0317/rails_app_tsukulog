@@ -226,8 +226,9 @@ $( function() {
 });
 
 // いいね数モーダルウィンドウ
-$(document).on("turbolinks:load", function() {
+$( function() {
 	$('#favorite-button').click( function () {
+	  console.log('favorite')
 		$('#favorite-modal').modal();
 	});
 });
