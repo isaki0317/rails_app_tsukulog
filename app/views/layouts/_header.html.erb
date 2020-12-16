@@ -31,10 +31,10 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li role="presentation" class="dropdown-header">-トークを始める-</li>
-            <% if @mutual_follows.empty? %>
+            <% if @mutual_follows_chats.empty? %>
               <li role="presentation" class="dropdown-header">相互フォローユーザー<br>がいません。</li>
             <% else %>
-        	      <% @mutual_follows.each do |follow| %>
+        	      <% @mutual_follows_chats.each do |follow| %>
                 <li role="presentation">
                   <%= link_to follow.name, chat_path(follow) %>
                 </li>

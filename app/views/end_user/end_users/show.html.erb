@@ -95,13 +95,11 @@
       <div class="tab-pane tab-posts" id="tab_bookmark" role="tabpanel">
         <div class="tab-flex">
           <% @bookmarks.each do |bookmark| %>
-            <% unless bookmark.post.end_user.blocked_by?(current_end_user) || bookmark.post.end_user.blocker_by?(current_end_user) %>
               <div class="">
                 <%= link_to post_path(bookmark.post) do %>
                   <img src='<%= bookmark.post.images.url %>' class="post-image" alt="投稿写真">
                 <% end %>
               </div>
-            <% end %>
           <% end %>
           <% if @bookmarks.empty? %>
             <p>ストックはありません</p>

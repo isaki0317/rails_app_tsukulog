@@ -1,6 +1,5 @@
 <tbody>
   <% followers.each do |follower| %>
-    <% unless follower.blocked_by?(current_end_user) || follower.blocker_by?(current_end_user) %>
 			<tr>
 			  <td>
 			  	<%= link_to follower.name, end_user_path(follower) %>
@@ -9,6 +8,5 @@
   		    <%= link_to "", end_user_relationships_path(follower), method: :post, remote: true, class: "fas fa-user-plus follow-btn-style",'data-turbolinks': false %>
 			  </td>
 			</tr>
-		<% end %>
   <% end %>
 </tbody>

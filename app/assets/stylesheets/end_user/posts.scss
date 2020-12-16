@@ -289,7 +289,7 @@
   right: 290px;
 
   .search {
-    margin: 10px 0;
+    margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 2px dotted gray;
 
@@ -310,6 +310,7 @@
       }
       .search-btn {
         padding: 3px;
+        background-color: rgba(220,220,220,0.3);
         border-radius: 0.67em;
         border: none;
         border: 1px solid gray;
@@ -318,13 +319,31 @@
     }
   }
   .sort-menu {
-    margin-top: 15px;
+    padding-top: 15px;
     padding-bottom: 15px;
     border-bottom : 2px dotted gray;
+    display: flex;
+    justify-content: space-around;
 
     .btn-default {
-      padding: 7px 12px;
+      padding: 5px 10px;
       font-size: 15px;
+      border: 2px solid rgb(169,169,169);
+    }
+    .follow-search {
+
+      a {
+
+        .follow-user-post {
+          font-size: 11px;
+          padding: 8px 5px;
+          // background-color: white;
+          border-radius: 3px;
+          border: 2px solid rgb(169,169,169);
+          text-decoration: none;
+          color: black;
+        }
+      }
     }
   }
 }

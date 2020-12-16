@@ -41,6 +41,22 @@ class Post < ApplicationRecord
     高い: 2,
     えぐい: 3
   }
+  # 対象の投稿の配列の中から、blocked_by?blocker_by?を使って絞り込み
+  def self.block_posts(targets, current_end_user)
+    @targets = targets.select do |target|
+              unless target.end_user.blocked_by?(current_end_user) || target.end_user.blocker_by?(current_end_user)
+                target
+              end
+            end
+  end
+  # 対象のユーザーの配列の中から、blocked_by?blocker_by?を使って絞り込み
+  def self.block_action(end_users, current_end_user)
+    @targets = end_users.select do |end_user|
+              unless end_user.blocked_by?(current_end_user) || end_user.blocker_by?(current_end_user)
+                end_user
+              end
+            end
+  end
 
   def favorited_by?(end_user)
     favorites.where(end_user_id: end_user.id).exists?
@@ -107,12 +123,12 @@ class Post < ApplicationRecord
       elsif order =='favorite'
         @post = @post.joins(:favorites).group(:post_id).order('count(post_id) desc')
       else
-        @post = @post
+        @post = @post.order(created_at: :desc)
       end
   end
 
   # posts/index → sort
-  def self.sort_for(order, terms)
+  def self.sort_for(order, terms, current_end_user)
     @post = Post.where(post_status: "true")
     if order == 'none' && terms == 'none'
       @post = @post.order(created_at: :desc)
@@ -142,4 +158,5 @@ class Post < ApplicationRecord
       end
     end
   end
+
 end

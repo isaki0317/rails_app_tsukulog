@@ -11,12 +11,16 @@ class EndUser::CommentsController < ApplicationController
       @comment_new = Comment.new
       render 'end_user/posts/show'
     end
+    comments = @post.comments
+    @comments = Post.block_posts(comments, current_end_user)
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
     @comment.destroy
     @post = Post.find(params[:post_id])
+    comments = @post.comments
+    @comments = Post.block_posts(comments, current_end_user)
   end
 
   private

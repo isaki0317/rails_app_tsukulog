@@ -14,8 +14,11 @@ class EndUser::PostsController < ApplicationController
   def index
     @order = params["order"]
     @terms = params["terms"]
-    public_posts = Post.sort_for(@order, @terms)
-    @public_posts = public_posts.page(params[:page]).per(3)
+    posts = Post.sort_for(@order, @terms, current_end_user)
+    public_posts = Post.block_posts(posts, current_end_user)
+    # byebug
+    @public_posts = Kaminari.paginate_array(public_posts).page(params[:page]).per(3)
+    # byebug
     @genres = Genre.all
     @comment_new = Comment.new
   end
@@ -23,6 +26,10 @@ class EndUser::PostsController < ApplicationController
   def show
     @genres = Genre.all
     @post = Post.find(params[:id])
+    favorite_users = @post.favorite_end_user
+    @favorite_users = Post.block_action(favorite_users, current_end_user)
+    comments = @post.comments
+    @comments = Post.block_posts(comments, current_end_user)
     @comment_new = Comment.new
   end
 
