@@ -1,6 +1,5 @@
 <main class="main jscroll jscroll-select">
   <% public_posts.each do |public_post| %>
-    <% unless public_post.end_user.blocked_by?(current_end_user) || public_post.end_user.blocker_by?(current_end_user) %>
     <div class="content">
       <div class="content_user">
         <span>
@@ -48,7 +47,6 @@
         </div>
       </div>
     </div>
-    <% end %>
   <% end %>
   <%= paginate public_posts %>
 </main>

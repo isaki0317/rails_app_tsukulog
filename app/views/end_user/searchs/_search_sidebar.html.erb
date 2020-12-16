@@ -10,7 +10,7 @@
       </div>
     <% end %>
   </div>
-  <% if @model == 'post' %>
+  <% unless @model == 'end_user' %>
     <div class="sort-menu dropdown">
       <button class="btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 	  	  投稿の並び替え
@@ -43,6 +43,15 @@
           <%= link_to "作業時間の短い順", search_path('order': "time", 'terms': "asc", 'search_model': "post", 'search_value': @value, 'search_how': @how) %>
 	    	</li>
 	    </ul>
+	    <% if current_end_user.followings.present? %>
+	      <div class="follow-search">
+	        <%= link_to search_path('search_model': "follow") do %>
+	          <p class="follow-user-post btn btn-default">
+	            フォローのみ
+	          </p>
+	        <% end %>
+	      </div>
+	    <% end %>
     </div>
   <% end %>
   <table class="table">

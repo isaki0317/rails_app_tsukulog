@@ -33,7 +33,7 @@
           <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
         </span>
         <span id="favorite_user_<%= @post.id %>">
-          <%= render 'end_user/favorites/favorite_user', target_post: @post %>
+          <%= render 'end_user/favorites/favorite_user', favorite_users: @favorite_users %>
         </span>
       </div>
     </div>
@@ -113,7 +113,7 @@
   </div>
   <div class="fixed-menu-show">
     <div id="comment-list_<%= @post.id %>" class="comment-section">
-      <%= render 'end_user/comments/comment', target_post: @post %>
+      <%= render 'end_user/comments/comment', comments: @comments, target_post: @post %>
     </div>
     <hr>
     <div class="comment-text">

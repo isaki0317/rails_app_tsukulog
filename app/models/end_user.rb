@@ -55,7 +55,7 @@ class EndUser < ApplicationRecord
   def followed_by?(end_user)
     passive_relationships.find_by(following_id: end_user.id).present?
   end
-  # 相互フォローを探すメソッド
+  # 相互フォローを探す
   def matchers
     followings & followers
   end
@@ -69,16 +69,37 @@ class EndUser < ApplicationRecord
   def blocker_by?(end_user)
     active_blocks.find_by(blocked_id: end_user.id).present?
   end
+
   # 特定のユーザーのactive_relationshipsの中のfollower_idが引数で渡したユーザーのものがあるかの判定
   def follower_by?(end_user)
     active_relationships.find_by(follower_id: end_user.id).present?
   end
-  # ログインユーザーブロックしたユーザーが、自分のfollowerにいる場合は削除する
-  def destry_follow!(end_user)
+  # ログインユーザーがブロックしたユーザーが、自分のfollowerにいる場合は削除する
+  def destry_follow(end_user)
     follow = active_relationships.find_by(follower_id: end_user.id)
-    follow.destroy
+    follow.destroy!
   end
-
+  # ログインユーザーがブロックした相手とのUserRoomを削除
+  def user_room_delete(current_end_user, end_user)
+    rooms = current_end_user.user_rooms.pluck(:room_id)
+    pair_room = UserRoom.find_by(end_user_id: end_user.id, room_id: rooms)
+    user_room = UserRoom.find_by(end_user_id: current_end_user.id, room_id: rooms)
+    if user_room.present? && pair_room.present?
+      pair_room.destroy
+      user_room.destroy
+    end
+  end
+  # ログインユーザーがブロックした相手とのお互いの通知をすべて削除
+  def notification_delete(current_end_user, end_user)
+    notice_visitor = Notification.where(visitor_id: end_user.id, visited_id: current_end_user.id)
+    notice_visited = Notification.where(visitor_id: current_end_user.id, visited_id: end_user.id)
+    if notice_visited.present?
+      notice_visited.destroy_all
+    end
+    if notice_visitor.present?
+      notice_visitor.destroy_all
+    end
+  end
   # フォローに対する通知
   def create_notification_follow!(current_end_user, end_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_end_user.id, end_user.id, 'follow'])
