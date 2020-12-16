@@ -66,14 +66,6 @@ class Post < ApplicationRecord
     end
   end
 
-  # コメントに対する通知　この部分は他のコメント者へ通知が行くが、肝心の投稿者に行かない
-  # def create_notification_comment!(current_end_user, comment_id)
-  #   temp_ids = Comment.select(:end_user_id).where(post_id: id).where.not(end_user_id: current_end_user.id).distinct
-  #   temp_ids.each do |temp_id|
-  #     save_notification_comment!(current_end_user, comment_id, temp_id['end_user_id'])
-  #   end
-  #   save_notification_comment!(current_end_user, comment_id, end_user_id) if temp_ids.blank?
-  # end
   def create_notification_comment!(current_end_user, comment_id, visited_id)
     notification = current_end_user.active_notifications.new(
       post_id: id,
@@ -90,81 +82,63 @@ class Post < ApplicationRecord
   # searchs/search → search+sort
   def self.search_for(value, how, order, terms)
     if how == 'match'
-      if order == nil && terms == nil
-        Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
-      elsif order == 'cost'
-        if terms == 'desc'
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :desc)
-        else
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(cost: :asc)
-        end
-      elsif order == 'level'
-        if terms == 'desc'
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(level: :desc)
-        else
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(level: :asc)
-        end
-      elsif order == 'time'
-        if terms == 'desc'
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :desc)
-        else
-          Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true)).order(creation_time: :asc)
-        end
-      else
-        Post.where(title: value)
-      end
-    elsif how == 'partical'
-      if order == nil && terms == nil
-        Post.where('title LIKE ?', '%'+value+'%').where(post_status: true)
-      elsif order == 'cost'
-        if terms == 'desc'
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(cost: :desc)
-        else
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(cost: :asc)
-        end
-      elsif order == 'level'
-        if terms == 'desc'
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(level: :desc)
-        else
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(level: :asc)
-        end
-      elsif order == 'time'
-        if terms == 'desc'
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(creation_time: :desc)
-        else
-          Post.where('title LIKE ?', '%'+value+'%').where(post_status: true).order(creation_time: :asc)
-        end
-      else
-        Post.where('title LIKE ?', '%'+value+'%')
-      end
+      @post = Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
+    else
+      @post = Post.where('title LIKE ?', '%'+value+'%').where(post_status: true)
     end
+      if order == 'cost'
+        if terms == 'desc'
+          @post = @post.order(cost: :desc)
+        else
+           @post = @post.order(cost: :asc)
+        end
+      elsif order == 'level'
+        if terms == 'desc'
+          @post = @post.order(level: :desc)
+        else
+           @post = @post.order(level: :asc)
+        end
+      elsif order == 'time'
+        if terms == 'desc'
+          @post = @post.order(creation_time: :desc)
+        else
+           @post = @post.order(creation_time: :asc)
+        end
+      elsif order =='favorite'
+        @post = @post.joins(:favorites).group(:post_id).order('count(post_id) desc')
+      else
+        @post = @post
+      end
   end
 
   # posts/index → sort
   def self.sort_for(order, terms)
+    @post = Post.where(post_status: "true")
     if order == 'none' && terms == 'none'
-      Post.order(created_at: :desc)
+      @post = @post.order(created_at: :desc)
     elsif order == 'cost'
       if terms == 'desc'
-        Post.order(cost: :desc)
+        @post = @post.order(cost: :desc)
       else
-        Post.order(cost: :asc)
+        @post = @post.order(cost: :asc)
       end
     elsif order == 'level'
       if terms == 'desc'
-        Post.order(level: :desc)
+        @post = @post.order(level: :desc)
       else
-        Post.order(level: :asc)
+        @post = @post.order(level: :asc)
       end
     elsif order == 'time'
       if terms == 'desc'
-        Post.order(creation_time: :desc)
+        @post = @post.order(creation_time: :desc)
       else
-        Post.order(creation_time: :asc)
+        @post = @post.order(creation_time: :asc)
       end
+    elsif order == 'favorite'
+      @post = @post.joins(:favorites).group(:post_id).order('count(post_id) desc')
     else
       if terms == nil
-        Post.order(created_at: :desc)
+        @post = @post.order(created_at: :desc)
       end
     end
   end
