@@ -6,7 +6,7 @@
 .user_image {
   width: 150px;
   min-height: 150px!important;
-  border: solid 3px gray;
+  border: solid 2px rgba(211,211,211,0.8);
   border-radius: 50%;
 }
 .follow-btn-style {
@@ -32,48 +32,107 @@
     .user_image {
       width: 150px;
       min-height: 150px!important;
-      border: solid 3px gray;
+      border: solid 2px rgba(211,211,211,0.8);
       border-radius: 50%;
     }
   }
 }
+.profile_foot {
+  margin-left: 10px;
+}
+
 .link {
   display: flex;
+  align-items: center;
+  margin: 10px 0;
 
   &_edit-btn {
-    border: 1px solid gray;
+    border: 1px solid rgba(211,211,211,1);
     border-radius: 5px;
     padding: 4px;
-    text-decoration: none!important;
+    text-decoration: none;
     color: black;
-    font-weight: 550;
+    margin-right: 14px;
+    font-family: 'Kosugi Maru', sans-serif;
   }
-  &_chat-btn {
-    border: 1px solid gray;
+  &_block-btn {
+    border: 1px solid rgba(211,211,211,1);
     border-radius: 5px;
     padding: 4px;
-    text-decoration: none!important;
+    text-decoration: none;
     color: black;
-    font-weight: 550;
+    margin-right: 14px;
+    font-family: 'Kosugi Maru', sans-serif;
   }
-  .follow-btn {
+  #contact-button, .quit-modal {
+    border: 1px solid rgba(211,211,211,1);
+    border-radius: 5px;
+    padding: 4px;
+    font-family: 'Kosugi Maru', sans-serif;
+    background-color: rgba(236,236,236,0);
+  }
+  &_block-create {
+    border: 1px solid rgba(211,211,211,1);
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none;
+    color: black;
+    margin-left: 25px;
+    font-family: 'Kosugi Maru', sans-serif;
+  }
+  &_block-create:hover {
+    color: red;
+    font-weight: 600;
+  }
 
-    .follow-btn-style {
-      border: 1px solid gray;
-      border-radius: 5px;
-      padding: 4px;
-      text-decoration: none!important;
-      color: black;
-      font-weight: 550;
-    }
+  &_chat-btn {
+    border: 1px solid rgba(211,211,211,1);
+    border-radius: 5px;
+    padding: 4px;
+    text-decoration: none;
+    color: black;
+    margin-left: 14px;
   }
 }
 .profile-detail {
   display: flex;
+  align-items: center;
+
+  &_list {
+    margin-right: 20px;
+  }
 }
 .user-name {
-  font-weight: 550;
+  font-weight: 600;
+  margin: 5px 0;
 }
+.user-introduction {
+  margin-top: 18px;
+  width: 365px;
+}
+.image-empty-box {
+  width: 100%;
+
+  .image-empty-text {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+.contact-text {
+  margin: 10px auto;
+  width: 480px;
+}
+.contact-label {
+  font-weight: none;
+  margin: 6px 0;
+}
+.contact-form {
+  padding: 5px;
+  outline: none;
+  border-radius: 0.4em;
+  border: 1px solid #666;
+}
+
 // ここまで
 .tab-flex {
   display: flex!important;
@@ -84,20 +143,70 @@
   height: 230px;
   margin: 5px 5px 0 0;
 }
-.request-follow-btn {
-  border: none;
-  background-color: #f8f8f8;
-  margin-top: 10px;
+
+// end_user/mutual_follow
+.mutual_follow-top {
+  margin-top: 20px;
 }
+
+
 
 // edit
 #thumb_prev, .post_user_image {
   width: 52px;
   min-height: 52px;
-  border: solid 3px gray;
+  border: solid 2px rgba(211,211,211,0.8);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .img-prev {
   height: 60px;
+  cursor: pointer;
+}
+
+.quit-modal {
+  border: 1px solid rgba(211,211,211,1);
+  border-radius: 5px;
+  padding: 4px;
+  font-family: 'Kosugi Maru', sans-serif;
+  background-color: rgba(236,236,236,0);
+}
+.quit-modal:hover {
+  color: red;
+  font-weight: 600;
+}
+.modal-body > p {
+  line-height: 26px;
+}
+
+.edit-box {
+  border: 1px solid rgba(211,211,211,0.5);
+  border-radius: 0.2em;
+  background-color: white;
+  padding: 10px;
+  margin-top: 35px;
+
+  .edit-flex {
+    display: flex;
+    margin: 18px 0;
+
+    label {
+      margin: 0;
+      width: 120px;
+      text-align: right;
+    }
+    .edit-icon, i {
+      width: 10px;
+      margin-right: 25px;
+      color: red;
+      font-size: 0.7em;
+    }
+    input, textarea, select {
+      padding: 5px;
+      border-radius: 0.2em;
+      border: 1px solid rgba(211,211,211,0.9);
+      outline: none;
+    }
+  }
 }

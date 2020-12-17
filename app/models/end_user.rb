@@ -112,12 +112,21 @@ class EndUser < ApplicationRecord
     end
   end
 
-  def self.search_for(value, how)
+  def self.search_for(value, how, order, terms)
     if how == 'match'
-      EndUser.where(name: value)
-    elsif how == 'partical'
-      EndUser.where('name LIKE ?', '%'+value+'%')
+      end_users = EndUser.where(name: value)
+    else
+      end_users = EndUser.where('name LIKE ?', '%'+value+'%')
     end
+      if order == 'experience'
+        if terms == 'desc'
+          end_users = end_users.order(experience: :desc)
+        else
+          end_users = end_users.order(experience: :asc)
+        end
+      else
+        end_users = end_users.order(created_at: :desc)
+      end
   end
 
   # guestログイン

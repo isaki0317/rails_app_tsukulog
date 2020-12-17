@@ -30,13 +30,20 @@
         	<span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-          <li role="presentation" class="dropdown-header">-トークを始める-</li>
-            <% if @mutual_follows_chats.empty? %>
-              <li role="presentation" class="dropdown-header">相互フォローユーザー<br>がいません。</li>
+          <li role="presentation" class="dropdown-header">-メッセージを送る-</li>
+            <% if @user_chat_rooms.empty? %>
+              <li role="presentation" class="dropdown-header">既存のトークルーム<br>がありません。</li>
             <% else %>
-        	      <% @mutual_follows_chats.each do |follow| %>
-                <li role="presentation">
-                  <%= link_to follow.name, chat_path(follow) %>
+        	      <% @user_chat_rooms.each do |user_room| %>
+                <li role="presentation" class="header-room-list">
+                  <% if unchecked_chats(user_room).present? %>
+                    <p class="chat-notice-circle-head">
+                      <%= unchecked_chats(user_room).count %>
+                    </p>
+                  <% else %>
+                    <p style="width: 15px;"></p>
+                  <% end %>
+                  <%= link_to user_room.end_user.name, chat_path(user_room.end_user) %>
                 </li>
               <% end %>
             <% end %>

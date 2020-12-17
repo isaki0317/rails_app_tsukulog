@@ -1,66 +1,57 @@
-<div class="end_user_edit">
-  <div class="col-xs-3 col-xs-offset1 sidebox">
-    <div class="sidebar">
+<div class="col-xs-6 col-xs-offset-3 edit-box">
+<%= form_with model: @end_user, url: end_user_path(@end_user), local: true do |f| %>
+  <div class="img-prev edit-flex">
+    <%= f.file_field :images, id: :thumb_img, class: 'thumb_field', style: 'display:none;' %>
+    <label>写真を編集</label><i></i>
+    <div class="img-circle">
+      <% if @end_user.images.present? %>
+        <%= image_tag @end_user.images.thumb.url, size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
+      <% else %>
+        <%= image_tag "sample.jpg", size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
+      <% end %>
     </div>
   </div>
-  <div class="col-xs-7 mainbox">
-  <%= form_with model: @end_user, url: end_user_path(@end_user), local: true do |f| %>
-    <table class="table">
-      <tr class="img-prev">
-        <%= f.file_field :images, id: :thumb_img, class: 'thumb_field', style: 'display:none;' %>
-        <th>写真を編集</th>
-        <td>
-          <div class="img-circle">
-            <% if @end_user.images.present? %>
-              <%= image_tag @end_user.images.thumb.url, size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
-            <% else %>
-              <%= image_tag "sample.jpg", size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <th><%= f.label :name, "名前" %></th>
-        <td><%= f.text_field :name %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :introduction, "自己紹介" %></th>
-        <td><%= f.text_area :introduction %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :address, "地域(住所)" %></th>
-        <td><%=f.text_field :address %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :experience, "熟練度" %></th>
-        <td><%= f.select :experience,["初心者","中級者","上級者","プロ"] %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :sex, "性別" %></th>
-        <td><%= f.select :sex,["未選択です","男性","女性"] %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :date_of_birth, "誕生日" %></th>
-        <td>
-          <%= raw sprintf(
-            f.date_select(
-            :date_of_birth,
-            use_month_numbers: true,
-            start_year: 1930,
-            end_year: (Time.now.year - 5),
-            default: Date.new(1989, 1, 1),
-            date_separator: '%s'),
-            '年 ', '月 ') + '日' %>
-        </td>
-      </tr>
-    </table>
-    <div class="text-center">
-      <%= f.submit "変更する", class: "btn btn-primary btn-sm" %>
+  <div class="edit-flex">
+    <%= f.label :name, "名前" %>
+    <i class="glyphicon glyphicon-asterisk edit-icon" aria-hidden="true"></i>
+    <%= f.text_field :name, size: "41" %>
+  </div>
+  <div class="edit-flex">
+    <%= f.label :introduction, "自己紹介" %><i></i>
+    <%= f.text_area :introduction, size: "40x3" %>
+  </div>
+  <div class="edit-flex">
+    <%= f.label :address, "地域(住所)" %><i></i>
+    <%=f.text_field :address, size: "41" %>
+  </div>
+  <div class="edit-flex">
+    <%= f.label :experience, "熟練度" %><i></i>
+    <%= f.select :experience,["初心者","中級者","上級者","プロ"] %>
+  </div>
+  <div class="edit-flex">
+    <%= f.label :sex, "性別" %><i></i>
+    <%= f.select :sex,["未選択です","男性","女性"] %>
+  </div>
+  <div class="edit-flex">
+    <%= f.label :date_of_birth, "誕生日" %><i></i>
+    <div class="input">
+      <%= raw sprintf(
+        f.date_select(
+        :date_of_birth,
+        use_month_numbers: true,
+        start_year: 1930,
+        end_year: (Time.now.year - 5),
+        default: Date.new(1989, 1, 1),
+        date_separator: '%s'),
+        '年 ', '月 ') + '日' %>
     </div>
-  <% end %>
-    <div class="end_user_out text-right">
-      <%= render 'quit' %>
-      <%= render 'end_user/contacts/contact' %>
-    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit "変更する", class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>
+  <div class="end_user_out text-right">
+    <%= render 'quit' %>
   </div>
 </div>
+
