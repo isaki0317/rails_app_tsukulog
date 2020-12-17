@@ -16,6 +16,10 @@ class EndUser::ChatsController < ApplicationController
     @user_rooms = UserRoom.where(room_id: rooms).where.not(end_user_id: current_end_user.id)
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
+    # 自分に対するchatレコードのcheckedをfalseにする
+    @chats.where(end_user_id: @end_user.id, checked: false).each do |chat|
+      chat.update_attributes(checked: true)
+    end
   end
 
   def create
@@ -28,7 +32,7 @@ class EndUser::ChatsController < ApplicationController
 
   private
   def chat_params
-    params.require(:chat).permit(:room_id, :message)
+    params.require(:chat).permit(:room_id, :message, :checked)
   end
 
 end

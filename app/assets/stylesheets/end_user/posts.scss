@@ -204,6 +204,9 @@
 .icon-size:hover {
   color: black;
 }
+.main {
+  margin-bottom: 35px;
+}
 
 .content {
   border: 2px solid rgba(211,211,211,0.5);
@@ -217,6 +220,7 @@
   &_image {
     display: flex;
     justify-content: center;
+    padding-bottom: 0!important;
 }
   &_foot {
     padding: 5px 8px 0 10px;
@@ -248,6 +252,7 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
+  padding-bottom: 4px;
   border-bottom: 1px dotted gray;
 
   .create-time {
@@ -331,7 +336,7 @@
       border: 2px solid rgb(169,169,169);
     }
     .follow-search {
-
+      min-width: 80px;
       a {
 
         .follow-user-post {
@@ -361,6 +366,11 @@
   margin-right: 10px;
 }
 
+.denger-btn:hover {
+  color: red!important;
+  font-weight: 600;
+}
+
 .fa-twitter {
   color: #3399FF;
 }
@@ -372,7 +382,7 @@
   background-color: white;
   border: 2px solid rgba(211,211,211,0.5);
   padding: 8px 0;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   .show-top {
     display: flex;
     justify-content: space-between;
@@ -407,6 +417,9 @@
 }
 .post-details, .inline-list {
   list-style: none;
+}
+.post-details {
+  margin-top: 8px;
 }
 
 .detail-body {
@@ -464,10 +477,12 @@
   .comment-section {
     max-height: 400px;
     overflow-y: scroll;
+    margin-top: 6px;
 
     &_head {
       display: flex;
       justify-content: flex-start;
+      margin-bottom: 5px;
 
       .commented-user {
         margin: 0;
@@ -476,12 +491,22 @@
         font-size: 12px;
         margin: 0 0 0 5px;
       }
+
+      p {
+        margin: 0 20px;
+        font-size: 0.8em;
+
+        .comment-destroy-btn {
+        }
+      }
     }
-  }
-  &_body {
-    max-width: 270px;
-    height: auto;
-    word-wrap: break-word;
+    &_body {
+      max-width: 270px;
+      height: auto;
+      word-wrap: break-word;
+      padding-bottom: 7px;
+      border-bottom: 1px dotted rgba(211,211,211,0.9);
+    }
   }
 }
 
@@ -497,7 +522,7 @@
 .post-comment {
   border: none;
   background-color: white;
-  color: lightblue;
+  color: rgba(0,0,205,0.5);
   font-weight: 600;
 }
 

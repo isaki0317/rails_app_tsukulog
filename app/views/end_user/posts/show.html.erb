@@ -21,7 +21,7 @@
         <% end %>
         <% if @post.end_user == current_end_user %>
           <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-default", 'data-turbolinks': false %>
-          <%= link_to "削除する", post_path(@post.id), class: "btn btn-default", method: :delete %>
+          <%= link_to "削除する", post_path(@post.id), class: "btn btn-default denger-btn", method: :delete %>
         <% end %>
         <span id="favorite_<%= @post.id %>">
           <%= render 'end_user/favorites/favorite', target_post: @post %>

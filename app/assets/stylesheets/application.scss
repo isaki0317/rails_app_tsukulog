@@ -26,6 +26,14 @@
   box-sizing: border-box;
 }
 
+h1, h2, h3, h4, h5, h6, p, a, label, input, textarea, select, option {
+  // 日本語フォント
+  font-family: 'Kosugi Maru', sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+
 
 body,
 .body {
@@ -58,6 +66,7 @@ footer {
 .header-logo {
   text-decoration: none;
   color: black;
+  font-family: 'Rowdies', cursive;
   }
   .header-logo:hover {
     color: black;
@@ -380,5 +389,28 @@ ul.pagination {
         box-shadow: 0 0 4px gray;
       }
     }
+  }
+}
+
+// リンクに対するstyle
+.link-style-none {
+  text-decoration: none;
+  color: black;
+}
+
+.header-room-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   .chat-notice-circle-head {
+    padding: 0;
+    margin: 0;
+    color: rgba(105,105,105,0.6);
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: rgba(255,240,0,0.7);
+    text-align: center;
   }
 }

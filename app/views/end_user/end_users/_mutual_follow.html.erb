@@ -1,7 +1,7 @@
 <% if mutual_follows.empty? %>
-  <p>相互フォローユーザーはまだいません。</p>
+  <p class="mutual_follow-top">相互フォローユーザーはまだいません。</p>
 <% else %>
-  <h4>相互フォローユーザー</h4>
+  <h4 class="mutual_follow-top">相互フォローユーザー</h4>
 <% end %>
 <table class="table">
   <tbody>
@@ -24,6 +24,8 @@
         <td style="vertical-align: middle;">
           <% if end_user == current_end_user %>
             <%= link_to "メッセージを送る", chat_path(mutual_follow) %>
+          <% else %>
+            <%= link_to "プロフィールを見る", end_user_path(mutual_follow), 'data-turbolinks': false %>
           <% end %>
         </td>
         <td class="follow-btn" style="vertical-align: middle;">

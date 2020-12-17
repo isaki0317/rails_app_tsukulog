@@ -4,8 +4,12 @@
   <% end %>
   <% user_blocks.each do |block_user| %>
     <tr>
-      <td><%= block_user.name %></td>
-      <td><%= link_to "ブロック解除", end_user_blocks_path(block_user.id), method: :delete, remote: true, class: "unblock_btn" %></td>
+      <td>
+        <%= block_user.name %>
+      </td>
+      <td>
+        <%= link_to "ブロック解除", end_user_blocks_path(block_user.id), method: :delete, remote: true, class: "unblock_btn" %>
+      </td>
     </tr>
   <% end %>
 </tbody>

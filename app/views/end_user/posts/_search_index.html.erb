@@ -14,7 +14,9 @@
           <% end %>
       </div>
       <div class="content_image">
-        <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+        <%= link_to post_path(public_post), 'data-turbolinks': false do %>
+          <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+        <% end %>
       </div>
       <div class="content_foot">
         <div class="list-icon">
@@ -38,7 +40,7 @@
           <ul class="detail-list">
             <li class="create-time"><%= public_post.created_at.strftime('%Y/%m/%d') %></li>
             <li class="view-detail-btn">
-              <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right" %>
+              <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right", 'data-turbolinks': false %>
             </li>
           </ul>
           <div class="post-comment">

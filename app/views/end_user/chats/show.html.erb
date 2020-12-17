@@ -5,6 +5,11 @@
       <tbody>
         <% @user_rooms.each do |user_room| %>
           <tr>
+            <td style="padding: 0; vertical-align: middle;">
+              <% if unchecked_chats(user_room).present? %>
+                <p class="chat-notice-circle"><%= unchecked_chats(user_room).count %></p>
+              <% end %>
+            </td>
             <td class="text-right col-xs-1">
             <%= link_to chat_path(user_room.end_user.id) do %>
               <% if user_room.end_user.images.present? %>
@@ -15,7 +20,14 @@
             <% end %>
             </td>
             <td style="vertical-align: middle;">
-              <%= link_to user_room.end_user.name, chat_path(user_room.end_user.id) %>
+              <span data-toggle="tooltip" data-placement="bottom" title="トークする">
+                <%= link_to user_room.end_user.name, chat_path(user_room.end_user.id), class: "link-style-none" %>
+              </span>
+            </td>
+            <td style="vertical-align: middle;">
+              <span data-toggle="tooltip" data-placement="bottom" title="マイページへ移動">
+                <%= link_to "詳細", end_user_path(user_room.end_user.id), class: "link-style-none" %>
+              </span>
             </td>
           </tr>
         <% end %>
@@ -24,7 +36,7 @@
   </div>
 </div>
 <div class="col-xs-7 chat-room">
-  <h5 id="room" data-room="<%= @room.id %>" data-user="<%= current_end_user.id %>"><%= @end_user.name %> さん</h5>
+  <h5 id="room" data-room="<%= @room.id %>" data-user="<%= current_end_user.id %>"><strong><%= @end_user.name %></strong> さん</h5>
   <div class="chat-content">
     <table class="message">
       <% @chats.each do |chat| %>

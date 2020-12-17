@@ -4,14 +4,14 @@
   <% comments.each do |comment| %>
       <div class="comment-section_head">
         <h5 class="commented-user">
-          <strong><%= comment.end_user.name %></strong>
+          <%= link_to end_user_path(comment.end_user), 'data-turbolinks': false do %>
+            <strong><%= comment.end_user.name %></strong>
+          <% end %>
         </h5>
         <p class="commented-time"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-        <div>
-          <% if current_end_user == comment.end_user or current_end_user == target_post.end_user %>
-            <%= link_to "削除", post_comment_path(comment.post, comment.id), method: :delete, remote: true %>
-          <% end %>
-        </div>
+        <% if current_end_user == comment.end_user or current_end_user == target_post.end_user %>
+          <p><%= link_to "削除", post_comment_path(comment.post, comment.id), class: "comment-destroy-btn", method: :delete, remote: true %></p>
+        <% end %>
       </div>
       <p class="comment-section_body">
         <%= comment.body %>

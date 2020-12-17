@@ -43,10 +43,12 @@
 	  	</li>
 	  </ul>
 	  <div class="follow-search">
-	    <%= link_to search_path('search_model': "follow") do %>
-	      <p class="follow-user-post btn btn-default">
-	        フォローのみ
-	      </p>
+	    <% if current_end_user.followings.present? %>
+	      <%= link_to search_path('search_model': "follow") do %>
+	        <p class="follow-user-post btn btn-default">
+	          フォロー(投稿)
+	        </p>
+	      <% end %>
 	    <% end %>
 	  </div>
   </div>

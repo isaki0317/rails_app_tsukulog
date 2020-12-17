@@ -16,7 +16,9 @@
             <% end %>
         </div>
         <div class="content_image">
-          <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+          <%= link_to post_path(public_post), 'data-turbolinks': false do %>
+            <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+          <% end %>
         </div>
         <div class="content_foot">
           <div class="list-icon">
@@ -59,7 +61,7 @@
   </main>
 </div>
 <!--検索用サイドバー-->
-<%= render 'index', genres: @genres %>
+<%= render 'sidebar', genres: @genres %>
 
 <div class="scroll-event">
   <a href="#" class="scroll-btn-post"><i class="fas fa-long-arrow-alt-up"></i></a>
