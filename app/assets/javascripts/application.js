@@ -40,9 +40,9 @@
 $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<span class="js-material-group" data-index="${index}">
-                  <spam class="material_name"><input placeholder="材料or道具..." size="12" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></spam>
-                  <spam class="material_shop"><input placeholder="購入先..." size="12" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></spam>
-                  <spam class="delete-form-btn">削除</spam>
+                  <span class="material_name"><input placeholder="材料or道具..." size="16" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></span>
+                  <span class="material_shop"><input placeholder="購入先..." size="15" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></span>
+                  <span class="delete-form-btn">削除</span>
                 </span><br>`;
     return html;
   }
@@ -128,7 +128,7 @@ function imgClick(obj){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<div class="js-work-group" date-index="${index}">
                   <span class="js-work-num">〖${index}〗</span>
-                  <spam class="delete-work-btn">削除</spam><br>
+                  <span class="delete-work-btn">削除</span><br>
                   <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
                   <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
                   <br>

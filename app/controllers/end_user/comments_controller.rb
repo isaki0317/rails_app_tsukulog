@@ -5,18 +5,22 @@ class EndUser::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     if @comment.save
       @post.create_notification_comment!(current_end_user, @comment.id, @post.end_user.id)
-      # respond_to :js
-    else
-      @genres = Genre.all
-      @comment_new = Comment.new
-      render 'end_user/posts/show'
+    # 通常のrender処理
+    # else
+    #   @genres = Genre.all
+    #   @comment_new = Comment.new
+    #   render 'end_user/posts/show'
     end
+    comments = @post.comments
+    @comments = Post.block_posts(comments, current_end_user)
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
     @comment.destroy
     @post = Post.find(params[:post_id])
+    comments = @post.comments
+    @comments = Post.block_posts(comments, current_end_user)
   end
 
   private

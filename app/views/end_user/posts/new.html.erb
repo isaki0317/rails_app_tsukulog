@@ -21,9 +21,9 @@
         <div class="material-area">
           <%= f.fields_for :materials, @post_new.materials.build do |m| %>
           <span class="js-material-group" data-index="0">
-            <spam class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "12", class: "text-form" %></spam>
-            <spam class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "12", class: "text-form" %></spam>
-            <spam class="delete-form-btn">削除</spam>
+            <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
+            <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "15", class: "text-form" %></span>
+            <span class="delete-form-btn">削除</span>
           </span><br>
             <%= m.hidden_field :post_id, value: @post_new.id %>
           <% end %>
@@ -38,7 +38,7 @@
           <div class="work-area">
             <div class="js-work-group" date-index="1">
               <span class="js-work-num">〖1〗</span>
-              <spam class="delete-work-btn">削除</spam><br>
+              <span class="delete-work-btn">削除</span><br>
               <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
               <% if @works.images.present? %>
                 <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
@@ -72,6 +72,6 @@
       </div>
     <% end %>
   </div>
-  <%= render 'nav_sidebar' %>
+  <%= render 'post_nav' %>
 </div>
 

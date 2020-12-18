@@ -42,6 +42,15 @@
         <%= link_to "作業時間の短い順", posts_path('order': "time", 'terms': "asc") %>
 	  	</li>
 	  </ul>
+	  <div class="follow-search">
+	    <% if current_end_user.followings.present? %>
+	      <%= link_to search_path('search_model': "follow") do %>
+	        <p class="follow-user-post btn btn-default">
+	          フォロー(投稿)
+	        </p>
+	      <% end %>
+	    <% end %>
+	  </div>
   </div>
   <table class="table">
     <thead>

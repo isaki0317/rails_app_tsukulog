@@ -21,7 +21,7 @@
         <% end %>
         <% if @post.end_user == current_end_user %>
           <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-default", 'data-turbolinks': false %>
-          <%= link_to "削除する", post_path(@post.id), class: "btn btn-default", method: :delete %>
+          <%= link_to "削除する", post_path(@post.id), class: "btn btn-default denger-btn", method: :delete %>
         <% end %>
         <span id="favorite_<%= @post.id %>">
           <%= render 'end_user/favorites/favorite', target_post: @post %>
@@ -33,7 +33,7 @@
           <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
         </span>
         <span id="favorite_user_<%= @post.id %>">
-          <%= render 'end_user/favorites/favorite_user', target_post: @post %>
+          <%= render 'end_user/favorites/favorite_user', favorite_users: @favorite_users %>
         </span>
       </div>
     </div>
@@ -75,7 +75,7 @@
         </li>
         <li class="label">参考リンク</li>
         <li class="detail-list">
-          <%= @post.link %>
+          <a href="<%= @post.link %>"><%= @post.link %></a>
         </li>
         <ul class="inline-list">
             <li class="label">費用：</li>
@@ -104,7 +104,7 @@
             <% end %>
           </div>
           <div class="work_detail">
-            <%= work.detail %>
+            <p><%= work.detail %></p>
           </div>
         </div>
       <% end %>
@@ -113,11 +113,14 @@
   </div>
   <div class="fixed-menu-show">
     <div id="comment-list_<%= @post.id %>" class="comment-section">
-      <%= render 'end_user/comments/comment', target_post: @post %>
+      <%= render 'end_user/comments/comment', comments: @comments, target_post: @post %>
     </div>
     <hr>
     <div class="comment-text">
       <%= render 'end_user/comments/form', target_post: @post, comment: @comment_new %>
+    </div>
+    <div id="error_explanation">
+      <%= render 'layouts/error', model: @comment_new %>
     </div>
   </div>
 </div>
