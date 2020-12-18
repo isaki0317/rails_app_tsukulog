@@ -1,5 +1,8 @@
 <div class="col-xs-10 col-xs-offset-1">
   <div class="col-xs-8 post-new-box">
+    <div id="error_explanation">
+    <%= render 'layouts/error', model: @post_new %>
+  </div>
     <%= form_with model: @post_new, url: posts_path, method: :post, local: true do |f| %>
       <div class="col-xs-12 form-top">
         <%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力...【必須】", size: '28', class: "title-form" %>
