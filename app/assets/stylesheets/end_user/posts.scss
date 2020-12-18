@@ -14,7 +14,7 @@
   border: 1px solid rgba(211,211,211,0.5);
   border-radius: 0.2em;
   padding: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   list-style: none;
   background-color: white;
 }
@@ -414,6 +414,7 @@
 }
 .table-style {
   font-size: 12px;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 .post-details, .inline-list {
   list-style: none;
@@ -458,6 +459,10 @@
 
   .work-box {
     width: 120px;
+
+    .work_image {
+      min-height: 80px;
+    }
 
     .work_detail {
       padding: 4px;

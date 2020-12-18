@@ -26,7 +26,8 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, label, input, textarea, select, option {
+h1, h2, h3, h4, h5, h6, p, a, label, input, textarea, select, option, button
+th, td, ul, li, span{
   // 日本語フォント
   font-family: 'Kosugi Maru', sans-serif;
   text-decoration: none;
@@ -160,8 +161,8 @@ margin-top: 30px;
 
 }
 
-#sidebar-wrapper .nav.nav-pills.nav-stacked li a {
-color: #FFF;
+#sidebar-wrapper .nav.nav-pills.nav-stacked li a > span{
+color: white;
 }
 
 #sidebar-wrapper .nav.nav-pills.nav-stacked li a:hover {
@@ -413,4 +414,16 @@ ul.pagination {
     background-color: rgba(255,240,0,0.7);
     text-align: center;
   }
+}
+
+// error
+.alert-warning {
+  padding: 5px;
+   ul {
+
+     li {
+       list-style: none;
+       width: 80%;
+     }
+   }
 }

@@ -11,10 +11,14 @@ class Post < ApplicationRecord
   has_many :materials, dependent: :destroy
   has_many :works, dependent: :destroy
 
+  validates :title, presence: true
+  validates :subtitle, presence: true, length: {maximum: 40}
+  validates :genre_id, presence: true
+  validates :end_user_id, presence: true
+  validates :images, presence: true
+
   accepts_nested_attributes_for :materials, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
-
-  # default_scope -> { order(created_at: :desc) }
 
   mount_uploader :images, ImagesUploader
 
