@@ -11,10 +11,14 @@ class Post < ApplicationRecord
   has_many :materials, dependent: :destroy
   has_many :works, dependent: :destroy
 
+  validates :title, presence: true
+  validates :subtitle, presence: true, length: {maximum: 40}
+  validates :genre_id, presence: true
+  validates :end_user_id, presence: true
+  validates :images, presence: true
+
   accepts_nested_attributes_for :materials, allow_destroy: true
   accepts_nested_attributes_for :works, allow_destroy: true
-
-  # default_scope -> { order(created_at: :desc) }
 
   mount_uploader :images, ImagesUploader
 
@@ -41,6 +45,22 @@ class Post < ApplicationRecord
     高い: 2,
     えぐい: 3
   }
+  # 対象の投稿の配列の中から、blocked_by?blocker_by?を使って絞り込み
+  def self.block_posts(targets, current_end_user)
+    targets.select do |target|
+      unless target.end_user.blocked_by?(current_end_user) || target.end_user.blocker_by?(current_end_user)
+        target
+      end
+    end
+  end
+  # 対象のユーザーの配列の中から、blocked_by?blocker_by?を使って絞り込み
+  def self.block_action(end_users, current_end_user)
+    end_users.select do |end_user|
+      unless end_user.blocked_by?(current_end_user) || end_user.blocker_by?(current_end_user)
+        end_user
+      end
+    end
+  end
 
   def favorited_by?(end_user)
     favorites.where(end_user_id: end_user.id).exists?
@@ -82,64 +102,65 @@ class Post < ApplicationRecord
   # searchs/search → search+sort
   def self.search_for(value, how, order, terms)
     if how == 'match'
-      @post = Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
+      posts = Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
     else
-      @post = Post.where('title LIKE ?', '%'+value+'%').where(post_status: true)
+      posts = Post.where('title LIKE ?', '%'+value+'%').where(post_status: true)
     end
       if order == 'cost'
         if terms == 'desc'
-          @post = @post.order(cost: :desc)
+          posts = posts.order(cost: :desc)
         else
-           @post = @post.order(cost: :asc)
+          posts = posts.order(cost: :asc)
         end
       elsif order == 'level'
         if terms == 'desc'
-          @post = @post.order(level: :desc)
+          posts = posts.order(level: :desc)
         else
-           @post = @post.order(level: :asc)
+          posts = posts.order(level: :asc)
         end
       elsif order == 'time'
         if terms == 'desc'
-          @post = @post.order(creation_time: :desc)
+          posts = posts.order(creation_time: :desc)
         else
-           @post = @post.order(creation_time: :asc)
+          posts = posts.order(creation_time: :asc)
         end
       elsif order =='favorite'
-        @post = @post.joins(:favorites).group(:post_id).order('count(post_id) desc')
+        posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
       else
-        @post = @post
+        posts = posts.order(created_at: :desc)
       end
   end
 
   # posts/index → sort
-  def self.sort_for(order, terms)
-    @post = Post.where(post_status: "true")
+  def self.sort_for(order, terms, current_end_user)
+    posts = Post.where(post_status: "true")
     if order == 'none' && terms == 'none'
-      @post = @post.order(created_at: :desc)
+      posts = posts.order(created_at: :desc)
     elsif order == 'cost'
       if terms == 'desc'
-        @post = @post.order(cost: :desc)
+        posts = posts.order(cost: :desc)
       else
-        @post = @post.order(cost: :asc)
+        posts = posts.order(cost: :asc)
       end
     elsif order == 'level'
       if terms == 'desc'
-        @post = @post.order(level: :desc)
+        posts = posts.order(level: :desc)
       else
-        @post = @post.order(level: :asc)
+        posts = posts.order(level: :asc)
       end
     elsif order == 'time'
       if terms == 'desc'
-        @post = @post.order(creation_time: :desc)
+        posts = posts.order(creation_time: :desc)
       else
-        @post = @post.order(creation_time: :asc)
+        posts = posts.order(creation_time: :asc)
       end
     elsif order == 'favorite'
-      @post = @post.joins(:favorites).group(:post_id).order('count(post_id) desc')
+      posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
     else
       if terms == nil
-        @post = @post.order(created_at: :desc)
+        posts = posts.order(created_at: :desc)
       end
     end
   end
+
 end

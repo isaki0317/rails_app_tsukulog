@@ -1,6 +1,5 @@
 <main class="main jscroll jscroll-select">
   <% public_posts.each do |public_post| %>
-    <% unless public_post.end_user.blocked_by?(current_end_user) || public_post.end_user.blocker_by?(current_end_user) %>
     <div class="content">
       <div class="content_user">
         <span>
@@ -15,7 +14,9 @@
           <% end %>
       </div>
       <div class="content_image">
-        <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+        <%= link_to post_path(public_post), 'data-turbolinks': false do %>
+          <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+        <% end %>
       </div>
       <div class="content_foot">
         <div class="list-icon">
@@ -39,7 +40,7 @@
           <ul class="detail-list">
             <li class="create-time"><%= public_post.created_at.strftime('%Y/%m/%d') %></li>
             <li class="view-detail-btn">
-              <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right" %>
+              <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right", 'data-turbolinks': false %>
             </li>
           </ul>
           <div class="post-comment">
@@ -48,7 +49,6 @@
         </div>
       </div>
     </div>
-    <% end %>
   <% end %>
   <%= paginate public_posts %>
 </main>

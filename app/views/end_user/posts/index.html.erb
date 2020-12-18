@@ -1,7 +1,7 @@
 <div class="col-xs-7 col-xs-offset-1">
   <main class="main jscroll jscroll-select">
+  <% unless @public_posts.empty? %>
     <% @public_posts.each do |public_post| %>
-      <% unless public_post.end_user.blocked_by?(current_end_user) || public_post.end_user.blocker_by?(current_end_user) %>
       <div class="content">
         <div class="content_user">
           <span>
@@ -16,7 +16,9 @@
             <% end %>
         </div>
         <div class="content_image">
-          <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+          <%= link_to post_path(public_post), 'data-turbolinks': false do %>
+            <img src='<%= public_post.images.url %>' class="post_image" alt="ユーザー投稿写真">
+          <% end %>
         </div>
         <div class="content_foot">
           <div class="list-icon">
@@ -42,7 +44,7 @@
             <ul class="detail-list">
               <li class="creation-time"><%= "#{time_ago_in_words(public_post.created_at)}前" %></li>
               <li class="view-detail-btn">
-                <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right" %>
+                <%= link_to "詳しく見る...", post_path(public_post), class: "link-post-detail text-right", 'data-turbolinks': false %>
               </li>
             </ul>
             <div class="comment-text">
@@ -51,13 +53,15 @@
           </div>
         </div>
       </div>
-      <% end %>
     <% end %>
-  <%= paginate @public_posts %>
+    <%= paginate @public_posts %>
+  <% else %>
+    <p>投稿はありません</p>
+  <% end %>
   </main>
 </div>
 <!--検索用サイドバー-->
-<%= render 'index', genres: @genres %>
+<%= render 'sidebar', genres: @genres %>
 
 <div class="scroll-event">
   <a href="#" class="scroll-btn-post"><i class="fas fa-long-arrow-alt-up"></i></a>

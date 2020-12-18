@@ -11,21 +11,19 @@
 				<h5 class="modal-title text-center">いいね！一覧</h5>
 			</div>
 			<div class="modal-body text-center">
-            <% target_post.favorite_end_user.each do |end_user| %>
-              <% unless end_user.blocked_by?(current_end_user) || end_user.blocker_by?(current_end_user) %>
-              	<%= link_to end_user_path(end_user), 'data-turbolinks': false do %>
+            <% favorite_users.each do |favorite_user| %>
+              	<%= link_to end_user_path(favorite_user), 'data-turbolinks': false do %>
               	  <div class="favorite-user">
 			        	    <div class="favorite-user_image">
-			        	      <% if end_user.images.present? %>
-              	        <img src='<%= end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+			        	      <% if favorite_user.images.present? %>
+              	        <img src='<%= favorite_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
               	      <% else %>
               	        <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
               	      <% end %>
 			        	    </div>
-              	    <h5 class="favorite-user_name"><%= end_user.name %></h5>
+              	    <h5 class="favorite-user_name"><%= favorite_user.name %></h5>
               	  </div>
               	<% end %>
-              <% end %>
             <% end %>
 			</div>
 			<div class="modal-footer">

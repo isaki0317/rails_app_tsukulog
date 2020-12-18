@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      comment:
+        body: コメント
+ja:
+  activerecord:
+    attributes:
+      chat:
+        message: メッセージ
+
