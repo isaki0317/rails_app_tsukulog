@@ -102,7 +102,7 @@ $(function(){
 //works.imagesプレビュー
 function imgClick(obj){
   var inp = $(obj).parent().children("input");
-  console.log(inp);
+  // console.log(inp);
   inp.click();
 }
    $(function() {
@@ -110,7 +110,7 @@ function imgClick(obj){
         if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-          console.log($(input).parent().children("img"));
+          // console.log($(input).parent().children("img"));
           $(input).parent().children("img").attr('src', e.target.result);
 
           //$('#work_img_prev').attr('src', e.target.result);
@@ -256,5 +256,33 @@ $(document).on("turbolinks:load",function() {
       scrollTop:0
     }, 450);
     event.preventDefault();
+  });
+});
+
+// 文字数count処理
+$(function (){
+
+  // \nは"改行"に変換して2文字にする。
+  var count = $('.js-text').text().replace(/\n/g, "改行").length;
+  // 残りの文字数を計算
+  var now_count = 50 - count;
+  // 文字数オーバーで文字色のスタイルを付与
+  if (count > 50) {
+    $('.js-text-count').css("color","red");
+  }
+  // 入力可能な文字数を表示
+  $('.js-text-count').text("残り" + now_count + "文字");
+  // キーボードを押して戻ったタイミングで、残り何文字入力できるか数えて表示
+  $('.js-text').on("keyup", function() {
+    // フォームのvalueの文字数を数える
+    var count = $(this).val().replace(/\n/g, "改行").length;
+    var now_count = 50 - count;
+
+    if (count > 50) {
+      $('.js-text-count').css("color","red");
+    } else {
+      $('.js-text-count').css("color","black");
+    }
+    $('.js-text-count').text("残り" + now_count + "文字");
   });
 });
