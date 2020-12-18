@@ -1,11 +1,37 @@
 // Place all the styles related to the end_user::notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.notice-box {
+  border: 1px solid rgba(211,211,211,0.5);
+  background-color: white;
+  padding: 10px;
+  min-height: 600px!important;
+  .notice-title {
+    font-size: 16px;
+  }
+  a {
+
+    div.text-right {
+      padding-bottom: 5px;
+      border-bottom: 1px dotted gray;
+    }
+  }
+}
+
+.fa-trash {
+  color: black;
+
+  span {
+    font-family: 'Kosugi Maru', sans-serif;
+  }
+}
+
 .notice-main {
-  margin-bottom: 40px;
+  margin: 5px 0;
+  min-height: 500px;
+  overflow-y: scroll;
 }
 .user-notice {
   padding: 5px 0px;
-  border-bottom: 1px solid gray;
   min-width: 200px;
 }

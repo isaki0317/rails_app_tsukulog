@@ -16,9 +16,7 @@ class EndUser::PostsController < ApplicationController
     @terms = params["terms"]
     posts = Post.sort_for(@order, @terms, current_end_user)
     public_posts = Post.block_posts(posts, current_end_user)
-    # byebug
     @public_posts = Kaminari.paginate_array(public_posts).page(params[:page]).per(3)
-    # byebug
     @genres = Genre.all
     @comment_new = Comment.new
   end
@@ -35,18 +33,27 @@ class EndUser::PostsController < ApplicationController
 
   def create
     @post_new = Post.new(post_params)
-    @post_new.save
-    if @post_new.post_status == true
-      redirect_to post_path(@post_new.id)
-    elsif @post_new.post_status == false
-      redirect_to end_user_path(@post_new.end_user)
+    if @post_new.save
+      if @post_new.post_status == true
+        redirect_to post_path(@post_new.id)
+      elsif @post_new.post_status == false
+        redirect_to end_user_path(@post_new.end_user)
+      end
+    else
+      @works = @post_new.works.new
+      @genres = Genre.all
+      render 'new'
     end
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post.id)
+    @draft_post = Post.find(params[:id])
+    if @draft_post.update(post_params)
+      redirect_to post_path(@draft_post.id)
+    else
+      @genres = Genre.all
+      render 'edit'
+    end
   end
 
   def destroy

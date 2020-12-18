@@ -75,7 +75,7 @@
         </li>
         <li class="label">参考リンク</li>
         <li class="detail-list">
-          <%= @post.link %>
+          <a href="<%= @post.link %>"><%= @post.link %></a>
         </li>
         <ul class="inline-list">
             <li class="label">費用：</li>
@@ -104,7 +104,7 @@
             <% end %>
           </div>
           <div class="work_detail">
-            <%= work.detail %>
+            <p><%= work.detail %></p>
           </div>
         </div>
       <% end %>
@@ -118,6 +118,9 @@
     <hr>
     <div class="comment-text">
       <%= render 'end_user/comments/form', target_post: @post, comment: @comment_new %>
+    </div>
+    <div id="error_explanation">
+      <%= render 'layouts/error', model: @comment_new %>
     </div>
   </div>
 </div>

@@ -1,19 +1,18 @@
-<div class="col-xs-5 col-xs-offset-3">
-  <h5 class="text-center">通知</h5>
-    <%= link_to notifications_destroy_all_path, method: :delete do %>
-      <div class="text-right">
-        <h6 class="fas fa-trash" style="color: black;">全削除</h6>
-      </div>
-    <% end %>
+<div class="col-xs-6 col-xs-offset-3 notice-box">
+  <h5 class="notice-title text-center">通知</h5>
+  <%= link_to notifications_destroy_all_path, method: :delete do %>
+    <div class="text-right">
+      <i class="fas fa-trash">
+        <span>全削除</span>
+      </i>
+    </div>
+  <% end %>
   <% if @notifications.exists? %>
-    <div class="jscroll jscroll-select notice-main">
+    <div class="notice-main">
       <%= render @notifications %>
       <%= paginate @notifications %>
     </div>
   <% else %>
     <p>通知はありません</p>
   <% end %>
-</div>
-<div class="scroll-event">
-  <a href="#" class="scroll-btn-post"><i class="fas fa-long-arrow-alt-up"></i></a>
 </div>

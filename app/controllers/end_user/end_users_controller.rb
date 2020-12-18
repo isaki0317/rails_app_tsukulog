@@ -8,6 +8,7 @@ class EndUser::EndUsersController < ApplicationController
     @mutual_follows = @end_user.matchers
     followers = current_end_user.followers.where.not(id: current_end_user.followings)
     @followers = Post.block_action(followers, current_end_user)
+    @contact_new = Contact.new
   end
 
   def edit

@@ -59,6 +59,9 @@
         <% end %>
       <% end %>
     </table>
+    <div id="error_explanation">
+      <%= render 'layouts/error', model: @chat %>
+    </div>
   </div>
   <div class="chat-form">
     <%= form_with model: @chat, url: chats_path, method: :post, remote: true do |f| %>
