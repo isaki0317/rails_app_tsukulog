@@ -8,4 +8,30 @@ ja:
     attributes:
       chat:
         message: メッセージ
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: 投稿のタイトル
+        subtitle: 投稿のキャッチフレーズ
+        genre: ジャンル(選択)
+        images: 写真(ファイル選択)
+    # attributes:
+    #   material:
+    #     material_name: 材料名
+
+  ja:
+    activerecord:
+      attributes:
+        post:
+          work:
+            works: 作り方
+            detail: 作り方詳細
+  ja:
+    activerecord:
+      attributes:
+        post:
+          material:
+            material_name: 材料名
+
 

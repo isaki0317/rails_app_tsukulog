@@ -16,9 +16,12 @@
     <i class="glyphicon glyphicon-asterisk edit-icon" aria-hidden="true"></i>
     <%= f.text_field :name, size: "41" %>
   </div>
-  <div class="edit-flex">
+  <div class="edit-introduction">
     <%= f.label :introduction, "自己紹介" %><i></i>
-    <%= f.text_area :introduction, size: "40x3" %>
+    <%= f.text_area :introduction, size: "40x3", class: "js-text" %>
+  </div>
+  <div class="edit-count">
+    <P class="js-text-count" data-index="50"></P>
   </div>
   <div class="edit-flex">
     <%= f.label :address, "地域(住所)" %><i></i>
