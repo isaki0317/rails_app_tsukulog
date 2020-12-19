@@ -1,4 +1,5 @@
 class EndUser::BlocksController < ApplicationController
+  before_action :authenticate_end_user!
 
   def create
     # 処理をまとめて１つの大きな処理とする、データの不整合を無くす(乱用しない)

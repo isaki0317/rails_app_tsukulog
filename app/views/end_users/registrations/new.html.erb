@@ -4,7 +4,7 @@
     <h5 class="signup-head-ja">新規登録</h5>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "end_users/shared/error_messages", resource: resource %>
+      <%= render 'layouts/error', model: resource %>
 
       <div class="field">
         <%= f.label :name, "お名前", class: "signup-label" %><br />

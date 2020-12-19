@@ -11,9 +11,9 @@ class Post < ApplicationRecord
   has_many :materials, dependent: :destroy
   has_many :works, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, length: {in: 1..24}
   validates :subtitle, presence: true, length: {maximum: 40}
-  validates :genre_id, presence: true
+  # validates :genre_id, presence: true
   validates :end_user_id, presence: true
   validates :images, presence: true
 

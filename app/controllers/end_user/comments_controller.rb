@@ -1,4 +1,5 @@
 class EndUser::CommentsController < ApplicationController
+  before_action :authenticate_end_user!
 
   def create
     @comment = Comment.new(comment_params)

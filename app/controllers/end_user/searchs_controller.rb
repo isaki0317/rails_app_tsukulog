@@ -1,4 +1,5 @@
 class EndUser::SearchsController < ApplicationController
+  before_action :authenticate_end_user!
 
   def search
     @model = params["search_model"]

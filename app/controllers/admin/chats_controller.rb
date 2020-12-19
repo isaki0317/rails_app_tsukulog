@@ -1,4 +1,5 @@
 class Admin::ChatsController < ApplicationController
+  before_action :authenticate_admin!
 
   def show
     @end_user = EndUser.find(params[:end_user_id])
