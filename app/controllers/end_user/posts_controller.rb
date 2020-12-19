@@ -1,4 +1,6 @@
 class EndUser::PostsController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :correct_post, only: [:edit]
 
   def new
     @post_new = Post.new
@@ -60,6 +62,13 @@ class EndUser::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def correct_post
+    post = Post.find(params[:id])
+    unless post.end_user_id == current_end_user.id
+      redirect_to posts_path
+    end
   end
 
   private

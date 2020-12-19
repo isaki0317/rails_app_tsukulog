@@ -1,4 +1,5 @@
 class EndUser::RelationshipsController < ApplicationController
+  before_action :authenticate_end_user!
   skip_before_action :get_current_chat_room
 
   def create
