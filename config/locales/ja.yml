@@ -12,7 +12,7 @@ ja:
         name: ジャンルの名前
       post:
         title: 投稿のタイトル
-        subtitle: 投稿のキャッチフレーズ
+        subtitle: 投稿のキャッチコピー
         genre: ジャンル(選択)
         images: 写真(ファイル選択)
       post/materials:

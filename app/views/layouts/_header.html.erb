@@ -13,7 +13,7 @@
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
       <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="新規投稿">
-        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
+        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", id: "new-post-link", 'data-turbolinks': false %>
       </div>
       <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="通知">
         <%= link_to notifications_path do %>
@@ -52,7 +52,7 @@
       <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="マイページ">
         <%= link_to end_user_path(current_end_user.id), 'data-turbolinks': false do %>
           <% if current_end_user.images.present? %>
-            <img src='<%= current_end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+            <img src='<%= current_end_user.images.thumb.url %>' class="header-user-image" alt="プロフ写真">
           <% else %>
             <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
           <% end %>
