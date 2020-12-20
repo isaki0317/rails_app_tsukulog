@@ -4,6 +4,7 @@
     <h5 class="admin-head-ja">ログイン</h5>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render 'layouts/error', model: resource %>
       <div class="field">
         <%= f.label :email, "メールアドレス", class: "admin-label" %><br />
         <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス...", autocomplete: "email", class: "admin-mail-form" %>

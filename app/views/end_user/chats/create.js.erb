@@ -1,4 +1,6 @@
-$('.message').append("<td class='text-right message-right'><p class='message-box-right' style='text-align: right; font-weight: normal;'><%= @chat.message %></p></td>");
-$("#error_explanation").html("<%= j(render 'layouts/error', { model: @chat }) %>")
+<% unless @chat.errors.any? %>
+  $('.message').append("<td class='text-right message-right'><p class='message-box-right' style='text-align: right; font-weight: normal;'><%= @chat.message %></p></td>");
+<% end %>
+$("#error_explanation").html("<%= j(render 'layouts/error', { model: @chat }) %>");
 $('input[type=text]').val("")
 

@@ -25,7 +25,7 @@
           <%= f.fields_for :materials, @post_new.materials.build do |m| %>
           <span class="js-material-group" data-index="0">
             <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
-            <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "15", class: "text-form" %></span>
+            <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "14", class: "text-form" %></span>
             <span class="delete-form-btn">削除</span>
           </span><br>
             <%= m.hidden_field :post_id, value: @post_new.id %>

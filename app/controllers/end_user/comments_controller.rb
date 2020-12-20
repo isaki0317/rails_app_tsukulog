@@ -1,15 +1,11 @@
 class EndUser::CommentsController < ApplicationController
+  before_action :authenticate_end_user!
 
   def create
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
     if @comment.save
       @post.create_notification_comment!(current_end_user, @comment.id, @post.end_user.id)
-    # 通常のrender処理
-    # else
-    #   @genres = Genre.all
-    #   @comment_new = Comment.new
-    #   render 'end_user/posts/show'
     end
     comments = @post.comments
     @comments = Post.block_posts(comments, current_end_user)

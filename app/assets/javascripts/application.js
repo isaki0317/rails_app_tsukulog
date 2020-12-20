@@ -41,7 +41,7 @@ $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
     const html = `<span class="js-material-group" data-index="${index}">
                   <span class="material_name"><input placeholder="材料or道具..." size="16" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></span>
-                  <span class="material_shop"><input placeholder="購入先..." size="15" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></span>
+                  <span class="material_shop"><input placeholder="購入先..." size="14" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></span>
                   <span class="delete-form-btn">削除</span>
                 </span><br>`;
     return html;

@@ -11,8 +11,9 @@
 				<h4 class="modal-title">送信フォーム</h4>
 				<p class="contact-text">回答が必要な内容に関しましては、ご登録いただいているEmailへ送らせていただきますのでご了承ください。</p>
 			</div>
+			<div>
 			<div class="modal-body text-center">
-			  <%= form_with model: @contact_new, url: contacts_path, method: :post, local: true do |f| %>
+			  <%= form_with model: @contact_new, url: contacts_path, method: :post, remote: true do |f| %>
 			    <%= f.hidden_field :end_user_id, value: current_end_user.id %>
             <div class="modal-title">
 			    		<%= f.label :title, "タイトル", class: "contact-label" %><br>
@@ -28,6 +29,10 @@
 				    <%= f.submit "送信", class: "btn btn-success" %>
 			    </div>
 			  <% end %>
+			  <div id="error_explanation">
+    		  <%= render 'layouts/error', model: @contact_new %>
+    		</div>
+			</div>
 		</div>
 	</div>
 </div>
