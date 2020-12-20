@@ -7,6 +7,9 @@
       <%= f.submit "作成", class: "genre-head_btn" %>
     <% end %>
   </div>
+  <div id="error_explanation">
+    <%= render 'layouts/error', model: @genre_new %>
+  </div>
   <div class="genres">
     <h4>ジャンル一覧</h4>
     <table class="table table-bordered">

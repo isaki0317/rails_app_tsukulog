@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :genre do
-    name { Facker::Loren.characters(number:8) }
+    name { Faker::Lorem.characters(number:8) }
+    is_active { true }
   end
 end

@@ -5,19 +5,50 @@ RSpec.describe 'Postモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     let(:end_user) { create(:end_user) }
     let(:genre) { create(:genre) }
-    let!(:diy_post) { build(:post, end_user_id: end_user.id, genre_id: genre.id) }
-    let!(:materials) { build(:material, post_id: test_post.id) }
-    let!(:works) { build(:work, post_id: test_post.id) }
+    let(:post) { build(:post, end_user_id: end_user.id, genre_id: genre.id) }
+    let(:materials) { build(:material, post_id: post.id) }
+    let(:works) { build(:work, post_id: post.id) }
 
     context 'titleカラム' do
-      let(:test_post) { diy_post }
+      let(:test_post) { post }
       it '空欄の場合はエラーが出る' do
         test_post.title = ''
         test_post.valid?
         expect(test_post.errors[:title]).to include("を入力してください")
       end
+
+      it '24文字以上の場合はエラーが出る' do
+        test_post.title = Faker::Lorem.characters(number:25)
+        test_post.valid?
+        expect(test_post.errors[:title]).to include("は24文字以内で入力してください")
+      end
+    end
+
+    context 'subtitleカラム' do
+      let(:test_post) { post }
+      it '空欄の場合はエラーが出る' do
+        test_post.subtitle = ''
+        test_post.valid?
+        expect(test_post.errors[:subtitle]).to include("を入力してください")
+      end
+
+      it '40文字以上の場合はエラーが出る' do
+        test_post.subtitle = Faker::Lorem.characters(number:41)
+        test_post.valid?
+        expect(test_post.errors[:subtitle]).to include("は40文字以内で入力してください")
+      end
+    end
+
+    context 'imagesカラム' do
+      let(:test_post) { post }
+      it '空の場合はエラーが出る' do
+        test_post.images = ''
+        test_post.valid?
+        expect(test_post.errors[:images]).to include("を入力してください")
+      end
     end
   end
+
 
   describe 'アソシエーションのテスト' do
     context 'N:1のモデルとの関係' do
