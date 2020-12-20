@@ -50,6 +50,9 @@
             <div class="comment-text">
               <%= render 'end_user/comments/form', target_post: public_post, comment: @comment_new %>
             </div>
+            <div id="error_explanation">
+              <%= render 'layouts/error', model: @comment_new %>
+            </div>
           </div>
         </div>
       </div>
