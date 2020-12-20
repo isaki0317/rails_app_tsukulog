@@ -3,7 +3,7 @@
     <div class="admin-profile text-right">
       <div class="admin-profile_image">
         <% if @end_user.images.present? %>
-          <img src='<%= @end_user.images.thumb_big.url %>' class="admin-profile_image_avatar" alt="プロフ写真" size="150x150">
+          <img src='<%= @end_user.images.url %>' class="admin-profile_image_avatar" alt="プロフ写真" size="150x150">
         <% else %>
           <%= image_tag "sample.jpg", size: '150x150', class: "admin-profile_image_avatar" %>
         <% end %>
