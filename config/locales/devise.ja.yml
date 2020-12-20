@@ -1,7 +1,7 @@
 ja:
   activerecord:
     attributes:
-      customer:
+      end_user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -10,12 +10,9 @@ ja:
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
         email: Eメール
-        last_name: 姓
-        last_name_kana: フリガナ(セイ)
-        first_name: 名
-        first_name_kana: フリガナ(メイ)
-        postcode:
-        address:
+        name: 名前
+        introduction: 自己紹介
+        address: 住所
         phone_number:
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数

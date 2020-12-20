@@ -21,8 +21,8 @@
         <div class="material-area">
           <%= f.fields_for :materials, @draft_post.materials do |m| %>
             <span class="js-material-group" data-index="<%= m.index %>">
-              <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "12", class: "text-form" %></span>
-              <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "12", class: "text-form" %></span>
+              <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
+              <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "14", class: "text-form" %></span>
               <span class="delete-form-btn">削除</span>
             </span><br>
             <%= m.hidden_field :post_id, value: @draft_post.id %>

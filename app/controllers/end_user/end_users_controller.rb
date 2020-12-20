@@ -1,4 +1,6 @@
 class EndUser::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :correct_end_user, only: [:edit]
 
   def show
     @end_user = EndUser.find(params[:id])
@@ -33,6 +35,13 @@ class EndUser::EndUsersController < ApplicationController
   end
 
   def quit
+  end
+
+  def correct_end_user
+    end_user = EndUser.find(params[:id])
+    unless end_user.id == current_end_user.id
+      redirect_to posts_path
+    end
   end
 
   private
