@@ -80,4 +80,5 @@ gem 'devise-i18n-views'
 gem 'chartkick'
 gem 'groupdate'
 gem 'rails-i18n'
+gem 'whenever', require: false
 

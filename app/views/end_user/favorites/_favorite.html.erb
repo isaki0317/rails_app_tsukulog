@@ -1,9 +1,9 @@
 <% if target_post.favorited_by?(current_end_user) %>
-  <%= link_to post_favorites_path(target_post.id), method: :delete, remote: true do %>
+  <%= link_to post_favorites_path(target_post.id), id: "rspec-favorite-destroy", method: :delete, remote: true do %>
   	<i class="fas fa-heart icon-size heart_red" aria-hidden="true"></i>
   <% end %>
 <% else %>
-  <%= link_to post_favorites_path(target_post.id), method: :post, remote: true do %>
+  <%= link_to post_favorites_path(target_post.id), id: "rspec-favorite-create", method: :post, remote: true do %>
   	<i class="far fa-heart icon-size" aria-hidden="true"></i>
   <% end %>
 <% end %>
