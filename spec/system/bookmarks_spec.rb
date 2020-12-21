@@ -26,11 +26,11 @@ describe 'ブックマークのテスト' do
       visit post_path(test_post)
     end
 
-    xit 'ブックマークに成功する', js: true do
+    it 'ブックマークに成功する', js: true do
       click_link 'rspec-bookmark-create'
     end
 
-    xit 'ブックマークの解除', js: true do
+    it 'ブックマークの解除', js: true do
       click_link 'rspec-bookmark-create'
       click_link 'rspec-bookmark-destroy'
     end

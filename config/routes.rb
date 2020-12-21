@@ -43,8 +43,8 @@ Rails.application.routes.draw do
       get 'blockers' => 'blocks#index', on: :collection
       resource :relationships, only: [:create, :destroy]
       collection do
-        get 'quit'
   	    patch 'out'
+        get 'quit'
   	  end
     end
     resources :contacts, only: [:create]

@@ -15,7 +15,7 @@ set :environment, :development
 #
 # 日本時間の午前8:00にメール送信される（JSTは+9:00なので-9:00の時間を記述）
 # 未読通知が3件以上たまっているユーザーにメール通知
-every 1.minutes, at: '11:00 pm' do
+every 1.days, at: '11:00 pm' do
   runner "ScheduledProcessingMailer.check_notice_mail.deliver_now"
 end
 # every 2.hours do
