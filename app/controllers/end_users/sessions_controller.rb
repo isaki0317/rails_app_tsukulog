@@ -17,15 +17,31 @@ class EndUsers::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  def new_guest
+    end_user = EndUser.guest
+    # 閲覧者が退会しても良いように
+    end_user.update(is_deleted: false)
+    sign_in end_user
+    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 
   # protected
+  protected
+
+  def reject_user
+    end_user = EndUser.find_by(email: params[:user][:email].downcase)
+    if end_user
+      if (end_user.valid_password?(params[:user][:password]) && (end_user.active_for_authentication? == true))
+        redirect_to new_user_session_path
+      end
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource)
-    # LoginMailer.send_when_login(current_end_user).deliver
     posts_path
   end
 
@@ -33,11 +49,6 @@ class EndUsers::SessionsController < Devise::SessionsController
     root_path
   end
 
-  def new_guest
-    end_user = EndUser.guest
-    sign_in end_user
-    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
-  end
 
   # def reject_inactive_customer
   #   @end_user = EndUser.find_by(email: params[:end_user][:email])

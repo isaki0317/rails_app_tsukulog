@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_user do
-    resources :chats  #showの部分を確認する
+    resources :chats, only: [:create, :show]  #showの部分を確認する
     root 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'searchs#search', as: 'search'
@@ -43,8 +43,8 @@ Rails.application.routes.draw do
       get 'blockers' => 'blocks#index', on: :collection
       resource :relationships, only: [:create, :destroy]
       collection do
-        get 'quit'
   	    patch 'out'
+        get 'quit'
   	  end
     end
     resources :contacts, only: [:create]

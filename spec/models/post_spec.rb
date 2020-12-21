@@ -6,8 +6,6 @@ RSpec.describe 'Postモデルのテスト', type: :model do
     let(:end_user) { create(:end_user) }
     let(:genre) { create(:genre) }
     let(:post) { build(:post, end_user_id: end_user.id, genre_id: genre.id) }
-    let(:materials) { build(:material, post_id: post.id) }
-    let(:works) { build(:work, post_id: post.id) }
 
     context 'titleカラム' do
       let(:test_post) { post }

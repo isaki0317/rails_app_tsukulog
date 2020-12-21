@@ -54,6 +54,10 @@ class EndUser < ApplicationRecord
     上級者: 2,
     プロ: 3
   }
+
+  def active_for_authentication?
+    super && self.is_deleted == false
+  end
   # フォロー機能で使用
   # 特定のユーザーのpassive_relationshipsの中のfollowing_idが引数で渡したユーザーのものがあるかの判定
   def followed_by?(end_user)
