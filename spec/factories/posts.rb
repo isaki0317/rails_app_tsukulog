@@ -5,7 +5,14 @@ FactoryBot.define do
     images { File.new("#{Rails.root}/spec/factories/test.jpg") }
     genre
     end_user
-    # association :material
-    # association :work
+
+    trait :with_nested_instances do
+      after( :create ) do |post|
+        create :work, id: post.id
+      end
+      after( :create ) do |post|
+        create :material, id: post.id
+      end
+    end
   end
 end

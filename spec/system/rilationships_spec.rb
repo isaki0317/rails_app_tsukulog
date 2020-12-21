@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # マイページでのフォロー解除・申請者に対するフォローのテストも時間あれば記述
-describe 'ユーザーのテスト' do
+describe 'フォローのテスト' do
   let(:test_user) { create(:end_user) }
   let(:test_user_2) { create(:end_user) }
 
@@ -12,19 +12,18 @@ describe 'ユーザーのテスト' do
     click_button 'Log in'
   end
 
-  describe 'フォローのテスト' do
-    before do
-      visit end_user_path(test_user_2)
+  before do
+    visit end_user_path(test_user_2)
+  end
+  context 'フォローボタンクリック' do
+    it 'フォローに成功', js: true do
+      click_link 'rspec-create-follow'
     end
-    context '他人のマイページでのフォローのテスト' do
-      it 'フォローに成功する', js: true do
-        click_link 'rspec-create-follow'
-      end
-
-      it 'フォローを解除する', js: true do
-        click_link 'rspec-create-follow'
-        click_link 'rspec-destroy-follow'
-      end
+  end
+  context 'フォローボタン2回クリック' do
+    it 'フォローを解除', js: true do
+      click_link 'rspec-create-follow'
+      click_link 'rspec-destroy-follow'
     end
   end
 end
