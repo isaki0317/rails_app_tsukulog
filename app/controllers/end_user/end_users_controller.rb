@@ -27,8 +27,7 @@ class EndUser::EndUsersController < ApplicationController
   end
 
   def out
-    @end_user = EndUser.find(params[:id])
-    @end_user.update(is_deleted: true)
+    current_end_user.update(is_deleted: true)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path

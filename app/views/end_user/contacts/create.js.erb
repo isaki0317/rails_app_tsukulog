@@ -1,2 +1,4 @@
-$(".contact-form").val('');
+<% unless @contact_new.errors.any? %>
+  $(".contact-form").val('');
+<% end %>
 $("#error_explanation").html("<%= j(render 'layouts/error', { model: @contact_new }) %>")

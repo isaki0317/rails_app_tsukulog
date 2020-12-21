@@ -16,7 +16,7 @@
               	  <div class="favorite-user">
 			        	    <div class="favorite-user_image">
 			        	      <% if favorite_user.images.present? %>
-              	        <img src='<%= favorite_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+              	        <img src='<%= favorite_user.images.thumb.url %>' class="header-user-image" alt="プロフ写真">
               	      <% else %>
               	        <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
               	      <% end %>
