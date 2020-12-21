@@ -27,7 +27,7 @@ describe 'チャット機能のテスト' do
       find('#rspec_button').native.send_keys(:return)
     end
 
-    it 'メッセージ送信に失敗する', js: true do
+    it 'メッセージ送信に失敗する、エラーが出る', js: true do
       fill_in 'chat[message]', with: ''
       find('#rspec_button').native.send_keys(:return)
       expect(page).to have_content 'メッセージは1文字以上で入力してください'
