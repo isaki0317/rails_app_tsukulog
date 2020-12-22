@@ -17,8 +17,8 @@
             <td style="vertical-align: middle;">
               <%= link_to user_room.end_user.name, admin_end_user_chats_path(end_user_id: @end_user.id, pair_user_id: user_room.end_user.id) %>
             </td>
-            <td>
-              <%= link_to "削除", admin_end_user_chats_path(end_user_id: @end_user.id, pair_user_id: user_room.end_user.id, room: user_room.room) %>
+            <td class="admin-room-destroy" style="vertical-align: middle;">
+              <%= link_to "削除", room_destroy_admin_end_user_chats_path(end_user_id: @end_user.id, pair_user: user_room.end_user.id), class: "btn-sm btn-danger", method: :delete %>
             </td>
           </tr>
         <% end %>
@@ -38,7 +38,7 @@
               <p class="admin-message-box-right destroy-ajax<%= chat.id %>" style="text-align: right; font-weight: normal;">
                 <%= render 'chat', chat: chat %>
               </p>
-              <%= link_to "削除", admin_chat_path(chat.id), method: :delete, remote: true %>
+              <%= link_to "削除", admin_end_user_chat_path(id: chat.id, end_user_id: @pair_user.id, user: 'chat-right'), class: "message-destroy-right", method: :delete %>
             </td>
           </tr>
         </tbody>
@@ -46,7 +46,7 @@
         <tbody class="admin-message-body text-left">
           <tr>
             <td class="text-left admin-message-left">
-              <%= link_to "削除", admin_chat_path(chat.id), method: :delete, remote: true %>
+              <%= link_to "削除", admin_end_user_chat_path(id: chat.id, end_user_id: @end_user.id, user: 'chat-left'), class: "message-destroy-left", method: :delete %>
               <p class="admin-message-box-left destroy-ajax<%= chat.id %>" style="text-align: left; font-weight: normal;">
                 <%= render 'chat', chat: chat %>
               </p>
