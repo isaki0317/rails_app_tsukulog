@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @genre_new = Genre.new
@@ -7,7 +8,8 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
+    if @genre.save
+    end
     @genres = Genre.all
   end
 

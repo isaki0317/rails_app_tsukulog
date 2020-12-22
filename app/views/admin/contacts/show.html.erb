@@ -44,7 +44,7 @@
     <h5>編集する</h5>
     <%= form_with model: @contact, url: admin_contact_path(@contact.id), local: true do |f| %>
       <%= f.select :checked, [["対応前", false],["対応済み", true]], {include_blank: false} %>
-      <%= f.submit "更新" %>
+      <%= f.submit "更新", class: "contact-update-btn" %>
     <% end %>
   </div>
 </div>

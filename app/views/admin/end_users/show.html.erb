@@ -3,7 +3,7 @@
     <div class="admin-profile text-right">
       <div class="admin-profile_image">
         <% if @end_user.images.present? %>
-          <img src='<%= @end_user.images.thumb_big.url %>' class="admin-profile_image_avatar" alt="プロフ写真" size="150x150">
+          <img src='<%= @end_user.images.url %>' class="admin-profile_image_avatar" alt="プロフ写真" size="150x150">
         <% else %>
           <%= image_tag "sample.jpg", size: '150x150', class: "admin-profile_image_avatar" %>
         <% end %>
@@ -13,18 +13,19 @@
   <div class="col-xs-7 profile-foot">
     <div class="admin-link">
       <%= link_to "プロフィールを編集", edit_admin_end_user_path(@end_user), class: "admin-link_edit-btn", 'data-turbolinks': false %>
+      <%= link_to "ブロック一覧", admin_end_user_blockers_path(@end_user.id), class: "admin-link_block-btn" %>
     </div>
-    <div class="admin-profile-detail">
-      <h5 class="post-count">
+    <ul class="admin-profile-detail">
+      <li class="post-count">
         投稿<strong><%= @end_user.posts.count %></strong>件
-      </h5>
-      <h5 class="sex">
+      </li>
+      <li class="sex">
         性別：<strong><%= @end_user.sex %></strong>
-      </h5>
-      <h5 class="experience">
+      </li>
+      <li class="experience">
         レベル：<strong><%= @end_user.experience %></strong>
-      </h5>
-    </div>
+      </li>
+    </ul>
     <h4 class="admin-user-name">
       <%= @end_user.name %>
     </h4>
@@ -58,7 +59,6 @@
                   <th>ジャンル</th>
                   <th>公開状況</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -75,9 +75,6 @@
                     </td>
                     <td>
                       <%= link_to "詳細", admin_post_path(user_post) %>
-                    </td>
-                    <td>
-                      <%= link_to "編集", edit_admin_post_path(user_post) %>
                     </td>
                   </tr>
                 <% end %>
@@ -146,9 +143,7 @@
                       <% end %>
                     </td>
                     <td><%= user_room.created_at.strftime('%Y/%m/%d') %></td>
-                    <td>
-                      <%= link_to "詳細(編集)", admin_chat_path('chat[user_a]': user_room.end_user.id, 'chat[user_b]': @end_user.id) %>
-                    </td>
+                    <td><%= link_to "移動", admin_end_user_chats_path(end_user_id: @end_user.id, pair_user_id: user_room.end_user.id) %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -170,7 +165,7 @@
                 <% @favorites.each do |favorite| %>
                   <tr>
                     <td><%= favorite.post.title %></td>
-                    <td><%= favorite.end_user.name %></td>
+                    <td><%= favorite.post.end_user.name %></td>
                     <td>
                       <%= link_to "投稿詳細", admin_post_path(favorite.post) %>
                     </td>
@@ -193,7 +188,7 @@
                 <% @bookmarks.each do |bookmark| %>
                   <tr>
                     <td><%= bookmark.post.title %></td>
-                    <td><%= bookmark.end_user.name %></td>
+                    <td><%= bookmark.post.end_user.name %></td>
                     <td>
                       <%= link_to "投稿詳細", admin_post_path(bookmark.post) %>
                     </td>

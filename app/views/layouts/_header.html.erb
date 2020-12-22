@@ -2,54 +2,78 @@
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
     <h4>
       <% if end_user_signed_in? %>
-        <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
+        <span data-toggle="tooltip" data-placement="bottom" title="投稿一覧">
+          <%= link_to "LOGO", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
+        </span>
       <% else %>
-        LOGO
+        <h4 class="header-logo-position">Do it yourself!</h4>
       <% end %>
     </h4>
   </nav>
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
-      <div class="navigation">
-        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", 'data-turbolinks': false %>
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="新規投稿">
+        <%= link_to "", new_post_path, class: "glyphicon glyphicon-edit fa-size", id: "new-post-link", 'data-turbolinks': false %>
       </div>
-      <div class="navigation">
-        <%= link_to "", notifications_path, class: "far fa-bell fa-size" %>
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="通知">
+        <%= link_to notifications_path do %>
+          <% if unchecked_notifications.any? %>
+            <i class="far fa-bell fa-size"></i>
+            <i class="fas fa-circle n-circle"></i>
+          <% else %>
+            <i class="far fa-bell fa-size"></i>
+          <% end %>
+        <% end %>
       </div>
-      <div class="navigation dropdown">
+      <div class="navigation dropdown" data-toggle="tooltip" data-placement="bottom" title="トーク">
         <a href="#" class="fas fa-sms fa-size" data-toggle="dropdown" role="button" aria-expanded="false">
         	<span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-          <li role="presentation" class="dropdown-header">-トークを始める-</li>
-            <% if @mutual_follows.empty? %>
-              <li role="presentation" class="dropdown-header">相互フォローユーザー<br>がいません。</li>
+          <li role="presentation" class="dropdown-header">-メッセージを送る-</li>
+            <% if @user_chat_rooms.empty? %>
+              <li role="presentation" class="dropdown-header">既存のトークルーム<br>がありません。</li>
             <% else %>
-        	      <% @mutual_follows.each do |follow| %>
-                <li role="presentation">
-                  <%= link_to follow.name, chat_path(follow) %>
+        	      <% @user_chat_rooms.each do |user_room| %>
+                <li role="presentation" class="header-room-list">
+                  <% if unchecked_chats(user_room).present? %>
+                    <p class="chat-notice-circle-head">
+                      <%= unchecked_chats(user_room).count %>
+                    </p>
+                  <% else %>
+                    <p style="width: 15px;"></p>
+                  <% end %>
+                  <%= link_to user_room.end_user.name, chat_path(user_room.end_user) %>
                 </li>
               <% end %>
             <% end %>
         </ul>
       </div>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="マイページ">
         <%= link_to end_user_path(current_end_user.id), 'data-turbolinks': false do %>
           <% if current_end_user.images.present? %>
-            <img src='<%= current_end_user.images.thumb_small.url %>' class="header-user-image" alt="プロフ写真">
+            <img src='<%= current_end_user.images.thumb.url %>' class="header-user-image" alt="プロフ写真">
           <% else %>
             <%= image_tag "sample.jpg", size: '30x30', class: "header-user-image" %>
           <% end %>
         <% end %>
       </div>
-      <div class="navigation">
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="ログアウト">
         <%= link_to "", destroy_end_user_session_path, method: :delete, class: "fas fa-sign-out-alt fa-size" %>
       </div>
     <% else %>
-      <%= link_to "ログイン", new_end_user_session_path %>
-      <%= link_to "新規登録", new_end_user_registration_path %>
-      <%= link_to "About", about_path %>
-      <%= link_to "Top", root_path %>
+      <div class="head-right-nav-login">
+        <i class="fas fa-sign-in-alt head-nav-icon"></i>
+        <%= link_to "Login", new_end_user_session_path, class: "head-nav" %>
+      </div>
+      <div class="head-right-nav">
+        <i class="fas fa-user-plus"></i>
+        <%= link_to "Sign up", new_end_user_registration_path, class: "head-nav" %>
+      </div>
+      <div class="head-right-nav">
+        <i class="fas fa-home"></i>
+        <%= link_to "Top", root_path, class: "head-nav" %>
+      </div>
     <% end %>
   </nav>
 </nav>

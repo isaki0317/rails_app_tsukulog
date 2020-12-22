@@ -1,0 +1,25 @@
+<div class="col-xs-10 col-xs-offset-2 top-style">
+  <div class="col-xs-6 col-xs-offset-2">
+    <h4><%= @end_user.name %>さんのブロック一覧</h4>
+    <% unless @user_blocks.empty? %>
+      <table class="table">
+        <tbody>
+          <% @user_blocks.each do |block_user| %>
+            <tr>
+              <td><%= link_to block_user.name, admin_end_user_path(block_user) %></td>
+              <td>
+                <% if block_user.is_deleted == true %>
+                  退会済み
+                <% else %>
+                  活動中
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>ブロックしているユーザーはいません。</p>
+    <% end %>
+  </div>
+</div>

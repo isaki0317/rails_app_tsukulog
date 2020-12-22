@@ -25,10 +25,17 @@ class Admin::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource)
-    admin_top_path
+    admin_end_users_path
   end
 
   def after_sign_out_path_for(resource)
     root_path
   end
+
+  def new_guest
+    admin = Admin.guest
+    sign_in admin
+    redirect_to admin_end_users_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 end

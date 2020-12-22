@@ -2,7 +2,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  process resize_to_limit: [540, nil]
+  process resize_to_limit: [597, nil]
 
 
 
@@ -16,9 +16,9 @@ class ImagesUploader < CarrierWave::Uploader::Base
      %w(jpg jpeg gif png)
   end
 
-  version :big do
-    process resize_to_fit: [598, nil]
-  end
+  # version :big do
+  #   process resize_to_fit: [598, nil]
+  # end
 
   version :medium do
     process resize_to_fit: [510, nil]
@@ -32,13 +32,13 @@ class ImagesUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [50, nil]
   end
 
-  version :thumb_big do
-    process resize_to_fit: [150, nil]
-  end
+  # version :thumb_big do
+  #   process resize_to_fit: [150, nil]
+  # end
 
-  version :thumb_small do
-    process resize_to_fit: [30, nil]
-  end
+  # version :thumb_small do
+  #   process resize_to_fit: [30, nil]
+  # end
   # デフォルト画像設定
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
