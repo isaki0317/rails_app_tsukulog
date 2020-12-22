@@ -87,7 +87,7 @@ class EndUser < ApplicationRecord
     follow = active_relationships.find_by(follower_id: end_user.id)
     follow.destroy!
   end
-  # ログインユーザーがブロックした相手とのUserRoomを削除
+  # ログインユーザーがブロックした相手とのUserRoomを削除 & admin側でのUserRoom削除に使用
   def user_room_delete(current_end_user, end_user)
     rooms = current_end_user.user_rooms.pluck(:room_id)
     pair_room = UserRoom.find_by(end_user_id: end_user.id, room_id: rooms)
