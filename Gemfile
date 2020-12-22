@@ -74,10 +74,8 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'letter_opener_web', '~> 1.0'
-gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'rails-i18n'
 gem 'whenever', require: false
 
 gem 'dotenv-rails'
