@@ -1,2 +1,8 @@
 $('#favorites-count_<%= @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite_count', locals: {target_post: @post}) %>");
 $('#favorite_<%= @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite', locals: {target_post: @post}) %>");
+$('#favorite_user_<%= @post.id %>').html("<%= j(render partial: 'end_user/favorites/favorite_user', locals: {favorite_users: @favorite_users}) %>");
+$('#favorite-button').click( function () {
+  console.log('favorite')
+	$('#favorite-modal').modal();
+});
+console.log('favorite')

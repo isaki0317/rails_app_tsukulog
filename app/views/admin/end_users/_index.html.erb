@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>Email</th>
+          <th>ステータス</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="admin-tbody" style="background-color: white;">
+        <% end_users.each do |end_user| %>
+          <tr>
+            <td><%= end_user.name %></td>
+            <td><%= end_user.email %></td>
+            <td>
+              <% if end_user.is_deleted == true %>
+                <p class="denger-message">退会済み</p>
+              <% else %>
+                活動中
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "詳細", admin_end_user_path(end_user), class: "" %>
+            </td>
+            <td>
+              <%= link_to "編集", edit_admin_end_user_path(end_user), class: "" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>

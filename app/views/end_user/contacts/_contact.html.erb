@@ -1,4 +1,4 @@
-<button type="button" id="contact-button" class="btn">
+<button type="button" id="contact-button" class="">
   お問合せ
 </button>
 
@@ -6,30 +6,33 @@
 <div class="modal fade" id="contact-modal" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header text-center">
 				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				<h4 class="modal-title text-left">送信フォーム</h4>
-				<p class="text-left">回答が必要な内容に関しましては、ご登録いただいているEmailへ送らせていただきますのでご了承ください。</p>
+				<h4 class="modal-title">送信フォーム</h4>
+				<p class="contact-text">回答が必要な内容に関しましては、ご登録いただいているEmailへ送らせていただきますのでご了承ください。</p>
 			</div>
-			<div class="modal-body text-left">
-			  <table>
-			  <%= form_with model: @contact_new, url: contacts_path, method: :post, local: true do |f| %>
+			<div>
+			<div class="modal-body text-center">
+			  <%= form_with model: @contact_new, url: contacts_path, method: :post, remote: true do |f| %>
 			    <%= f.hidden_field :end_user_id, value: current_end_user.id %>
-			    <tr>
-			      <th><%= f.label :title, "タイトル" %></th>
-			      <td><%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力してください", size: '30', class: "contact-form-title" %><br></td>
-			    </tr>
-			    <tr>
-			      <th><%= f.label :body, "内容" %></th>
-			      <td><%= f.text_area :body, placeholder: "内容を入力してください", size: '30', class: "contact-form-body" %></td>
-			    </tr>
-			  </table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-				<%= f.submit "送信", class: "btn btn-success" %>
-			</div>
+            <div class="modal-title">
+			    		<%= f.label :title, "タイトル", class: "contact-label" %><br>
+			    		<%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力してください", size: '50', class: "contact-form" %>
+            </div>
+            <div class="modal-inner-body">
+			    		<%= f.label :body, "内容", class: "contact-label" %><br>
+			    		<%= f.text_area :body, placeholder: "内容を入力してください", size: '50x4', class: "contact-form" %>
+			    	</div>
+			    </div>
+			    <div class="modal-footer">
+				    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				    <%= f.submit "送信", class: "btn btn-success" %>
+			    </div>
 			  <% end %>
+			  <div id="error_explanation">
+    		  <%= render 'layouts/error', model: @contact_new %>
+    		</div>
+			</div>
 		</div>
 	</div>
 </div>

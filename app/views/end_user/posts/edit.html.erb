@@ -1,1 +1,81 @@
-<h1 class="index">posts/edit</h1>
+<div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-8 post-new-box">
+    <div id="error_explanation">
+      <%= render 'layouts/error', model: @draft_post %>
+    </div>
+    <%= form_with model: @draft_post, url: post_path(@draft_post.id), local: true do |f| %>
+      <div class="col-xs-12 form-top">
+        <%= f.text_field :title, autofocus: true, placeholder: "タイトルを入力...【必須】", size: '28', class: "title-form" %>
+        <%= f.text_area :subtitle, placeholder: "キャッチコピーを入力...【必須】", size: '28x2', class: "subtitle-form" %>
+      </div>
+      <div class="col-xs-6 form-half-left">
+        <%= f.file_field :images, id: :user_img, class: 'img_field', style: 'display:none;' %>
+        <% if @draft_post.images.present? %>
+          <%= image_tag @draft_post.images.url, size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+        <% else %>
+          <%= image_tag "sample.jpg", size: '290x230', onClick: "$('.img_field').click()", id: :img_prev %>
+        <% end %>
+      </div>
+      <div class="col-xs-6 form-half-right">
+        <div class="material-label">
+          <h6 class="post-form-title">材料【必須】</h6>
+        </div>
+  <!--ここから-->
+        <div class="material-area">
+          <%= f.fields_for :materials, @draft_post.materials do |m| %>
+            <span class="js-material-group" data-index="<%= m.index %>">
+              <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
+              <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "14", class: "text-form" %></span>
+              <span class="delete-form-btn">削除</span>
+            </span><br>
+            <%= m.hidden_field :post_id, value: @draft_post.id %>
+          <% end %>
+        </div>
+        <div class="add-btn"><span class="add-form-btn">タブを追加</span></div>
+　<!--ここまでを複製する-->
+      </div>
+      <div class="col-xs-12 work-content">
+        <h5 class="post-form-title">作り方【必須】</h5>
+<!--ここから-->
+      <div class="work-area">
+        <% @draft_post.works.each do |pw| %>
+          <%= f.fields_for :works, pw do |w| %>
+                <div class="js-work-group" data-index="<%= w.index %>">
+                  <span class="js-work-num">〖<%= w.index + 1 %>〗</span>
+                  <span class="delete-work-btn">削除</span><br>
+                    <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
+                    <% if pw.images? %>
+                      <%= image_tag pw.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                    <% else %>
+                      <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                    <% end %><br>
+                    <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
+                </div>
+              <%= w.hidden_field :post_id, value: @draft_post.id %>
+          <% end %>
+        <% end %>
+      </div>
+      <div><span class="add-form-btn-work">タブを追加</span></div>
+<!--ここまでを複製する-->
+      </div>
+      <div class="col-xs-12">
+        <span class="post-form-title">選択項目【必須】</span>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {prompt: "ジャンルを選択"}) %>
+        <%= f.select:cost,["１０００円以下","３０００円以下","５０００円以下","８０００円以下","８０００円以上"] %>
+        <%= f.select:creation_time,["～３０分","～１時間","～２時間","～４時間","～６時間","それ以上"] %>
+        <%= f.select:level,["低い","中","高い","えぐい"] %><br>
+        <%= f.label :link, 'リンク【任意】', class: "post_link" %>
+        <%= f.text_field :link, size: '55', class: "text-form", placeholder: "YouTube・Instagram・他..." %><br>
+        <%= f.label :caution, "自由記入【任意】", class: "post_caution" %>
+        <%= f.text_field :caution, size: "55", class: "text-form", placeholder: "注意点・こつ..." %><br>
+        <div class="form-bottom">
+          <%= f.label :post_status, "公開条件【必須】", class: "post_status" %>
+          <%= f.select :post_status, [["投稿する",true],["下書き保存", false]], {include_blank: true} %>
+          <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+          <%= f.submit "送信", class: "btn-sm btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'post_nav' %>
+</div>

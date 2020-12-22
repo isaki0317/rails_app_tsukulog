@@ -55,7 +55,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -74,6 +77,8 @@ gem 'letter_opener_web', '~> 1.0'
 gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n'
+gem 'whenever', require: false
 
 gem 'dotenv-rails'
 group :production do

@@ -1,26 +1,33 @@
-<h2>Log in</h2>
+<div class="col-xs-6 col-xs-offset-3 login-container text-center">
+  <div class="login-container_box">
+    <h3 class="login-head-en">Log in</h3>
+    <h5 class="login-head-ja">ログイン</h5>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render 'layouts/error', model: resource %>
+      <div class="field">
+        <%= f.label :email, "メールアドレス", class: "login-label" %><br />
+        <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス...", autocomplete: "email", class: "login-mail-form" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード", class: "login-label" %><br />
+        <%= f.password_field :password, placeholder: "パスワード...", autocomplete: "current-password", class: "login-password-form" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, class: "login-check" %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn-default login-btn btn" %>
+      </div>
+    <% end %>
+      <div class="guest-login">
+        <%= link_to "ゲストログイン", end_users_guest_sign_in_path, method: :post, class: "btn btn-default guest-login-btn" %>
+      </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "end_users/shared/links" %>
+</div>

@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
+      end_user: ユーザー
+      post: 投稿
+      material: 材料
+      work: 作り方
