@@ -77,11 +77,5 @@ gem 'letter_opener_web', '~> 1.0'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'whenever', require: false
-
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
-
 gem 'fog-aws'
 
