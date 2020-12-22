@@ -13,10 +13,12 @@
   border: 2px solid gray;
   border-radius: 0.67em;
   margin-right: 100px;
+  width: 150px;
 }
 
-.admin-content_top > .btn-sm {
-  margin-right: 20px;
+.admin-content_top {
+  display: flex;
+  margin-bottom: 12px;
 }
 
 .response-list {
@@ -26,15 +28,24 @@
   margin: 15px 0;
 
   &_detail {
-    margin-right: 20px;
+    margin-right: 26px;
 
     .link-btn {
-      margin-left: 8px;
-      background-color: #d9e2e0;
+      margin-left: 4px;
+      background-color: white;
+      border: 1px solid rgba(211,211,211,0.7);
     }
   }
 }
 
 .td-color {
   background-color: white;
+}
+
+.main-left {
+  padding: 0 15px 0 0!important;
+}
+
+.main-right {
+  padding: 0 0 0 15px!important;
 }
