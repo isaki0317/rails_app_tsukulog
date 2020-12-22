@@ -22,8 +22,8 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :updete, :show]
     resources :contacts, only: [:index, :show, :update]
     resources :comments, only: [:destroy]
-    resources :posts, only: [:index, :show, :update, :destroy, :edit]
-    resources :end_users, only: [:index, :show, :edit, :update, :destroy] do
+    resources :posts, only: [:index, :show, :update, :destroy]
+    resources :end_users, only: [:index, :show, :edit, :update] do
       resource :chats, only: [:show] do
         delete 'room_destroy' => 'chats#room_destroy'
       end

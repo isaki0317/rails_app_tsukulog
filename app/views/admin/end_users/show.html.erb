@@ -59,7 +59,6 @@
                   <th>ジャンル</th>
                   <th>公開状況</th>
                   <th></th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -76,9 +75,6 @@
                     </td>
                     <td>
                       <%= link_to "詳細", admin_post_path(user_post) %>
-                    </td>
-                    <td>
-                      <%= link_to "編集", edit_admin_post_path(user_post) %>
                     </td>
                   </tr>
                 <% end %>
@@ -169,7 +165,7 @@
                 <% @favorites.each do |favorite| %>
                   <tr>
                     <td><%= favorite.post.title %></td>
-                    <td><%= favorite.end_user.name %></td>
+                    <td><%= favorite.post.end_user.name %></td>
                     <td>
                       <%= link_to "投稿詳細", admin_post_path(favorite.post) %>
                     </td>
@@ -192,7 +188,7 @@
                 <% @bookmarks.each do |bookmark| %>
                   <tr>
                     <td><%= bookmark.post.title %></td>
-                    <td><%= bookmark.end_user.name %></td>
+                    <td><%= bookmark.post.end_user.name %></td>
                     <td>
                       <%= link_to "投稿詳細", admin_post_path(bookmark.post) %>
                     </td>

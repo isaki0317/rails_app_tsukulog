@@ -1,1 +1,58 @@
-<h1 class="index">end_users/edit</h1>
+<div class="col-xs-6 col-xs-offset-3 edit-box">
+  <%= render 'layouts/error', model: @end_user %>
+  <%= form_with model: @end_user, url: admin_end_user_path(@end_user), local: true do |f| %>
+    <div class="img-prev edit-flex">
+      <%= f.file_field :images, id: :thumb_img, class: 'thumb_field', style: 'display:none;' %>
+      <label>写真を編集</label><i></i>
+      <div class="img-circle">
+        <% if @end_user.images.present? %>
+          <%= image_tag @end_user.images.thumb.url, size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
+        <% else %>
+          <%= image_tag "sample.jpg", size: '50x50', onClick: "$('.thumb_field').click()", id: :thumb_prev %>
+        <% end %>
+      </div>
+    </div>
+    <div class="edit-flex">
+      <%= f.label :name, "名前" %>
+      <i class="glyphicon glyphicon-asterisk edit-icon" aria-hidden="true"></i>
+      <%= f.text_field :name, size: "41" %>
+    </div>
+    <div class="edit-introduction">
+      <%= f.label :introduction, "自己紹介" %><i></i>
+      <%= f.text_area :introduction, size: "40x3", class: "js-text" %>
+    </div>
+    <div class="edit-count">
+      <P class="js-text-count" data-index="50"></P>
+    </div>
+    <div class="edit-flex">
+      <%= f.label :address, "地域(住所)" %><i></i>
+      <%=f.text_field :address, size: "41" %>
+    </div>
+    <div class="edit-flex">
+      <%= f.label :experience, "熟練度" %><i></i>
+      <%= f.select :experience,["初心者","中級者","上級者","プロ"] %>
+    </div>
+    <div class="edit-flex">
+      <%= f.label :sex, "性別" %><i></i>
+      <%= f.select :sex,["未選択です","男性","女性"] %>
+    </div>
+    <div class="edit-flex">
+      <%= f.label :date_of_birth, "誕生日" %><i></i>
+      <div class="input">
+        <%= raw sprintf(
+          f.date_select(
+          :date_of_birth,
+          use_month_numbers: true,
+          start_year: 1930,
+          end_year: (Time.now.year - 5),
+          default: Date.new(1989, 1, 1),
+          date_separator: '%s'),
+          '年 ', '月 ') + '日' %>
+      </div>
+    </div>
+    <div class="text-center">
+      <%= f.submit "変更する", class: "btn btn-primary btn-sm" %>
+    </div>
+  <% end %>
+</div>
+

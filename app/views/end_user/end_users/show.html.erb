@@ -66,7 +66,7 @@
         <div class="tab-flex">
           <% @public_posts.each do |public_post| %>
             <div class="">
-              <%= link_to post_path(public_post) do %>
+              <%= link_to post_path(public_post), 'data-turbolinks': false do %>
                 <img src='<%= public_post.images.url %>' class="post-image" alt="投稿写真">
               <% end %>
             </div>
