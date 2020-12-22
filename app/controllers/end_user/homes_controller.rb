@@ -9,7 +9,7 @@ class EndUser::HomesController < ApplicationController
     if end_user_signed_in?
       redirect_to posts_path
     elsif admin_signed_in?
-      redirect_to admin_top_path
+      redirect_to admin_end_users_path
     end
   end
 
