@@ -16,11 +16,23 @@ class Admin::ChatsController < ApplicationController
 
   def destroy
     @chat = Chat.find(params[:id])
-    # @user_room = UserRoom.where(id: @chat.room.id).first
-    # @pair_user_id = @user_room.end_user_id
-    # @chats = @user_room.room.chats
     @chat.destroy
-    # redirect_to admin_end_user_chats_path(end_user_id: @chat.end_user.id, pair_user_id: @pair_user_id)
+    end_user = @chat.end_user
+    pair_user = EndUser.find(params[:end_user_id])
+    user = params[:user]
+    if user == 'chat-left'
+      redirect_to admin_end_user_chats_path(end_user_id: pair_user.id, pair_user_id: end_user.id)
+    else
+      redirect_to admin_end_user_chats_path(end_user_id: end_user.id, pair_user_id: pair_user.id)
+    end
+  end
+
+  def room_destroy
+    @end_user = EndUser.find(params[:end_user_id])
+    pair_user = params[:pair_user]
+    @pair_user = EndUser.find_by(id: pair_user)
+    @end_user.user_room_delete(@end_user, @pair_user)
+    redirect_to admin_end_user_path(@end_user.id)
   end
 
 end

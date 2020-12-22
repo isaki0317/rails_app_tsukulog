@@ -6,7 +6,7 @@ class Admin::SearchsController < ApplicationController
     @value = params["search_value"]
     @how = params["search_how"]
     if @model == 'end_user'
-      @data = EndUser.search_for(@value, @how)
+      @data = EndUser.search_for(@value, @how, 'admin', 'admin')
     else
       @data = Post.search_for(@value, @how, 'admin', 'admin')
     end

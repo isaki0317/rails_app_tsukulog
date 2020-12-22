@@ -69,3 +69,14 @@
   display: flex;
   justify-content: flex-start;
 }
+
+.message-destroy-right {
+  padding: 8px 0;
+  margin-left: 5px;
+  color: red;
+}
+.message-destroy-left {
+  padding: 8px 0;
+  margin-right: 5px;
+  color: red;
+}
