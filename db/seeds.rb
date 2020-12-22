@@ -13,19 +13,31 @@ Admin.create!(
 EndUser.create!(
   email: 'a@a',
   password: 'aaaaaa',
-  name: '松尾イサキ' 
+  name: '松尾イサキ'
 )
 
 EndUser.create!(
   email: 'b@b',
   password: 'bbbbbb',
-  name: '野原新之助' 
+  name: '野原新之助'
 )
 
 EndUser.create!(
   email: 'c@c',
   password: 'cccccc',
-  name: '野比のび太' 
+  name: '野比のび太'
+)
+
+EndUser.create!(
+  email: 'd@d',
+  password: 'dddddd',
+  name: '坂田金時'
+)
+
+EndUser.create!(
+  email: 'e@e',
+  password: 'eeeeee',
+  name: 'ヤムチャ'
 )
 
 Genre.create!(
