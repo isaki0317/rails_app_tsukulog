@@ -6,9 +6,13 @@ class ImagesUploader < CarrierWave::Uploader::Base
 
 
 
-  # 下記はデフォルトの保存先
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # 保存先条件分岐
+  if Rails.env.development? || Rails.env.test?
+    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
+  else
+    storage :fog
   end
 
    #アップロード可能な拡張子のリスト
