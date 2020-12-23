@@ -1,6 +1,5 @@
 # Do it Yourself!
 
-
 ## サイト概要
 DIYの成果や情報をSNS形式で気軽にシェアするアプリです。
 仲間同士でシェアすることで、日常に「楽しい」「活気」「笑顔」を増やす手助けができるアプリになっています。
@@ -25,8 +24,11 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
 
 ## 設計書
 
-### 機能一覧
-https://docs.google.com/spreadsheets/d/1i7w0K9miIVeMCW5Xw7jBwlSvwkMNjEt_FOvWAdbosvs/edit?usp=sharing
+### 機能一覧・設計図
+######機能一覧
+ https://docs.google.com/spreadsheets/d/1i7w0K9miIVeMCW5Xw7jBwlSvwkMNjEt_FOvWAdbosvs/edit?usp=sharing
+######ER図
+ https://drive.google.com/file/d/1wnwKP0v4uMlW8p6hq26SZ2CkRc-UpVtO/view?usp=sharing
 
 ## 開発環境
 - OS：Windows
