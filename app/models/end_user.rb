@@ -99,8 +99,8 @@ class EndUser < ApplicationRecord
   end
   # ログインユーザーがブロックした相手とのお互いの通知をすべて削除
   def notification_delete(current_end_user, end_user)
-    notice_visitor = Notification.where(visitor_id: end_user.id, visited_id: current_end_user.id)
-    notice_visited = Notification.where(visitor_id: current_end_user.id, visited_id: end_user.id)
+    notice_visitor = Notification.where("visitor_id = ? and visited_id = ?", end_user.id, current_end_user.id)
+    notice_visited = Notification.where("visitor_id = ? and visited_id = ?", current_end_user.id, end_user.id)
     if notice_visited.present?
       notice_visited.destroy_all
     end
@@ -122,7 +122,7 @@ class EndUser < ApplicationRecord
 
   def self.search_for(value, how, order, terms)
     if how == 'match'
-      end_users = EndUser.where(name: value)
+      end_users = EndUser.where("name = ?", value)
     else
       end_users = EndUser.where('name LIKE ?', '%'+value+'%')
     end
