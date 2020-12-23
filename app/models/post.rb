@@ -62,11 +62,11 @@ class Post < ApplicationRecord
   end
 
   def favorited_by?(end_user)
-    favorites.where(end_user_id: end_user.id).exists?
+    favorites.where("end_user_id = ?", end_user.id).exists?
   end
 
   def bookmarked_by?(end_user)
-    bookmarks.where(end_user_id: end_user.id).exists?
+    bookmarks.where("end_user_id = ?", end_user.id).exists?
   end
 
   # いいねに対する通知
@@ -101,9 +101,9 @@ class Post < ApplicationRecord
   # searchs/search → search+sort
   def self.search_for(value, how, order, terms)
     if how == 'match'
-      posts = Post.where(title: value, post_status: true).or(Post.where(genre_id: value, post_status: true))
+      posts = Post.where("title = ? and post_status = ?", value, true).or(Post.where("genre_id = ? and post_status = ?", value, true))
     else
-      posts = Post.where('title LIKE ?', '%'+value+'%').where(post_status: true)
+      posts = Post.where('title LIKE ?', '%'+value+'%').where("post_status = ?", true)
     end
       if order == 'cost'
         if terms == 'desc'

@@ -67,7 +67,6 @@ footer {
 .header-logo {
   text-decoration: none;
   color: black;
-  font-family: 'Rowdies', cursive;
   }
   .header-logo:hover {
     color: black;
@@ -132,6 +131,9 @@ footer {
 // header-admin
 #wrapper {
 margin-left: 230px;
+}
+.admin-logo {
+  color: white;
 }
 
 #sidebar-wrapper {
