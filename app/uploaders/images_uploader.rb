@@ -4,15 +4,17 @@ class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_limit: [597, nil]
 
-
-
   # 保存先条件分岐
-  if Rails.env.development? || Rails.env.test?
-    def store_dir
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    end
-  else
-    storage :fog
+#  if Rails.env.development? || Rails.env.test?
+
+    # fogがだめなら下記に切り替える
+    storage :file
+#  else
+    # storage :fog
+#  end
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
    #アップロード可能な拡張子のリスト
