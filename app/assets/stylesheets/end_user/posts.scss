@@ -41,6 +41,7 @@
   border: 1px solid gray;
   border-radius: 0.67em;
   cursor: pointer;
+  max-height: 100px;
 }
 
 .form-half-right {
@@ -355,7 +356,7 @@
 
 
 // end_user/posts/show
-.post-img > .img-size {
+.post-img > .img_size {
   width: 340px;
   border: 1px solid gray;
   border-radius: 0.67em;
@@ -462,10 +463,12 @@
 
     .work_image {
       min-height: 80px;
+      max-height: 100px;
     }
 
     .work_detail {
       padding: 4px;
+      word-wrap: break-word;
     }
   }
 }
