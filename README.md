@@ -38,5 +38,4 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
 - IDE：Cloud9
 
 ### Qiita
-[アカウント]
-(https://qiita.com/IsakiMatsuo)
+https://qiita.com/IsakiMatsuo
