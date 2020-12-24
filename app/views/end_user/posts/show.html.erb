@@ -13,7 +13,7 @@
         <span><%= @post.end_user.name %></span>
           <% end %>
       </div>
-      <div class="top-right">
+      <div class="top-right text-right">
         <% if @post.end_user == current_end_user && @post.post_status == true %>
           <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.title }を、Twitterでみんなに広めよう！", class: 'btn btn-default', target: '_blank' do %>
             <i class="fab fa-twitter"><span class="twitter-btn">Twitterに投稿</span></i>
@@ -31,7 +31,7 @@
         <% end %>
         <span id="bookmark_<%= @post.id %>">
           <%= render 'end_user/bookmarks/bookmark', target_post: @post %>
-        </span>
+        </span><br>
         <span id="favorite_user_<%= @post.id %>">
           <%= render 'end_user/favorites/favorite_user', favorite_users: @favorite_users %>
         </span>
