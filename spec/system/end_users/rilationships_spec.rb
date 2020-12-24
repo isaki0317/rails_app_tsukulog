@@ -17,11 +17,13 @@ describe 'フォローのテスト' do
     before do
       visit end_user_path(test_user_2)
     end
+
     context 'フォローボタンクリック' do
       it 'フォローに成功', js: true do
         click_link 'rspec-create-follow'
       end
     end
+
     context 'フォローボタン2回クリック' do
       it 'フォローを解除', js: true do
         click_link 'rspec-create-follow'
@@ -43,6 +45,7 @@ describe 'フォローのテスト' do
       before do
         visit end_user_path(test_user_1)
       end
+
       it '相互フォローのユーザー2が表示される', js: true do
         click_link '友達'
         expect(page).to have_content 'ユーザー2'
@@ -69,6 +72,7 @@ describe 'フォローのテスト' do
       before do
         visit end_user_path(test_user_2)
       end
+
       it '相互フォローユーザーにユーザー1が表示される' do
         click_link '友達'
         expect(page).to have_content 'ユーザー1'

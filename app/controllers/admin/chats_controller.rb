@@ -34,5 +34,4 @@ class Admin::ChatsController < ApplicationController
     @end_user.user_room_delete(@end_user, @pair_user)
     redirect_to admin_end_user_path(@end_user.id)
   end
-
 end

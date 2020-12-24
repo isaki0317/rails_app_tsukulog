@@ -5,5 +5,4 @@ class Admin::BlocksController < ApplicationController
     @end_user = EndUser.find(params[:end_user_id])
     @user_blocks = @end_user.blockers
   end
-
 end

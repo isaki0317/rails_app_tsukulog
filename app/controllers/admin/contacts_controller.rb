@@ -16,8 +16,8 @@ class Admin::ContactsController < ApplicationController
   end
 
   private
+
   def contact_params
     params.require(:contact).permit(:end_user_id, :title, :body, :checked)
   end
-
 end

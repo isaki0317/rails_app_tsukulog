@@ -37,5 +37,4 @@ class Admin::SessionsController < Devise::SessionsController
     sign_in admin
     redirect_to admin_end_users_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-
 end

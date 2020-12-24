@@ -11,5 +11,4 @@ class Admin::SearchsController < ApplicationController
       @data = Post.search_for(@value, @how, 'admin', 'admin')
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Commentモデルのテスト', type: :model do
-
   describe 'バリデーションのテスト' do
     let(:end_user) { create(:end_user) }
     let(:test_post) { create(:post) }
@@ -9,6 +8,7 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
 
     context 'bodyカラム' do
       let(:test_comment) { comment }
+
       it '空欄の場合はエラーが出る' do
         test_comment.body = ''
         test_comment.valid?
@@ -16,7 +16,7 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
       end
 
       it '50文字以上の場合はエラーが出る' do
-        test_comment.body = Faker::Lorem.characters(number:51)
+        test_comment.body = Faker::Lorem.characters(number: 51)
         test_comment.valid?
         expect(test_comment.errors[:body]).to include("は50文字以内で入力してください")
       end
@@ -24,7 +24,6 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
   end
 
   describe 'アソシエーションのテスト' do
-
     context 'N:1のモデルとの関係' do
       it 'EndUserモデルとの関係' do
         expect(Comment.reflect_on_association(:end_user).macro).to eq :belongs_to

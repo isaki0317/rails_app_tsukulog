@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Chatモデルのテスト', type: :model do
-
   describe 'バリデーションのテスト' do
     let(:end_user) { create(:end_user) }
     let(:room) { create(:room) }
@@ -9,6 +8,7 @@ RSpec.describe 'Chatモデルのテスト', type: :model do
 
     context 'messageカラム' do
       let(:test_chat) { chat }
+
       it '空欄の場合はエラーが出る' do
         test_chat.message = ''
         test_chat.valid?
@@ -16,7 +16,7 @@ RSpec.describe 'Chatモデルのテスト', type: :model do
       end
 
       it '60文字以上の場合はエラーが出る' do
-        test_chat.message = Faker::Lorem.characters(number:61)
+        test_chat.message = Faker::Lorem.characters(number: 61)
         test_chat.valid?
         expect(test_chat.errors[:message]).to include("は60文字以内で入力してください")
       end

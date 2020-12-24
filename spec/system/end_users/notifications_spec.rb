@@ -23,10 +23,12 @@ describe '通知のテスト' do
     fill_in 'end_user[password]', with: test_user_2.password
     click_button 'Log in'
   end
+
   context 'いいね！通知のテスト' do
     before do
       FactoryBot.create(:notification, visitor_id: test_user_1.id, visited_id: test_user_2.id, post_id: test_post.id, action: 'favorite')
     end
+
     it 'いいねの通知が来ている' do
       visit notifications_path
       expect(page).to have_content 'ユーザー1があなたの投稿にいいね！しました'
@@ -47,6 +49,7 @@ describe '通知のテスト' do
     before do
       FactoryBot.create(:notification, visitor_id: test_user_1.id, visited_id: test_user_2.id, post_id: test_post.id, comment_id: test_comment.id, action: 'comment')
     end
+
     it 'コメントの通知が来ている' do
       visit notifications_path
       expect(page).to have_content 'ユーザー1があなたの投稿にコメントしました'
@@ -69,6 +72,7 @@ describe '通知のテスト' do
       FactoryBot.create(:relationship, following_id: test_user_1.id, follower_id: test_user_2.id)
       FactoryBot.create(:notification, visitor_id: test_user_1.id, visited_id: test_user_2.id, action: 'follow')
     end
+
     it 'フォローの通知が来ている' do
       visit notifications_path
       expect(page).to have_content 'ユーザー1があなたをフォローしました'
@@ -84,6 +88,7 @@ describe '通知のテスト' do
     before do
       FactoryBot.create(:notification, visitor_id: test_user_1.id, visited_id: test_user_2.id, room_id: room.id, chat_id: test_chat.id, action: 'dm')
     end
+
     it 'dmの通知が来ている' do
       visit notifications_path
       expect(page).to have_content 'ユーザー1からDMが届いてます'

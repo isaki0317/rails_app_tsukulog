@@ -12,5 +12,4 @@ class EndUser::BookmarksController < ApplicationController
     bookmark = current_end_user.bookmarks.find_by(post_id: params[:post_id])
     bookmark.destroy
   end
-
 end
