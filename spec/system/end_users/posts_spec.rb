@@ -21,34 +21,39 @@ describe '投稿のテスト' do
     end
 
     context '新規投稿に成功する', js: true do
-      xit '新規投稿に成功する' do
+      it '新規投稿に成功する' do
         fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[subtitle]', with: Faker::Lorem.characters(number:10)
-        test_post.images = File.new("#{Rails.root}/spec/factories/test.jpg")
+        find('#user_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
         fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number:20)
         within '#post_genre_id' do
           find("option[value='1']").click
         end
-        test_work.images = File.new("#{Rails.root}/spec/factories/test.jpg")
+        find('#works_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
         click_button '送信'
-        expect(current_path).to eq('/posts/' + test_post.id.to_s)
+        post = Post.last
+        expect(current_path).to eq('/posts/' + post.id.to_s)
       end
 
-      xit '下書きに成功する', js: true do
+      it '下書きに成功する', js: true do
         fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[subtitle]', with: Faker::Lorem.characters(number:10)
-        test_post.images = File.new("#{Rails.root}/spec/factories/test.jpg")
+        find('#user_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
         fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number:5)
         fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number:20)
-        # test_work.images = File.new("#{Rails.root}/spec/factories/test.jpg")
+        find('#works_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
         within '#post_genre_id' do
           find("option[value='1']").click
         end
+        within '#post_post_status' do
+          find("option[value='false']").click
+        end
         click_button '送信'
-        expect(current_path).to eq('/end_users/' + test_post.end_user.id)
+        post = Post.last
+        expect(current_path).to eq('/end_users/' + post.end_user.id.to_s)
       end
     end
 
@@ -68,19 +73,21 @@ describe '投稿のテスト' do
     end
 
     context 'Jsのテスト(クリックで追加・削除)' do
-      xit '材料：タブ追加できる', js: true do
-        click 'rspec-add-material'
-        expect(page).to find_by_id('post_materials_attributes_1_material_name')
+      it '材料：タブ追加できる', js: true do
+        find('#rspec-add-material').click
+        elements = all('.js-material-group')
+        expect(elements.size).to eq 2
       end
 
       xit '材料：タブを削除できる', js: true do
-        click 'rspec-add-material'
+        find('#rspec-add-material').click
         click '削除ボタンが同じ・親のindex番号だけ違う'
       end
 
-      xit '工程：タブ追加できる', js: true do
-        click 'rspec-add-work'
-        expect(page).to find_by_id('post_works_attributes_2_detail')
+      it '工程：タブ追加できる', js: true do
+        find('#rspec-add-work').click
+        elements = all('.js-work-group')
+        expect(elements.size).to eq 2
       end
 
       xit '工程：タブを削除できる', js: true do
