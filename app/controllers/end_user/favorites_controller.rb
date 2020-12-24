@@ -20,5 +20,4 @@ class EndUser::FavoritesController < ApplicationController
     favorite_users = @post.favorite_end_user
     @favorite_users = Post.block_action(favorite_users, current_end_user)
   end
-
 end

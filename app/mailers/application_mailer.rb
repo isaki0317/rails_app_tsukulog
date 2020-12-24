@@ -13,5 +13,4 @@ class ApplicationMailer < ActionMailer::Base
 
     mail(subject: "未読の通知が10件以上あります", bcc: users_with_unckecked_notices_mails)
   end
-
 end

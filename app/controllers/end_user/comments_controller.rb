@@ -20,8 +20,8 @@ class EndUser::CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:post_id, :body, :end_user_id)
   end
-
 end

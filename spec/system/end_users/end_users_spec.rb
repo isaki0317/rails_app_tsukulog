@@ -5,9 +5,10 @@ describe 'ユーザーの認証のテスト' do
     before do
       visit new_end_user_registration_path
     end
+
     context '新規登録画面に遷移' do
       it '新規登録に成功する' do
-        fill_in 'end_user[name]', with: Faker::Lorem.characters(number:5)
+        fill_in 'end_user[name]', with: Faker::Lorem.characters(number: 5)
         fill_in 'end_user[email]', with: Faker::Internet.email
         fill_in 'end_user[password]', with: 'password'
         fill_in 'end_user[password_confirmation]', with: 'password'
@@ -26,11 +27,14 @@ describe 'ユーザーの認証のテスト' do
 
   describe 'ユーザーログイン' do
     let(:end_user) { create(:end_user) }
+
     before do
       visit new_end_user_session_path
     end
+
     context 'ログイン画面に遷移' do
       let(:test_user) { end_user }
+
       it 'ログインに成功する' do
         fill_in 'end_user[email]', with: test_user.email
         fill_in 'end_user[password]', with: test_user.password
@@ -127,15 +131,14 @@ describe 'ユーザーのテスト' do
     end
   end
 
-
   describe 'プロフィール編集ページ' do
     before do
       visit edit_end_user_path(test_user)
     end
-    context '変更を更新' do
 
+    context '変更を更新' do
       it '更新できる' do
-        fill_in 'end_user[name]', with: Faker::Lorem.characters(number:5)
+        fill_in 'end_user[name]', with: Faker::Lorem.characters(number: 5)
         click_button '変更する'
         expect(current_path).to eq('/end_users/' + test_user.id.to_s)
       end
@@ -148,7 +151,6 @@ describe 'ユーザーのテスト' do
     end
 
     context 'サインアウト' do
-
       it 'サインアウトボタンがある' do
         expect(page).to have_button 'サインアウトする'
       end

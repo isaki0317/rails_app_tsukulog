@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Genreモデルのテスト', type: :model do
-
   describe 'バリデーションのテスト' do
     let(:genre) { create(:genre) }
     let(:genre_2) { create(:genre) }
@@ -9,7 +8,7 @@ RSpec.describe 'Genreモデルのテスト', type: :model do
     context 'nameカラム' do
       let(:test_genre) { genre }
       let(:test_genre_2) { genre_2 }
-      
+
       it '空だとエラーが出る' do
         test_genre.name = ''
         test_genre.valid?
@@ -17,7 +16,7 @@ RSpec.describe 'Genreモデルのテスト', type: :model do
       end
 
       it '12文字以上の場合はエラーが出る' do
-        test_genre.name = Faker::Lorem.characters(number:13)
+        test_genre.name = Faker::Lorem.characters(number: 13)
         test_genre.valid?
         expect(test_genre.errors[:name]).to include("は12文字以内で入力してください")
       end
@@ -42,10 +41,8 @@ RSpec.describe 'Genreモデルのテスト', type: :model do
     end
   end
 
-
   describe 'アソシエーションのテスト' do
     context '1:Nのモデルとの関係' do
-
       it 'Postモデルとの関係' do
         expect(Genre.reflect_on_association(:posts).macro).to eq :has_many
       end

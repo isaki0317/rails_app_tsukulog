@@ -27,5 +27,4 @@ class EndUser::SearchsController < ApplicationController
     @genres = Genre.all
     @comment_new = Comment.new
   end
-
 end

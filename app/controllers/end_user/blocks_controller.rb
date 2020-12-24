@@ -14,10 +14,10 @@ class EndUser::BlocksController < ApplicationController
       current_end_user.notification_delete(current_end_user, @end_user)
       # logger.debug current_end_user.user_room_delete(current_end_user, @end_user).errors.inspect
     end
-      redirect_to end_user_path(current_end_user.id)
-    rescue => e
-      # エラーメッセージを入れる
-      redirect_to end_user_path(current_end_user.id)
+    redirect_to end_user_path(current_end_user.id)
+  rescue => e
+    # エラーメッセージを入れる
+    redirect_to end_user_path(current_end_user.id)
   end
 
   def destroy
@@ -30,5 +30,4 @@ class EndUser::BlocksController < ApplicationController
     # ログインユーザーがブロックしているユーザーを集める
     @user_blocks = current_end_user.blockers
   end
-
 end

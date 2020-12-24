@@ -12,5 +12,4 @@ class EndUser::HomesController < ApplicationController
       redirect_to admin_end_users_path
     end
   end
-
 end

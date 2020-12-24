@@ -28,7 +28,4 @@ class EndUser::RelationshipsController < ApplicationController
     end
     @followers = current_end_user.followers.where.not(id: current_end_user.followings)
   end
-
 end
-
-

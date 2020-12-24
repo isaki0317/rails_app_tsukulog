@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Postモデルのテスト', type: :model do
-
   describe 'バリデーションのテスト' do
     let(:end_user) { create(:end_user) }
     let(:genre) { create(:genre) }
@@ -9,6 +8,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
 
     context 'titleカラム' do
       let(:test_post) { post }
+
       it '空欄の場合はエラーが出る' do
         test_post.title = ''
         test_post.valid?
@@ -16,7 +16,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
       end
 
       it '24文字以上の場合はエラーが出る' do
-        test_post.title = Faker::Lorem.characters(number:25)
+        test_post.title = Faker::Lorem.characters(number: 25)
         test_post.valid?
         expect(test_post.errors[:title]).to include("は24文字以内で入力してください")
       end
@@ -24,6 +24,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
 
     context 'subtitleカラム' do
       let(:test_post) { post }
+
       it '空欄の場合はエラーが出る' do
         test_post.subtitle = ''
         test_post.valid?
@@ -31,7 +32,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
       end
 
       it '40文字以上の場合はエラーが出る' do
-        test_post.subtitle = Faker::Lorem.characters(number:41)
+        test_post.subtitle = Faker::Lorem.characters(number: 41)
         test_post.valid?
         expect(test_post.errors[:subtitle]).to include("は40文字以内で入力してください")
       end
@@ -39,6 +40,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
 
     context 'imagesカラム' do
       let(:test_post) { post }
+
       it '空の場合はエラーが出る' do
         test_post.images = ''
         test_post.valid?
@@ -46,7 +48,6 @@ RSpec.describe 'Postモデルのテスト', type: :model do
       end
     end
   end
-
 
   describe 'アソシエーションのテスト' do
     context 'N:1のモデルとの関係' do
