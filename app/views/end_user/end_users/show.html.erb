@@ -3,7 +3,7 @@
     <div class="profile">
       <div class="profile_image">
         <% if @end_user.images.present? %>
-          <img src='<%= @end_user.images.url %>' class="user_image" alt="プロフ写真" size="150x150">
+          <%= image_tag @end_user.images.url, class: "user_image", size: "150x150" %>
         <% else %>
           <%= image_tag "sample.jpg", size: '150x150', class: "user_image" %>
         <% end %>
