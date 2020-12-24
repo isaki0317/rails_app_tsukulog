@@ -19,7 +19,7 @@ CarrierWave.configure do |config|
     # config.fog_directory  = 'matsuoisakiawsbucket' #S3のバケット名
     # config.asset_host = 'https://matsuoisakiawsbucket.s3-ap-northeast-1.amazonaws.com/'
 
-  #else
+  #els
     config.storage :file # 開発環境:public/uploades下に保存
     config.enable_processing = false if Rails.env.test? #test:処理をスキップ
   #end
