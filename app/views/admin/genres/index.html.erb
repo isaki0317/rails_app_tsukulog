@@ -4,7 +4,7 @@
     <%= form_with model: @genre_new, url: admin_genres_path, method: :post, remote: true do |f| %>
       <%= f.text_field :name, autofocus: true, placeholder: "ジャンル名を入力...", size: '26', class: "genre-head_form" %>
       <%= f.select :is_active, [["有効",true],["無効", false]], {include_blank: true}, class: "genre-head_select" %>
-      <%= f.submit "作成", class: "genre-head_btn" %>
+      <%= f.submit "作成", class: "genre-head_btn", id: "rspec-genre-create" %>
     <% end %>
   </div>
   <div id="error_explanation">
