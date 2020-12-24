@@ -35,4 +35,18 @@ describe 'いいね！のテスト' do
       click_link 'rspec-favorite-destroy'
     end
   end
+
+  describe '投稿へいいねしたユーザー一覧' do
+    before do
+      visit post_path(test_post)
+    end
+
+    # context 'いいね！したユーザーが即時反映される' do
+    #   it 'いいねしたテストユーザーが表示される', js: true do
+    #     click_link 'rspec-favorite-create'
+    #     click_link 'いいね一覧を見る...'
+    #     expect(page).to have_content 'いいね！一覧'
+    #   end
+    # end
+  end
 end
