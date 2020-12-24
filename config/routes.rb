@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
   devise_for :end_users, controllers: {
     sessions: 'end_users/sessions',
-    registrations: 'end_users/registrations'
+    registrations: 'end_users/registrations',
   }
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
   devise_scope :admin do
     post 'admin/guest_sign_in', to: 'admin/sessions#new_guest'
   end
-  #チャット機能に関するAdmin側のルーティングを追加する必要がある
+  # チャット機能に関するAdmin側のルーティングを追加する必要がある
   namespace :admin do
     get 'top' => 'homes', as: 'top'
     get 'search' => 'searchs', as: 'search'
@@ -33,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_user do
-    resources :chats, only: [:create, :show]  #showの部分を確認する
+    resources :chats, only: [:create, :show] # showの部分を確認する
     root 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'searchs#search', as: 'search'
@@ -44,9 +43,9 @@ Rails.application.routes.draw do
       get 'blockers' => 'blocks#index', on: :collection
       resource :relationships, only: [:create, :destroy]
       collection do
-  	    patch 'out'
+        patch 'out'
         get 'quit'
-  	  end
+      end
     end
     resources :contacts, only: [:create]
     resources :posts do

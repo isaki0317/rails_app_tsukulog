@@ -1,5 +1,4 @@
 class Notification < ApplicationRecord
-
   belongs_to :post, optional: true
   belongs_to :comment, optional: true
   belongs_to :visitor, class_name: 'EndUser', foreign_key: 'visitor_id', optional: true
@@ -8,5 +7,4 @@ class Notification < ApplicationRecord
   belongs_to :room, optional: true
   belongs_to :chat, optional: true
   default_scope -> { order(created_at: :desc) }
-
 end

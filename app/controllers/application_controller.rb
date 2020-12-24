@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_action :get_current_chat_room
   def get_current_chat_room
     if end_user_signed_in?
@@ -7,5 +6,4 @@ class ApplicationController < ActionController::Base
       @user_chat_rooms = UserRoom.where(room_id: rooms).where.not(end_user_id: current_end_user.id)
     end
   end
-
 end

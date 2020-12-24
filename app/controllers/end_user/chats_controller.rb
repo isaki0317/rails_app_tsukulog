@@ -32,8 +32,8 @@ class EndUser::ChatsController < ApplicationController
   end
 
   private
+
   def chat_params
     params.require(:chat).permit(:room_id, :message, :checked)
   end
-
 end

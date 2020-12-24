@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-
   belongs_to :end_user
   belongs_to :genre
   has_many :notifications, dependent: :destroy
@@ -11,8 +10,8 @@ class Post < ApplicationRecord
   has_many :materials, dependent: :destroy
   has_many :works, dependent: :destroy
 
-  validates :title, presence: true, length: {in: 1..24}
-  validates :subtitle, presence: true, length: {maximum: 40}
+  validates :title, presence: true, length: { in: 1..24 }
+  validates :subtitle, presence: true, length: { maximum: 40 }
   validates :end_user_id, presence: true
   validates :images, presence: true
 
@@ -26,7 +25,7 @@ class Post < ApplicationRecord
     ３０００円以下: 1,
     ５０００円以下: 2,
     ８０００円以下: 3,
-    ８０００円以上: 4
+    ８０００円以上: 4,
   }
 
   enum creation_time: {
@@ -35,14 +34,14 @@ class Post < ApplicationRecord
     ～２時間: 2,
     ～４時間: 3,
     ～６時間: 4,
-    それ以上: 5
+    それ以上: 5,
   }
 
   enum level: {
     低い: 0,
     中: 1,
     高い: 2,
-    えぐい: 3
+    えぐい: 3,
   }
   # 対象の投稿の配列の中から、blocked_by?blocker_by?を使って絞り込み
   def self.block_posts(targets, current_end_user)
@@ -52,6 +51,7 @@ class Post < ApplicationRecord
       end
     end
   end
+
   # 対象のユーザーの配列の中から、blocked_by?blocker_by?を使って絞り込み
   def self.block_action(end_users, current_end_user)
     end_users.select do |end_user|
@@ -103,31 +103,31 @@ class Post < ApplicationRecord
     if how == 'match'
       posts = Post.where("title = ? and post_status = ?", value, true).or(Post.where("genre_id = ? and post_status = ?", value, true))
     else
-      posts = Post.where('title LIKE ?', '%'+value+'%').where("post_status = ?", true)
+      posts = Post.where('title LIKE ?', '%' + value + '%').where("post_status = ?", true)
     end
-      if order == 'cost'
-        if terms == 'desc'
-          posts = posts.order(cost: :desc)
-        else
-          posts = posts.order(cost: :asc)
-        end
-      elsif order == 'level'
-        if terms == 'desc'
-          posts = posts.order(level: :desc)
-        else
-          posts = posts.order(level: :asc)
-        end
-      elsif order == 'time'
-        if terms == 'desc'
-          posts = posts.order(creation_time: :desc)
-        else
-          posts = posts.order(creation_time: :asc)
-        end
-      elsif order =='favorite'
-        posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
+    if order == 'cost'
+      if terms == 'desc'
+        posts = posts.order(cost: :desc)
       else
-        posts = posts.order(created_at: :desc)
+        posts = posts.order(cost: :asc)
       end
+    elsif order == 'level'
+      if terms == 'desc'
+        posts = posts.order(level: :desc)
+      else
+        posts = posts.order(level: :asc)
+      end
+    elsif order == 'time'
+      if terms == 'desc'
+        posts = posts.order(creation_time: :desc)
+      else
+        posts = posts.order(creation_time: :asc)
+      end
+    elsif order == 'favorite'
+      posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
+    else
+      posts = posts.order(created_at: :desc)
+    end
   end
 
   # posts/index → sort
@@ -156,10 +156,9 @@ class Post < ApplicationRecord
     elsif order == 'favorite'
       posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
     else
-      if terms == nil
+      if terms.nil?
         posts = posts.order(created_at: :desc)
       end
     end
   end
-
 end
