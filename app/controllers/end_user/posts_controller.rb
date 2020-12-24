@@ -72,9 +72,9 @@ class EndUser::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:end_user_id, :genre_id, :title, :images, :subtitle, :cost, :creation_time, :level, :caution, :link, :post_status,
-    materials_attributes: [:id, :post_id, :material_name, :shop], works_attributes: [:id, :post_id, :detail, :images])
+                                 materials_attributes: [:id, :post_id, :material_name, :shop], works_attributes: [:id, :post_id, :detail, :images])
   end
-
 end

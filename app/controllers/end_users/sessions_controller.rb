@@ -31,7 +31,7 @@ class EndUsers::SessionsController < Devise::SessionsController
   def reject_user
     end_user = EndUser.find_by(email: params[:user][:email].downcase)
     if end_user
-      if (end_user.valid_password?(params[:user][:password]) && (end_user.active_for_authentication? == true))
+      if end_user.valid_password?(params[:user][:password]) && (end_user.active_for_authentication? == true)
         redirect_to new_user_session_path
       end
     end
@@ -48,7 +48,6 @@ class EndUsers::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
-
 
   # def reject_inactive_customer
   #   @end_user = EndUser.find_by(email: params[:end_user][:email])

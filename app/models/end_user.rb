@@ -3,10 +3,10 @@ class EndUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true, length: {in: 2..20}
-  validates :introduction, length: {maximum: 50}
+  validates :name, presence: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
   validates :email, presence: true, uniqueness: true
-  validates :address, length: {maximum: 50}
+  validates :address, length: { maximum: 50 }
 
   has_many :contacts
   has_many :posts, dependent: :destroy
@@ -43,26 +43,28 @@ class EndUser < ApplicationRecord
   mount_uploader :images, ImagesUploader
 
   enum sex: {
-    未選択です:0,
+    未選択です: 0,
     男性: 1,
-    女性: 2
+    女性: 2,
   }
 
   enum experience: {
     初心者: 0,
     中級者: 1,
     上級者: 2,
-    プロ: 3
+    プロ: 3,
   }
 
   def active_for_authentication?
-    super && self.is_deleted == false
+    super && is_deleted == false
   end
+
   # フォロー機能で使用
   # 特定のユーザーのpassive_relationshipsの中のfollowing_idが引数で渡したユーザーのものがあるかの判定
   def followed_by?(end_user)
     passive_relationships.find_by(following_id: end_user.id).present?
   end
+
   # 相互フォローを探す
   def matchers
     followings & followers
@@ -73,6 +75,7 @@ class EndUser < ApplicationRecord
   def blocked_by?(end_user)
     passive_blocks.find_by(blocker_id: end_user.id).present?
   end
+
   # 特定のユーザー(投稿者など)のactive_blocksのblocked_idの中に、引数で渡したユーザーが存在するかの判定
   def blocker_by?(end_user)
     active_blocks.find_by(blocked_id: end_user.id).present?
@@ -82,11 +85,13 @@ class EndUser < ApplicationRecord
   def follower_by?(end_user)
     active_relationships.find_by(follower_id: end_user.id).present?
   end
+
   # ログインユーザーがブロックしたユーザーが、自分のfollowerにいる場合は削除する
   def destry_follow(end_user)
     follow = active_relationships.find_by(follower_id: end_user.id)
     follow.destroy!
   end
+
   # ログインユーザーがブロックした相手とのUserRoomを削除 & admin側でのUserRoom削除に使用
   def user_room_delete(current_end_user, end_user)
     rooms = current_end_user.user_rooms.pluck(:room_id)
@@ -97,6 +102,7 @@ class EndUser < ApplicationRecord
       user_room.destroy
     end
   end
+
   # ログインユーザーがブロックした相手とのお互いの通知をすべて削除
   def notification_delete(current_end_user, end_user)
     notice_visitor = Notification.where("visitor_id = ? and visited_id = ?", end_user.id, current_end_user.id)
@@ -108,6 +114,7 @@ class EndUser < ApplicationRecord
       notice_visitor.destroy_all
     end
   end
+
   # フォローに対する通知
   def create_notification_follow!(current_end_user, end_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_end_user.id, end_user.id, 'follow'])
@@ -124,17 +131,17 @@ class EndUser < ApplicationRecord
     if how == 'match'
       end_users = EndUser.where("name = ?", value)
     else
-      end_users = EndUser.where('name LIKE ?', '%'+value+'%')
+      end_users = EndUser.where('name LIKE ?', '%' + value + '%')
     end
-      if order == 'experience'
-        if terms == 'desc'
-          end_users = end_users.order(experience: :desc)
-        else
-          end_users = end_users.order(experience: :asc)
-        end
+    if order == 'experience'
+      if terms == 'desc'
+        end_users = end_users.order(experience: :desc)
       else
-        end_users = end_users.order(created_at: :desc)
+        end_users = end_users.order(experience: :asc)
       end
+    else
+      end_users = end_users.order(created_at: :desc)
+    end
   end
 
   # guestログイン
@@ -144,5 +151,4 @@ class EndUser < ApplicationRecord
       end_user.name = "ゲスト太郎"
     end
   end
-
 end

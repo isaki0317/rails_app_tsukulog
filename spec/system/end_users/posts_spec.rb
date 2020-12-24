@@ -7,6 +7,7 @@ describe '投稿のテスト' do
   let(:test_work) { create(:work, post_id: test_post.id) }
   let!(:test_post) { create(:post, genre_id: test_genre.id, end_user_id: test_user.id) }
   let!(:test_post_2) { create(:post, genre_id: test_genre.id, end_user_id: test_user_2.id) }
+
   before do
     visit new_end_user_session_path
     fill_in 'end_user[email]', with: test_user.email
@@ -22,12 +23,12 @@ describe '投稿のテスト' do
 
     context '新規投稿に成功する', js: true do
       it '新規投稿に成功する' do
-        fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[subtitle]', with: Faker::Lorem.characters(number:10)
+        fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[subtitle]', with: Faker::Lorem.characters(number: 10)
         find('#user_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
-        fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number:20)
+        fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number: 20)
         within '#post_genre_id' do
           find("option[value='1']").click
         end
@@ -38,12 +39,12 @@ describe '投稿のテスト' do
       end
 
       it '下書きに成功する', js: true do
-        fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[subtitle]', with: Faker::Lorem.characters(number:10)
+        fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[subtitle]', with: Faker::Lorem.characters(number: 10)
         find('#user_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
-        fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number:5)
-        fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number:20)
+        fill_in 'post[materials_attributes][0][material_name]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[materials_attributes][0][shop]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'post[works_attributes][0][detail]', with: Faker::Lorem.characters(number: 20)
         find('#works_img', visible: false).set("#{Rails.root}/spec/factories/test.jpg")
         within '#post_genre_id' do
           find("option[value='1']").click
@@ -128,6 +129,7 @@ describe '投稿のテスト' do
       before do
         visit post_path(test_post_2)
       end
+
       it '編集するボタン表示されない' do
         expect(page).to have_no_content '編集する'
       end
@@ -147,9 +149,10 @@ describe '投稿のテスト' do
     before do
       visit edit_post_path(test_post)
     end
+
     context '編集に成功する' do
       it '編集に成功する', js: true do
-        fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
+        fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
         click_button '送信'
       end
     end
@@ -168,14 +171,17 @@ describe '投稿のテスト' do
       before do
         visit post_path(test_post)
       end
+
       it '削除に成功する', js: true do
         click_link 'rspec-post-destroy'
       end
     end
+
     context '他人の投稿の場合' do
       before do
         visit post_path(test_post_2)
       end
+
       it '削除ボタン表示されない' do
         expect(page).to have_no_content '削除する'
       end

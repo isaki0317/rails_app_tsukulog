@@ -1,40 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe 'EndUserモデルのテスト', type: :model do
-
   describe 'バリデーションのテスト' do
+    subject { test_user.valid? }
 
     let(:end_user) { create(:end_user) }
     let(:end_user_2) { create(:end_user) }
-    subject { test_user.valid? }
 
     context 'nameカラム' do
       let(:test_user) { end_user }
+
       it '空欄でないこと' do
         test_user.name = ''
-        is_expected.to eq false;
+        is_expected.to eq false
       end
-      it '空欄の場合はエラーが出る'do
+      it '空欄の場合はエラーが出る' do
         test_user.name = ''
         test_user.valid?
         expect(test_user.errors[:name]).to include("を入力してください")
       end
       it '2文字以上であること' do
-        test_user.name = Faker::Lorem.characters(number:1)
-        is_expected.to eq false;
+        test_user.name = Faker::Lorem.characters(number: 1)
+        is_expected.to eq false
       end
       it '20文字以下であること' do
-        test_user.name = Faker::Lorem.characters(number:21)
-        is_expected.to eq false;
+        test_user.name = Faker::Lorem.characters(number: 21)
+        is_expected.to eq false
       end
     end
 
     context 'emailカラム' do
       let(:test_user) { end_user }
       let(:test_user_2) { end_user_2 }
+
       it '空欄でないこと' do
         test_user.email = ''
-        is_expected.to eq false;
+        is_expected.to eq false
       end
       it '空欄の場合はエラーが出る' do
         test_user.email = ''
@@ -61,12 +62,13 @@ RSpec.describe 'EndUserモデルのテスト', type: :model do
 
     context 'introductionカラム' do
       let(:test_user) { end_user }
+
       it '50文字以下であること' do
-        test_user.introduction = Faker::Lorem.characters(number:51)
-        is_expected.to eq false;
+        test_user.introduction = Faker::Lorem.characters(number: 51)
+        is_expected.to eq false
       end
       it '50文字以上の場合はエラーが出る' do
-        test_user.introduction = Faker::Lorem.characters(number:51)
+        test_user.introduction = Faker::Lorem.characters(number: 51)
         test_user.valid?
         expect(test_user.errors[:introduction]).to include("は50文字以内で入力してください")
       end
@@ -74,12 +76,13 @@ RSpec.describe 'EndUserモデルのテスト', type: :model do
 
     context 'addressカラム' do
       let(:test_user) { end_user }
+
       it '50文字以下であること' do
-        test_user.address = Faker::Lorem.characters(number:51)
-        is_expected.to eq false;
+        test_user.address = Faker::Lorem.characters(number: 51)
+        is_expected.to eq false
       end
       it '50文字以上の場合はエラーが出る' do
-        test_user.address = Faker::Lorem.characters(number:51)
+        test_user.address = Faker::Lorem.characters(number: 51)
         test_user.valid?
         expect(test_user.errors[:address]).to include("は50文字以内で入力してください")
       end
@@ -87,9 +90,10 @@ RSpec.describe 'EndUserモデルのテスト', type: :model do
 
     context 'passwordカラム' do
       let(:test_user) { end_user }
+
       it '空欄でないこと' do
         test_user.password = ''
-        is_expected.to eq false;
+        is_expected.to eq false
       end
       it '空欄の場合はエラーが出る' do
         test_user.password = ''
@@ -97,11 +101,11 @@ RSpec.describe 'EndUserモデルのテスト', type: :model do
         expect(test_user.errors[:password]).to include("を入力してください")
       end
       it '6文字以上であること' do
-        test_user.password = Faker::Lorem.characters(number:1)
-        is_expected.to eq false;
+        test_user.password = Faker::Lorem.characters(number: 1)
+        is_expected.to eq false
       end
       it '６文字未満の場合はエラーが出る' do
-        test_user.password = Faker::Lorem.characters(number:1)
+        test_user.password = Faker::Lorem.characters(number: 1)
         test_user.valid?
         expect(test_user.errors[:password]).to include("は6文字以上で入力してください")
       end

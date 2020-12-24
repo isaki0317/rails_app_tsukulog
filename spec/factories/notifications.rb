@@ -8,7 +8,7 @@ FactoryBot.define do
     comment
     room
     chat
-    action { Faker::Lorem.characters(number:8) }
+    action { Faker::Lorem.characters(number: 8) }
     # following
     # follower
   end

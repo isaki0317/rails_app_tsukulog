@@ -10,6 +10,7 @@ describe 'ジャンル作成のテスト' do
     click_button 'Log in'
     visit admin_genres_path
   end
+
   context '有効なジャンル作成' do
     it '成功する', js: true do
       fill_in 'genre[name]', with: 'インテリア'
