@@ -39,7 +39,7 @@ describe 'フォローのテスト' do
       FactoryBot.create(:relationship, following_id: test_user_3.id, follower_id: test_user_1.id)
     end
 
-    context 'マイページ表示のテスト' do
+    context 'アクションに伴う表示のテスト' do
       before do
         visit end_user_path(test_user_1)
       end

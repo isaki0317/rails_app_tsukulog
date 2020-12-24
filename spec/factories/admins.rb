@@ -1,6 +1,7 @@
 FactoryBot.define do
+  # 実際は.envなどで隠す？
   factory :admin do
-    email { Facker::Internet.email }
-    password { 'password' }
+    email { 'a@a' }
+    password { 'aaaaaa' }
   end
 end
