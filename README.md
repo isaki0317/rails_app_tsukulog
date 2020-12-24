@@ -1,6 +1,6 @@
 # Do it Yourself!
 
-## サイト概要
+### サイト概要
 DIYの成果や情報をSNS形式で気軽にシェアするアプリです。
 仲間同士でシェアすることで、日常に「楽しい」「活気」「笑顔」を増やす手助けができるアプリになっています。
 
@@ -22,20 +22,39 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
 ・DIYをする際にジャンルや費用から成果物を検索して参考にできます。<br>
 ・フォローしたユーザーとDMで直接やり取りができます、DIYをきっかけとして新たな友人に出会えるかもしれせん。
 
-## 設計書
-
 ### 機能一覧・設計図
 ###### 機能一覧
  https://docs.google.com/spreadsheets/d/1i7w0K9miIVeMCW5Xw7jBwlSvwkMNjEt_FOvWAdbosvs/edit?usp=sharing
 ###### ER図
  https://drive.google.com/file/d/1wnwKP0v4uMlW8p6hq26SZ2CkRc-UpVtO/view?usp=sharing
 
-## 開発環境
+### 環境・使用技術
+#### 開発環境
 - OS：Windows
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
+- DB : Sqlite3
 - IDE：Cloud9
+#### フロントエンド
+- Bootstrap 3.3.6
+- SCSS (BEM)
+- JavaScript、jQuery、Ajax
+#### バックエンド
+- Ruby 2.6.3
+- Rails 5.2.4.4
+#### 本番環境
+- AWS (EC2、RDS for MySQL、Route53、S3)
+- MySQL2
+- Nginx、 Puma
+#### テスト
+- Rspec (Jsのテスト含む） 計200以上
+- GithubActions(CI/CD) 
+#### その他主な使用技術
+- 非同期通信 (フォロー・いいね・ブックマーク・お問合せ・ジャンル作成・ブロック解除・DM・プレビュー機能・エラーメッセージ他)
+- Action Mailer
+- whenever （定時処理）
+- HTTPS接続 (Certbot)
+- Rubocop-airbnb
+- transaction(ブロック機能createアクション時のフォロー解除・過去の通知削除・トークルーム削除を一括りにしています)
+- プレースホルダ(SQLインジェクション対策)
 
 ### Qiita
 https://qiita.com/IsakiMatsuo
