@@ -5,10 +5,9 @@
   border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   padding: 10px;
-  min-height: 600px!important;
-  max-height: 600px;
+  height: 85vh;
   .notice-title {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
   a {
 
@@ -29,8 +28,7 @@
 
 .notice-main {
   margin: 5px 0;
-  min-height: 500px!important;
-  max-height: 500px;
+  min-height: 72vh;
   overflow-y: scroll;
 }
 .user-notice {

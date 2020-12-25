@@ -66,7 +66,7 @@
   <div class="chat-form">
     <%= form_with model: @chat, url: chats_path, method: :post, remote: true do |f| %>
       <%= f.hidden_field :room_id %>
-      <%= f.text_field :message, autofocus: true, placeholder: "ここに入力...", size: '74', class: "message-form" %><%= f.submit "送信", class: "message-btn", id: "rspec_button" %>
+      <%= f.text_field :message, autofocus: true, placeholder: "ここに入力...", class: "message-form" %><%= f.submit "送信", class: "message-btn", id: "rspec_button" %>
     <% end %>
   </div>
 </div>

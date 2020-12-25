@@ -23,11 +23,11 @@
   <!--ここから-->
         <div class="material-area">
           <%= f.fields_for :materials, @post_new.materials.build do |m| %>
-          <span class="js-material-group" data-index="0">
-            <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
-            <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "14", class: "text-form" %></span>
+          <div class="js-material-group" data-index="0">
+            <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", class: "text-form material_name-form" %></span>
+            <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", class: "text-form material_shop-form" %></span>
             <span class="delete-form-btn">削除</span>
-          </span><br>
+          </div>
             <%= m.hidden_field :post_id, value: @post_new.id %>
           <% end %>
         </div>
@@ -44,11 +44,11 @@
               <span class="delete-work-btn">削除</span><br>
               <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
               <% if @works.images.present? %>
-                <%= image_tag @works.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                <%= image_tag @works.images.small.url, onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
               <% else %>
-                <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                <%= image_tag "sample.jpg", onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
               <% end %><br>
-              <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
+              <%= w.text_area :detail, style: "width:100%; height:15vh;", class: "works_detail text-form", placeholder: "説明をここに..." %>
             </div>
           </div>
           <div><span class="add-form-btn-work" id="rspec-add-work">タブを追加</span></div>
@@ -63,9 +63,9 @@
         <%= f.select:creation_time,["～３０分","～１時間","～２時間","～４時間","～６時間","それ以上"] %>
         <%= f.select:level,["低い","中","高い","えぐい"] %><br>
         <%= f.label :link, 'リンク【任意】', class: "post_link" %>
-        <%= f.text_field :link, size: '55', class: "text-form", placeholder: "YouTube・Instagram・他..." %><br>
+        <%= f.text_field :link, class: "text-form", placeholder: "YouTube・Instagram・他..." %><br>
         <%= f.label :caution, "自由記入【任意】", class: "post_caution" %>
-        <%= f.text_field :caution, size: "55", class: "text-form", placeholder: "注意点・こつ..." %><br>
+        <%= f.text_field :caution, class: "text-form", placeholder: "注意点・こつ..." %><br>
         <div class="form-bottom">
           <%= f.label :post_status, "公開条件【必須】", class: "post_status" %>
           <%= f.select :post_status, [["投稿する",true],["下書き保存", false]], {include_blank: true} %>
