@@ -54,8 +54,8 @@
           <tbody>
           <% @post.materials.each do |material| %>
             <tr>
-              <td class="table-style"><%= material.material_name %></td>
-              <td class="table-style"><%= material.shop %></td>
+              <td class="table-style post-show-material"><%= material.material_name %></td>
+              <td class="table-style post-show-material"><%= material.shop %></td>
             </tr>
           <% end %>
           </tbody>
@@ -100,7 +100,7 @@
             <% if work.images.present? %>
               <img src='<%= work.images.small.url %>' class="img-size" alt="工程の写真">
             <% else %>
-              <%= image_tag "sample.jpg", size: '115x75', class: "img-size" %>
+              <%= image_tag "sample.jpg", class: "img-size" %>
             <% end %>
           </div>
           <div class="work_detail">

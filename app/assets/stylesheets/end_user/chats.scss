@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .chat-rooms {
-  height: 85vh;
-  // max-height: 70vh;
+  height: 84vh;
+  margin-top: 0.7rem;
   border: 1px solid gray;
   background-color: white;
   .chat-list {
@@ -14,8 +14,8 @@
 }
 
 .chat-room {
-  height: 85vh;
-  // max-height: 70vh;
+  height: 84vh;
+  margin-top: 0.7rem;
   border: 1px solid gray;
   background-color: white;
   .chat-content {
@@ -24,9 +24,8 @@
   .chat-content {
     overflow-y: scroll;
     height: 72vh;
-    // max-height: 515px;
     .message {
-      width: 600px;
+      width: 40vw;
     }
   }
   #room {
@@ -35,14 +34,15 @@
     border-bottom: 1px solid rgba(192,192,192,0.5);
   }
   .chat-form {
-    margin-top: 0.4rem;
+    margin-top: 0.2rem;
 
   } .message-form {
     border: 0.1em solid rgba(192,192,192,0.5);
     outline: none;
     border-radius: 0.67em;
     padding: 5px;
-    height: auto;
+    height: 3.5rem;
+    width: 36vw;
   }
   .message-btn {
     margin-left: 5px;
@@ -78,11 +78,13 @@
 }
 
 .message-right {
+  width: 40vw!important;
   display: flex;
   justify-content: flex-end;
 }
 
 .message-left {
+  width: 40vw!important;
   display: flex;
   justify-content: flex-start;
 }
