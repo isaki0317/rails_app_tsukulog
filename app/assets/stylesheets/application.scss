@@ -34,6 +34,10 @@ th, td, ul, li, span{
   color: black;
 }
 
+p {
+  font-size: 1.4rem;
+}
+
 html {
   font-size: 10px;
 }
@@ -62,6 +66,7 @@ footer {
 
 .container {
   margin-top: 70px;
+  width: 76vw;
 }
 
 .navbar-default {

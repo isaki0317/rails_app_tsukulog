@@ -37,11 +37,19 @@
 .form-half-left {
   padding: 16px 0;
 }
-.img-size, #img_prev {
+#img_prev {
   border: 1px solid gray;
   border-radius: 0.67em;
   cursor: pointer;
-  max-height: 230px;
+  max-height: 34vh;
+  width: 18vw;
+}
+.img-size {
+  border: 1px solid gray;
+  border-radius: 0.67em;
+  cursor: pointer;
+  max-height: 16vh;
+  width: 8vw;
 }
 // #img_prev {
 //   width: 290px;
@@ -49,7 +57,7 @@
 // }
 
 .form-half-right {
-  padding: 0 0 0 20px!important;
+  padding: 0 0 0 5px!important;
   .material-label {
   }
 }
@@ -74,6 +82,14 @@
 }
 .js-material-group {
   margin-bottom: 5px;
+  width: 19.5vw;
+}
+
+.material_name-form {
+  width: 9vw;
+}
+.material_shop-form {
+  width: 8vw;
 }
 .post-form-title {
   font-weight: 600;
@@ -82,12 +98,13 @@
     border-bottom: 1px dotted gray;
     border-top: 1px dotted gray;
     margin-bottom: 14px;
-    padding-bottom: 10px;
+    padding: 0 0 10px 0!important;
   .work-area {
     display: flex;
     flex-flow: row wrap;
     .js-work-group {
-      margin: 0 24px 5px 0;
+      width: 8vw;
+      margin: 0 1.4rem 5px 0;
     }
   }
 }
@@ -99,12 +116,14 @@
 }
 .post_link, #post_link, .post_caution, #post_caution {
   margin-top: 1rem;
+  font-size: 14px;
 }
 .post_link {
   margin-right: 1.4rem;
 }
 #post_link, #post_caution {
   padding: 0.2rem;
+  width: 29vw;
 }
 .form-bottom {
   display: flex;
@@ -118,6 +137,7 @@
     margin-left: 0.4rem;
   }
   .works_detail {
+    width: 8vw!important;
     font-size: 5px;
   }
   .btn-sm {
@@ -127,13 +147,15 @@
 // アコーディイオンメニュー
 .post-nav {
   padding: 0!important;
-  width: 280px!important;
+  width: 18vw!important;
   margin-left: 20px;
   border: 1px solid rgba(211,211,211,0.5);
   border-radius: 0.2em;
   position: fixed!important;
-  top: 72px;
-  right: 290px;
+  top: 7.2rem;
+  // right: 26rem;
+  // top: 9.5vh;
+  right: 16.5vw;
 }
 .post-nav > h5.title_bar {
   background-color: rgba(255,235,205,0.3);
@@ -215,18 +237,23 @@
 
 .content {
   border: 2px solid rgba(211,211,211,0.5);
-  width: 600px;
+  width: 39vw;
   margin-bottom: 25px;
   background-color: white;
 
   &_user {
     margin: 10px 5px 2px 5px;
-}
+  }
   &_image {
     display: flex;
     justify-content: center;
+    align-itms: center;
     padding-bottom: 0!important;
-}
+
+    .post_image {
+      width: 38.7vw;
+    }
+  }
   &_foot {
     padding: 5px 8px 0 10px;
 
@@ -291,12 +318,12 @@
 
 // 検索・並び替えサイドバー
 .fixed-sidebar {
-  width: 300px!important;
+  width: 20vw!important;
   border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
-  top: 72px;
-  right: 290px;
+  top: 7.2rem;
+  right: 18vw;
 
   .search {
     margin-top: 10px;
@@ -361,7 +388,7 @@
 
 // end_user/posts/show
 .post-img > .img_size {
-  width: 340px;
+  width: 21vw;
   border: 1px solid gray;
   border-radius: 0.67em;
   cursor: pointer;
@@ -410,13 +437,23 @@
   padding: 10px 0;
   .post-img {
     width: 350px;
+    padding: 10px 0;
   }
 }
 
 .detail-materials {
   min-width: 260px;
   padding-right: 30px;
+
+  .table-condensed {
+    width: 18vw;
+  }
 }
+
+.post-show-material {
+  width: 16vw;
+}
+
 .table-style {
   font-size: 12px;
   font-family: 'Kosugi Maru', sans-serif;
@@ -463,31 +500,37 @@
   flex-flow: row wrap;
 
   .work-box {
-    width: 120px;
+    width: 9vw;
 
     .work_image {
-      min-height: 80px;
-      max-height: 100px;
     }
 
     .work_detail {
       padding: 4px;
+      width: 9vw;
+      min-height: 10vh;
       word-wrap: break-word;
+
+      p {
+        padding: 5px 6px;
+      }
     }
   }
 }
 
 // show/comment
 .fixed-menu-show {
-  width: 300px!important;
+  width: 19vw!important;
   border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
-  top: 72px;
-  right: 250px;
+  // top: 72px;
+  // right: 250px;
+  top: 7.2rem;
+  right: 16.2vw;
   padding: 8px 0 8px 8px;
   .comment-section {
-    max-height: 400px;
+    max-height: 50vh;
     overflow-y: scroll;
     margin-top: 6px;
 
@@ -527,8 +570,7 @@
   outline: none;
   color: black;
   font-weight: 400;
-  min-width: 280px;
-  max-width: 400px;
+  min-width: 18vw;
 }
 
 .post-comment {
