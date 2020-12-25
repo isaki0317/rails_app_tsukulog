@@ -18,9 +18,9 @@ class ImagesUploader < CarrierWave::Uploader::Base
   end
 
   # アップロード可能な拡張子のリスト
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
+  # def extension_whitelist
+  #   %w(jpg jpeg gif png)
+  # end
 
   # version :big do
   #   process resize_to_fit: [598, nil]
