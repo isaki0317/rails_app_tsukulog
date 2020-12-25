@@ -40,18 +40,18 @@
       <div class="work-area">
         <% @draft_post.works.each do |pw| %>
           <%= f.fields_for :works, pw do |w| %>
-                <div class="js-work-group" data-index="<%= w.index %>">
-                  <span class="js-work-num">〖<%= w.index + 1 %>〗</span>
-                  <span class="delete-work-btn">削除</span><br>
-                    <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
-                    <% if pw.images? %>
-                      <%= image_tag pw.images.small.url, onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
-                    <% else %>
-                      <%= image_tag "sample.jpg", onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
-                    <% end %><br>
-                    <%= w.text_area :detail, style: "width:100%; height:15vh;", class: "works_detail text-form", placeholder: "説明をここに..." %>
-                </div>
-              <%= w.hidden_field :post_id, value: @draft_post.id %>
+            <div class="js-work-group" data-index="<%= w.index %>">
+              <span class="js-work-num">〖<%= w.index + 1 %>〗</span>
+              <span class="delete-work-btn">削除</span><br>
+              <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
+              <% if pw.images? %>
+                <%= image_tag pw.images.small.url, onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+              <% else %>
+                <%= image_tag "sample.jpg", onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+              <% end %><br>
+              <%= w.text_area :detail, style: "width:100%; height:15vh;", class: "works_detail text-form", placeholder: "説明をここに..." %>
+            </div>
+            <%= w.hidden_field :post_id, value: @draft_post.id %>
           <% end %>
         <% end %>
       </div>

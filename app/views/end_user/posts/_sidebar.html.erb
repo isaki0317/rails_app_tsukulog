@@ -2,7 +2,7 @@
   <div class="search">
     <%= form_with url: search_path, method: :get, local: true do |f| %>
       <i class="fas fa-search"></i>
-      <%= f.text_field 'search_value', placeholder: "検索ワードを入力...", size: "28", class: "search_form" %><br>
+      <%= f.text_field 'search_value', placeholder: "検索ワードを入力...", class: "search_form" %><br>
       <div class="text-right search_select">
         <%= f.select 'search_model', options_for_select({ "投稿を探す" => "post", "ユーザーを探す" => "end_user" }) %>
         <%= f.select 'search_how', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
@@ -52,21 +52,22 @@
 	    <% end %>
 	  </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ジャンルから探す</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% genres.each do |genre| %>
-      <tr>
-        <td>
-          <%= link_to genre.name, search_path('search_value': genre.id, 'search_how': "match", 'search_model': "post") %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+  <div class="genre-list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ジャンルから探す</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% genres.each do |genre| %>
+        <tr>
+          <td>
+            <%= link_to genre.name, search_path('search_value': genre.id, 'search_how': "match", 'search_model': "post") %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
