@@ -23,11 +23,11 @@
   <!--ここから-->
         <div class="material-area">
           <%= f.fields_for :materials, @draft_post.materials do |m| %>
-            <span class="js-material-group" data-index="<%= m.index %>">
-              <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", size: "16", class: "text-form" %></span>
-              <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", size: "14", class: "text-form" %></span>
+            <div class="js-material-group" data-index="<%= m.index %>">
+              <span class="material_name"><%= m.text_field :material_name, placeholder: "材料or道具...", class: "text-form material_name-form" %></span>
+              <span class="material_shop"><%= m.text_field :shop, placeholder: "購入先...", class: "text-form material_shop-form" %></span>
               <span class="delete-form-btn">削除</span>
-            </span><br>
+            </div>
             <%= m.hidden_field :post_id, value: @draft_post.id %>
           <% end %>
         </div>
@@ -45,11 +45,11 @@
                   <span class="delete-work-btn">削除</span><br>
                     <%= w.file_field :images, id: "works_img", class: 'work_img_field', style: 'display:none;' %>
                     <% if pw.images? %>
-                      <%= image_tag pw.images.small.url, size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                      <%= image_tag pw.images.small.url, onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
                     <% else %>
-                      <%= image_tag "sample.jpg", size: '115x75', onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
+                      <%= image_tag "sample.jpg", onClick: "imgClick(this)", id: "work_img_prev", class: "img-size" %>
                     <% end %><br>
-                    <%= w.text_area :detail, size: '14x5', class: "works_detail text-form", placeholder: "説明をここに..." %>
+                    <%= w.text_area :detail, style: "width:100%; height:15vh;", class: "works_detail text-form", placeholder: "説明をここに..." %>
                 </div>
               <%= w.hidden_field :post_id, value: @draft_post.id %>
           <% end %>

@@ -39,11 +39,11 @@
 //   posts/material/material form追加
 $(function(){
   function buildField(index) {  // 追加するフォームのｈｔｍｌを用意
-    const html = `<span class="js-material-group" data-index="${index}">
-                  <span class="material_name"><input placeholder="材料or道具..." size="16" class="text-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></span>
-                  <span class="material_shop"><input placeholder="購入先..." size="14" class="text-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></span>
+    const html = `<div class="js-material-group" data-index="${index}">
+                  <span class="material_name"><input placeholder="材料or道具..." class="text-form material_name-form" type="text" name="post[materials_attributes][${index}][material_name]" id="post_materials_attributes_${index}_material_name"></span>
+                  <span class="material_shop"><input placeholder="購入先..." class="text-form material_shop-form" type="text" name="post[materials_attributes][${index}][shop]" id="post_materials_attributes_${index}_shop"></span>
                   <span class="delete-form-btn">削除</span>
-                </span><br>`;
+                </div>`;
     return html;
   }
 
@@ -130,9 +130,9 @@ function imgClick(obj){
                   <span class="js-work-num">〖${index}〗</span>
                   <span class="delete-work-btn">削除</span><br>
                   <input id="works_img${index}" class="work_img_field" style="display:none;" date="{:index=>&quot;0&quot;}" type="file" name="post[works_attributes][${index}][images]">
-                  <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg" width="115" height="75">
+                  <img onclick="imgClick(this)" id="work_img_prev" class="img-size" src="/assets/sample-92269c50190175d7b24c2a2f9c64501c92b4318bab6bcfd32da727530e422086.jpg">
                   <br>
-                  <textarea class="works_detail text-form" placeholder="説明をここに..." name="post[works_attributes][${index}][detail]" id="post_works_attributes_${index}_detail" cols="14" rows="5"></textarea>
+                  <textarea style="width:100%; height:15vh;" class="works_detail text-form" placeholder="説明をここに..." name="post[works_attributes][0][detail]" id="post_works_attributes_0_detail"></textarea>
                 </div>`;
     return html;
   }
