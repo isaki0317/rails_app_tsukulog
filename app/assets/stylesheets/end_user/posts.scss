@@ -336,6 +336,7 @@
       outline: none;
       border-bottom: 1px solid #666;
       margin-bottom: 5px;
+      width: 15vw;
     }
 
     .search_select {
@@ -368,7 +369,7 @@
       border: 2px solid rgb(169,169,169);
     }
     .follow-search {
-      min-width: 80px;
+      min-width: 5vw;
       a {
 
         .follow-user-post {
@@ -383,6 +384,11 @@
       }
     }
   }
+}
+
+.genre-list {
+  max-height: 50vh;
+  overflow-y: scroll;
 }
 
 
