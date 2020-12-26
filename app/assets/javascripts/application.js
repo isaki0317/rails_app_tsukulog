@@ -287,6 +287,10 @@ $(function (){
   });
 });
 
+$(function() {
+  $(".alert").fadeOut(6000);
+})
+
 // コメント非同期(jsの勉強のつもりだったが、あまり使わない方法らしいので注意)
 // $(function() {
 //   function buildHTML(comment){

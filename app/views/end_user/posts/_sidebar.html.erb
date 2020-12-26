@@ -36,10 +36,10 @@
 	  	</li>
 	  	<li role="presentation" class="dropdown-header">作業時間から並び替え</li>
 	  	<li role="presentation">
-	  	  <%= link_to "作業時間の長い順", posts_path('order': "time", 'terms': "desc") %>
+	  	  <%= link_to "作業時間の長い順", posts_path('order': "creation_time", 'terms': "desc") %>
 	  	</li>
 	  	<li role="presentation">
-        <%= link_to "作業時間の短い順", posts_path('order': "time", 'terms': "asc") %>
+        <%= link_to "作業時間の短い順", posts_path('order': "creation_time", 'terms': "asc") %>
 	  	</li>
 	  </ul>
 	  <div class="follow-search">
