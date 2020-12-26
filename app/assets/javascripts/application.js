@@ -286,3 +286,51 @@ $(function (){
     $('.js-text-count').text("残り" + now_count + "文字");
   });
 });
+
+// コメント非同期(jsの勉強のつもりだったが、あまり使わない方法らしいので注意)
+// $(function() {
+//   function buildHTML(comment){
+//     var html =
+//       `<div class="comment-section_head">
+//         <h5 class="commented-user">
+//           <a data-turbolinks="false" href="/end_users/${comment.end_user}">
+//             <strong>${comment.end_user_name}</strong>
+//           </a>
+//         </h5>
+//         <p class="commented-time">
+//           ${comment.created_at}
+//         </p>
+//         <p>
+//           <a class="comment-destroy-btn" data-remote="true" rel="nofollow" data-method="delete" href="/posts/${comment.post}/comments/${comment.comment_id}">削除</a>
+//         </p>
+//         </div>
+//         <p class="comment-section_body">
+//           ${comment.body}
+//         </p>`
+//     return html;
+//   }
+
+//   $("#submit").on("click",function(e){
+//     e.preventDefault();
+//     var formData = new FormData(document.querySelector("#new_comment"));
+//     var url =$("#new_comment").attr("action");
+
+//     $.ajax({
+//       url: url,
+//       type: "POST",
+//       data: formData,
+//       processData:false,
+//       contentType:false
+//     })
+//     .done(function(data){
+//       var html = buildHTML(data);
+//       console.log($('.comment-section'))
+//       $('.comment-section').prepend(html)
+//       $('.comment-form').val('');
+//       $('.post-comment').prop('disabled', false);
+//     })
+//     .fail(function(){
+//       alert("コメントを入力してください")
+//     })
+//   })
+// })

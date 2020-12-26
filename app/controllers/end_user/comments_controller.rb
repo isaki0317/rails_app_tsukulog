@@ -7,6 +7,7 @@ class EndUser::CommentsController < ApplicationController
     if @comment.save
       @post.create_notification_comment!(current_end_user, @comment.id, @post.end_user.id)
     end
+    # 必要なくなった
     comments = @post.comments
     @comments = Post.block_posts(comments, current_end_user)
   end
