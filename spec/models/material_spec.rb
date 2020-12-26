@@ -29,7 +29,7 @@ RSpec.describe 'Materialモデルのテスト', type: :model do
       it '空だとエラーが出る' do
         test_materials.shop = ''
         test_materials.valid?
-        expect(test_materials.errors[:shop]).to include("は2文字以上で入力してください")
+        expect(test_materials.errors[:shop]).to include("は1文字以上で入力してください")
       end
 
       it '20文字以上だとエラーが出る' do
