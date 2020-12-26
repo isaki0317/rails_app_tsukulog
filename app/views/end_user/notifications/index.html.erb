@@ -8,7 +8,7 @@
     </div>
   <% end %>
   <% if @notifications.exists? %>
-    <div class="notice-main">
+    <div class="notice-main jscroll jscroll-select">
       <%= render @notifications %>
       <%= paginate @notifications %>
     </div>
