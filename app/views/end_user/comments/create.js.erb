@@ -1,3 +1,5 @@
-$('#comment-list_<%= @post.id %>').html("<%= j(render partial: 'end_user/comments/comment', locals: {target_post: @post, comments: @comments }) %>");
-$("#error_explanation").html("<%= j(render 'layouts/error', { model: @comment }) %>")
+<% unless @comment.errors.any? %>
+  $('#comment-list_<%= @post.id %>').html("<%= j(render partial: 'end_user/comments/comment', locals: {target_post: @post, comments: @comments }) %>");
+<% end %>
+$("#error_explanation").html("<%= j(render 'layouts/error', { model: @comment }) %>");
 $("textarea").val('');
