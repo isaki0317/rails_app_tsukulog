@@ -87,43 +87,63 @@ class EndUser < ApplicationRecord
   end
 
   # ログインユーザーがブロックしたユーザーが、自分のfollowerにいる場合は削除する
-  def destry_follow(end_user)
+  def destry_follow!(end_user)
     follow = active_relationships.find_by(follower_id: end_user.id)
     follow.destroy!
   end
 
   # ログインユーザーがブロックした相手とのUserRoomを削除 & admin側でのUserRoom削除に使用
-  def user_room_delete(current_end_user, end_user)
+  def user_room_destroy!(current_end_user, end_user)
     rooms = current_end_user.user_rooms.pluck(:room_id)
     pair_room = UserRoom.find_by(end_user_id: end_user.id, room_id: rooms)
     user_room = UserRoom.find_by(end_user_id: current_end_user.id, room_id: rooms)
     if user_room.present? && pair_room.present?
-      pair_room.destroy
-      user_room.destroy
+      pair_room.destroy!
+      user_room.destroy!
     end
   end
 
+  # ブロック機能(transactionでひとくくり)
+  def block!(end_user_id)
+    ActiveRecord::Base.transaction do
+      block = active_blocks.build(blocked_id: end_user_id)
+      block.save!
+      end_user = EndUser.find(end_user_id)
+      if follower_by?(end_user)
+        destry_follow!(end_user)
+      end
+      user_room_destroy!(self, end_user)
+      notification_destroy_all!(self, end_user)
+      # 例外を起こしてくれる↓
+      # raise ActiveRecord::RecordInvalid
+      # logger.debug current_end_user.user_room_delete(current_end_user, @end_user).errors.inspect
+    end
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
+    p e
+    return false
+  end
+
   # ログインユーザーがブロックした相手とのお互いの通知をすべて削除
-  def notification_delete(current_end_user, end_user)
+  def notification_destroy_all!(current_end_user, end_user)
     notice_visitor = Notification.where("visitor_id = ? and visited_id = ?", end_user.id, current_end_user.id)
     notice_visited = Notification.where("visitor_id = ? and visited_id = ?", current_end_user.id, end_user.id)
     if notice_visited.present?
-      notice_visited.destroy_all
+      notice_visited.each(&:destroy!)
     end
     if notice_visitor.present?
-      notice_visitor.destroy_all
+      notice_visitor.each(&:destroy!)
     end
   end
 
   # フォローに対する通知
-  def create_notification_follow!(current_end_user, end_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_end_user.id, end_user.id, 'follow'])
-    if temp.blank?
-      notification = current_end_user.active_notifications.new(
+  def create_notification_follow(follow_user, end_user)
+    notice = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", follow_user.id, end_user.id, 'follow'])
+    if notice.blank?
+      notification = follow_user.active_notifications.new(
         visited_id: end_user.id,
         action: 'follow'
       )
-      notification.save if notification.valid?
+      notification.save
     end
   end
 

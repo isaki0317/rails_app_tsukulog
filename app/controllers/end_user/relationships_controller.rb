@@ -13,7 +13,7 @@ class EndUser::RelationshipsController < ApplicationController
       @user = current_end_user
     end
     @followers = current_end_user.followers.where.not(id: current_end_user.followings)
-    @end_user.create_notification_follow!(current_end_user, @end_user)
+    @end_user.create_notification_follow(current_end_user, @end_user)
   end
 
   def destroy
