@@ -24,10 +24,10 @@
 		</li>
 		<li role="presentation" class="dropdown-header">作業時間から並び替え</li>
 		<li role="presentation">
-		  <%= link_to "作業時間の長い順", search_path('order': "time", 'terms': "desc", 'search_model': "post", 'search_value': value, 'search_how': how) %>
+		  <%= link_to "作業時間の長い順", search_path('order': "creation_time", 'terms': "desc", 'search_model': "post", 'search_value': value, 'search_how': how) %>
 		</li>
 		<li role="presentation">
-   <%= link_to "作業時間の短い順", search_path('order': "time", 'terms': "asc", 'search_model': "post", 'search_value': value, 'search_how': how) %>
+   <%= link_to "作業時間の短い順", search_path('order': "creation_time", 'terms': "asc", 'search_model': "post", 'search_value': value, 'search_how': how) %>
 		</li>
 	</ul>
 	<div class="follow-search">

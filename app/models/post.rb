@@ -70,32 +70,27 @@ class Post < ApplicationRecord
   end
 
   # いいねに対する通知
-  def create_notification_favorite!(current_end_user, end_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", current_end_user.id, end_user.id, id, 'favorite'])
-    if temp.blank?
-      notification = current_end_user.active_notifications.new(
+  def create_notification_favorite!(favorite_user, post_user)
+    notice = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ?", favorite_user.id, post_user.id, id, 'favorite'])
+    if notice.blank?
+      notification = favorite_user.active_notifications.new(
         post_id: id,
-        visited_id: end_user.id,
+        visited_id: post_user.id,
         action: 'favorite'
       )
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
+      notification.save
     end
   end
 
-  def create_notification_comment!(current_end_user, comment_id, visited_id)
-    notification = current_end_user.active_notifications.new(
+  # コメントの通知
+  def create_notification_comment!(comment_user, comment_id, post_user)
+    notification = comment_user.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
-      visited_id: visited_id,
+      visited_id: post_user,
       action: 'comment'
     )
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save if notification.valid?
+    notification.save
   end
 
   # searchs/search → search+sort
@@ -117,7 +112,7 @@ class Post < ApplicationRecord
       else
         posts = posts.order(level: :asc)
       end
-    elsif order == 'time'
+    elsif order == 'creatitime'
       if terms == 'desc'
         posts = posts.order(creation_time: :desc)
       else
@@ -147,7 +142,7 @@ class Post < ApplicationRecord
       else
         posts = posts.order(level: :asc)
       end
-    elsif order == 'time'
+    elsif order == 'creation_time'
       if terms == 'desc'
         posts = posts.order(creation_time: :desc)
       else
@@ -161,4 +156,36 @@ class Post < ApplicationRecord
       end
     end
   end
+
+  # def self.sort_for(order, terms, current_end_user)
+  #   posts = Post.where(post_status: "true")
+  #   if order == 'none' && terms == 'none'
+  #     posts = posts.order(created_at: :desc)
+  #   elsif order == 'cost'
+  #     if terms == 'desc'
+  #       posts = posts.order(cost: :desc)
+  #     else
+  #       posts = posts.order(cost: :asc)
+  #     end
+  #   elsif order == 'level'
+  #     if terms == 'desc'
+  #       posts = posts.order(level: :desc)
+  #     else
+  #       posts = posts.order(level: :asc)
+  #     end
+  #   elsif order == 'creation_time'
+  #     if terms == 'desc'
+  #       posts = posts.order(creation_time: :desc)
+  #     else
+  #       posts = posts.order(creation_time: :asc)
+  #     end
+  #   elsif order == 'favorite'
+  #     posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
+  #   else
+  #     if terms.nil?
+  #       posts = posts.order(created_at: :desc)
+  #     end
+  #   end
+  # end
+
 end
