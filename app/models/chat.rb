@@ -5,16 +5,16 @@ class Chat < ApplicationRecord
 
   validates :message, length: { in: 1..60 }
 
-  def create_notification_chat!(current_end_user, room, chat)
-    roommembernotme = UserRoom.where("room_id = ?", room.id).where.not("end_user_id = ?", current_end_user.id)
-    theid = roommembernotme.find_by(room_id: room.id)
-    notification = current_end_user.active_notifications.new(
+  def create_notification_chat(end_user, room, chat)
+    user_rooms = UserRoom.where("room_id = ?", room.id).where.not("end_user_id = ?", end_user.id)
+    user_room = user_rooms.find_by(room_id: room.id)
+    notification = end_user.active_notifications.new(
       room_id: room.id,
       chat_id: chat.id,
-      visited_id: theid.end_user_id,
-      visitor_id: current_end_user.id,
+      visited_id: user_room.end_user_id,
+      visitor_id: end_user.id,
       action: 'dm'
     )
-    notification.save if notification.valid?
+    notification.save
   end
 end
