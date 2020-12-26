@@ -96,7 +96,7 @@ class EndUser < ApplicationRecord
   def user_room_destroy!(current_end_user, end_user)
     rooms = current_end_user.user_rooms.pluck(:room_id)
     pair_room = UserRoom.find_by(end_user_id: end_user.id, room_id: rooms)
-    user_room = UserRoom.find_by(end_user_id: current_end_user.id, room_id: rooms)
+    user_room = UserRoom.find_by(end_user_id: current_end_user.id, room_id: pair_room.room_id)
     if user_room.present? && pair_room.present?
       pair_room.destroy!
       user_room.destroy!
@@ -105,7 +105,7 @@ class EndUser < ApplicationRecord
 
   # ブロック機能(transactionでひとくくり)
   def block!(end_user_id)
-    ActiveRecord::Base.transaction do
+    #ActiveRecord::Base.transaction do
       block = active_blocks.build(blocked_id: end_user_id)
       block.save!
       end_user = EndUser.find(end_user_id)
@@ -117,10 +117,10 @@ class EndUser < ApplicationRecord
       # 例外を起こしてくれる↓
       # raise ActiveRecord::RecordInvalid
       # logger.debug current_end_user.user_room_delete(current_end_user, @end_user).errors.inspect
-    end
-  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
-    p e
-    return false
+  #   end
+  # rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
+  #   p e
+  #   return false
   end
 
   # ログインユーザーがブロックした相手とのお互いの通知をすべて削除
