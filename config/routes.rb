@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   scope module: :end_user do
     resources :chats, only: [:create, :show] # showの部分を確認する
     root 'homes#top'
+    get 'rakuten_search' => 'searchs#index'
     get 'about' => 'homes#about'
     get 'search' => 'searchs#search', as: 'search'
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
