@@ -128,32 +128,12 @@ class Post < ApplicationRecord
   # posts/index → sort
   def self.sort_for(order, terms, current_end_user)
     posts = Post.where(post_status: "true")
-    if order == 'none' && terms == 'none'
+    if terms.nil? || (order == 'none' && terms == 'none')
       posts = posts.order(created_at: :desc)
-    elsif order == 'cost'
-      if terms == 'desc'
-        posts = posts.order(cost: :desc)
-      else
-        posts = posts.order(cost: :asc)
-      end
-    elsif order == 'level'
-      if terms == 'desc'
-        posts = posts.order(level: :desc)
-      else
-        posts = posts.order(level: :asc)
-      end
-    elsif order == 'creation_time'
-      if terms == 'desc'
-        posts = posts.order(creation_time: :desc)
-      else
-        posts = posts.order(creation_time: :asc)
-      end
     elsif order == 'favorite'
       posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
     else
-      if terms.nil?
-        posts = posts.order(created_at: :desc)
-      end
+      posts = posts.order("#{order}": terms)
     end
   end
 
