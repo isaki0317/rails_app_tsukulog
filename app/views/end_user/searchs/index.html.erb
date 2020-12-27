@@ -1,0 +1,29 @@
+<div class="col-xs-10 col-xs-offset-1">
+  <div class="rakuten-search-box">
+    <%= form_with url: rakuten_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field 'keyword', placeholder: "検索ワードを入力...", class: "rakuten_search_form" %>
+      <%= f.submit "検索", class: "rakuten_search_btn" %>
+    <% end %>
+  </div>
+  <div class="alert">
+    <%= flash[:danger] %>
+  </div>
+  <div class="rakuten_items">
+    <% if @items.present? %>
+      <% @items.each do |item| %>
+        <%= link_to "#{item.url}" do %>
+          <section class="item-detail">
+            <%= image_tag item["mediumImageUrls"][0], class: "item-image" %>
+            <p><%= item.name %></p>
+            <p><%= item.price %>円</p>
+          </section>
+        <% end %>
+      <% end %>
+    <% elsif @items.nil? %>
+      <p>該当する商品はありません</p>
+    <% end %>
+  </div>
+  <div class="scroll-event">
+    <a href="#" class="scroll-btn-post"><i class="fas fa-long-arrow-alt-up"></i></a>
+  </div>
+</div>
