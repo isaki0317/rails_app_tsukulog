@@ -121,6 +121,7 @@ class Post < ApplicationRecord
     end
   end
 
+  # 上記のコードの大元 参考にするために残す
   # def self.sort_for(order, terms, current_end_user)
   #   posts = Post.where(post_status: "true")
   #   if order == 'none' && terms == 'none'
