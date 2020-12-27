@@ -100,28 +100,12 @@ class Post < ApplicationRecord
     else
       posts = Post.where('title LIKE ?', '%' + value + '%').where("post_status = ?", true)
     end
-    if order == 'cost'
-      if terms == 'desc'
-        posts = posts.order(cost: :desc)
-      else
-        posts = posts.order(cost: :asc)
-      end
-    elsif order == 'level'
-      if terms == 'desc'
-        posts = posts.order(level: :desc)
-      else
-        posts = posts.order(level: :asc)
-      end
-    elsif order == 'creatitime'
-      if terms == 'desc'
-        posts = posts.order(creation_time: :desc)
-      else
-        posts = posts.order(creation_time: :asc)
-      end
+    if order.nil?
+      posts = posts.order(created_at: :desc)
     elsif order == 'favorite'
       posts = posts.joins(:favorites).group(:post_id).order('count(post_id) desc')
-    else
-      posts = posts.order(created_at: :desc)
+    else #order == 'cost' || order == 'level'# || order == 'creatitime'
+      posts = posts.order("#{order}": terms)
     end
   end
 
