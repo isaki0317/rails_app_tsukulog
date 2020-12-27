@@ -8,7 +8,7 @@ class Admin::SearchsController < ApplicationController
     if @model == 'end_user'
       @data = EndUser.search_for(@value, @how, 'admin', 'admin')
     else
-      @data = Post.search_for(@value, @how, 'admin', 'admin')
+      @data = Post.search_for(@value, @how, nil, nil)
     end
   end
 end

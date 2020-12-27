@@ -116,6 +116,7 @@ class EndUser < ApplicationRecord
       end
       user_room_destroy!(self, end_user)
       notification_destroy_all!(self, end_user)
+      #下記がないとnilが返る
       return true
       # 例外を起こしてくれる↓
       # raise ActiveRecord::RecordInvalid
@@ -157,11 +158,7 @@ class EndUser < ApplicationRecord
       end_users = EndUser.where('name LIKE ?', '%' + value + '%')
     end
     if order == 'experience'
-      if terms == 'desc'
-        end_users = end_users.order(experience: :desc)
-      else
-        end_users = end_users.order(experience: :asc)
-      end
+        end_users = end_users.order("#{order}": terms)
     else
       end_users = end_users.order(created_at: :desc)
     end
