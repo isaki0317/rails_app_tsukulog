@@ -6,8 +6,8 @@ class EndUser::BlocksController < ApplicationController
       redirect_to end_user_path(current_end_user.id)
     else
       # エラーメッセージを入れる
-      # flash[:danger] = "予期せぬエラーが発生しました ブロックできませんでした"
-      redirect_to end_user_path(current_end_user.id)
+      flash[:danger] = "予期せぬエラーが発生しました ブロックできませんでした"
+      redirect_to end_user_path(params[:end_user_id])
     end
   end
 
