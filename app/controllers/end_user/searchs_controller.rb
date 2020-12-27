@@ -16,7 +16,6 @@ class EndUser::SearchsController < ApplicationController
       public_posts = Post.block_posts(data, current_end_user)
       @data = Kaminari.paginate_array(public_posts).page(params[:page]).per(3)
     else
-      # フォローユーザーの投稿のみを集める
       data = []
       current_end_user.followings.each do |end_user|
         posts = Post.where(end_user_id: end_user.id, post_status: true)
@@ -26,5 +25,18 @@ class EndUser::SearchsController < ApplicationController
     end
     @genres = Genre.all
     @comment_new = Comment.new
+  end
+
+  #楽天API商品検索
+  def index
+    if params[:keyword]
+      items = SearchForm.new(keyword: params[:keyword])
+      if items.valid?
+        @items = RakutenWebService::Ichiba::Item.search(keyword: items.keyword)
+      else
+        flash[:danger] = "検索ワードは日本語2文字以上で入力してください(数字NG)"
+        redirect_to rakuten_search_path
+      end
+    end
   end
 end
