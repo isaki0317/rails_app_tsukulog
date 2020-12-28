@@ -1,13 +1,21 @@
 <div class="top-head">
-  <div class="circle-image-1"></div>
-  <div class="circle-image-2"></div>
-  <div class="circle-image-3"></div>
-  <div class="circle-image-4"></div>
-  <div class="circle-image-5"></div>
-  <div class="circle-image-6"></div>
-  <div class="circle-image-7"></div>
-  <h3 class="top-head_title">DIYを通じてあなたの心と生活を豊かに。</h3>
+  <div class="top-main">
+    <h1 class="top-title">
+      TSUKULOG
+    </h1>
+    <h3 class="sabtitle">
+      DIYを楽しんで、人生を豊かに。
+    </h3>
+    <div class="logo-box">
+      <div class="logo"></div>
+    </div>
+  </div>
   <ul class="top-head_nav">
+    <%= link_to end_users_guest_sign_in_path, method: :post, class: "" do %>
+      <li class="top-head_nav_manu guest-color">
+        <p>ゲスト</p>
+      </li>
+    <% end %>
     <%= link_to new_end_user_session_path, class: "" do %>
       <li class="top-head_nav_manu login-color">
         <p>ログイン</p>
@@ -26,6 +34,22 @@
     <li class="scroll-event"><a href="#" class="scroll-btn"><i class="fas fa-long-arrow-alt-up"></i></a></li>
   </ul>
 </div>
-
-<div class="top-main"></div>
-
+<div class="about-head">
+  <h3 class="about-title-en">About</h3>
+  <h3 class="about-title-ja">つくログで何ができるの？</h3>
+</div>
+<section class="about-main">
+  <div class="about-main_top">
+    <h6 class="about-description text-center">
+      つくログは、DIYを楽しむ人を繋ぐオンラインプラットフォームです。<br>
+      DIYの作品を共有したり、友達の作品の細かな工程まで閲覧できます。<br>
+      楽しいDIYライフを共有しよう！
+    </h6>
+  </div>
+  <div class="about-main_item"></div>
+  <div class="about-main_item"></div>
+  <div class="about-main_item"></div>
+  <div class="about-main_item"></div>
+  <div class="about-main_item"></div>
+  <div class="about-main_item"></div>
+</section>

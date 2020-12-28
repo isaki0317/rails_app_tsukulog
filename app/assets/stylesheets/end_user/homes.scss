@@ -3,107 +3,84 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .top-head {
   margin-top: 50px;
-  max-width: 100vw!important;
+  max-width: 100vw;
   height: 90vh;
   position: relative;
-  background: white;
-  background-image: image-url('diy_app_back.jpg');
+  background-color: white;
+
+  div.top-main {
+    width: 100%;
+    margin-top: 15vh;
+
+    .top-title {
+      text-align: center;
+      font-size: 7.5em;
+      font-family: 'Frijole', cursive;
+    }
+    h3.sabtitle {
+      text-align: center;
+      padding-top: 8px;
+    }
+    .logo-box {
+      margin-top: 8vh;
+      display: flex;
+      justify-content: center;
+      .logo {
+        background-image: image-url('logo.jpg');
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
 }
-.circle-image-1 {
-  background-image: image-url('diy_app1.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 320px;
-  height: 320px;
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  box-shadow: 0 0 8px gray;
+.about-head {
+  max-width: 100vw;
+  padding: 12px;
+  background-color: rgb(26,116,150);
+
+  .about-title-en {
+    font-family: 'Rowdies', cursive;
+    font-size: 32px;
+    text-align: center;
+    color: white;
+    margin: 0;
+  }
+  .about-title-ja {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    margin: 0;
+  }
 }
-.circle-image-2 {
-  background-image: image-url('diy_app2.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 310px;
-  height: 310px;
-  position: absolute;
-  bottom: 20px;
-  left: 340px;
-  box-shadow: 0 0 8px gray;
+
+.about-main {
+  max-width: 100vw;
+  padding: 4vh 5vw;
+  background-color: rgba(230,230,230,0.2);
+  display: flex;
+  flex-flow: row wrap;
+
+  &_top {
+    width: 90vw;
+    margin: 30px;
+
+    h6.about-description {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 28px;
+      color: rgb(26,116,140);
+    }
+  }
+
+  &_item {
+    width: 40vw;
+    height: 40vh;
+    border-radius: 5px;
+    background-color: white;
+    margin: 20px 2.2vw;
+  }
 }
-.circle-image-3 {
-  background-image: image-url('diy_app3.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 310px;
-  height: 310px;
-  position: absolute;
-  top: 20px;
-  right: 200px;
-  box-shadow: 0 0 8px gray;
-}
-.circle-image-4 {
-  background-image: image-url('diy_app4.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 270px;
-  height: 270px;
-  position: absolute;
-  top: -120px;
-  right: 45%;
-  box-shadow: 0 0 8px gray;
-}
-.circle-image-5 {
-  background-image: image-url('diy_app5.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  bottom: 70px;
-  right: 35%;
-  box-shadow: 0 0 8px gray;
-}
-.circle-image-6 {
-  background-image: image-url('diy_app7.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  position: absolute;
-  bottom: -70px;
-  left: -70px;
-  box-shadow: 0 0 8px gray;
-}
-.circle-image-7 {
-  background-image: image-url('diy_app6.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  bottom: 85px;
-  right: 5px;
-  box-shadow: 0 0 8px gray;
-}
-.top-head_title {
-  position: absolute;
-  top: 200px;
-  left: 26%;
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 34px;
-  font-weight: 600;
-  padding: 20px 30px;
-  border-radius: 1em;
-  background-color: rgba(255,255,255,0.6);
-}
+
 .top-head_nav {
   position: fixed;
   bottom: 55px;
@@ -112,6 +89,9 @@
   justify-content: center;
   align-items: center;
   list-style: none;
+}
+.guest-color {
+  background-color: rgba(255,69,0,0.8);
 }
 .login-color {
   background-color: rgba(0,255,0,0.5);
@@ -150,11 +130,4 @@
 }.fa-long-arrow-alt-up {
   color: black;
   font-size: 1.5em;
-}
-
-
-.top-main {
-  width: 100%;
-  height: 100vh;
-  background-image: image-url('diy_app_back.jpg');
 }
