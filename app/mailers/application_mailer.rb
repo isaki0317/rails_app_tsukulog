@@ -3,7 +3,7 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def check_notice_mail
-    @url = "https://tsukulog.com/users/sign_in(provisional)"
+    @url = "https://tsukulog.work/end_users/sign_in"
 
     users_with_unckecked_notices = EndUser.all.select do |end_user|
       end_user.passive_notifications.where(visited_id: end_user.id, checked: false).count >= 10

@@ -43,15 +43,15 @@
         <% if chat.end_user_id == current_end_user.id %>
         <tbody class="message-body text-right">
           <tr>
-            <td class="text-right message-right">
-              <p class="message-box-right" style="text-align: right; font-weight: normal;"><%= chat.message %></p>
+            <td class="message-right">
+              <p class="message-box-right" style="text-align: left; font-weight: normal;"><%= chat.message %></p>
             </td>
           </tr>
         </tbody>
         <% else %>
         <tbody class="message-body text-left">
           <tr>
-            <td class="text-left message-left">
+            <td class="message-left">
               <p class="message-box-left" style="text-align: left; font-weight: normal;"><%= chat.message %></p>
             </td>
           </tr>
