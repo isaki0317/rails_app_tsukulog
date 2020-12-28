@@ -19,6 +19,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Rowdies:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Roboto+Mono&family=Rowdies:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Frijole&family=Righteous&display=swap');
 
 * {
   margin: 0;
@@ -70,6 +71,9 @@ footer {
   color: red;
   font-weight: bold;
 }
+.success {
+  color: green;
+}
 
 .container {
   margin-top: 10vh;
@@ -78,6 +82,13 @@ footer {
 
 .navbar-default {
   background-color: white;
+}
+
+.header-logo {
+  font-family: 'Frijole', cursive;
+  font-size: 18px;
+  // background-image: image-url('diy_logo.jpg');
+
 }
 
 .header-logo {

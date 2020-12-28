@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <nav class="nav navbar-nav col-xs-5 text-center nav-left">
-    <h4>
+    <div>
       <% if end_user_signed_in? %>
         <span data-toggle="tooltip" data-placement="bottom" title="投稿一覧">
-          <%= link_to "つくログ", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
+          <%= link_to "TSUKULOG", posts_path('order': "none", 'terms': "none"), class: "header-logo", 'data-turbolinks': false %>
         </span>
       <% else %>
-        <h4 class="header-logo-position">つくログ</h4>
+        <h4 class="header-logo">TSUKULOG</h4>
       <% end %>
-    </h4>
+    </div>
   </nav>
   <nav class="nav navbar-nav col-xs-7 nav-right">
     <% if end_user_signed_in? %>
