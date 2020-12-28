@@ -35,6 +35,7 @@ class Admin::SessionsController < Devise::SessionsController
   def new_guest
     admin = Admin.guest
     sign_in admin
-    redirect_to admin_end_users_path, notice: 'ゲストユーザーとしてログインしました。'
+    flash[:success] = "ゲストユーザーとしてログインしました"
+    redirect_to admin_end_users_path
   end
 end
