@@ -22,7 +22,8 @@ class EndUsers::SessionsController < Devise::SessionsController
     # 閲覧者が退会しても良いように
     end_user.update(is_deleted: false)
     sign_in end_user
-    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+    flash[:success] = "ゲストユーザーとしてログインしました"
+    redirect_to posts_path
   end
 
   # protected
