@@ -49,6 +49,9 @@
             <% end %>
         </ul>
       </div>
+      <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="商品検索">
+        <%= link_to "", rakuten_search_path('keyword': "工具"), class: "fas fa-shopping-cart fa-size", 'data-turbolinks': false %>
+      </div>
       <div class="navigation" data-toggle="tooltip" data-placement="bottom" title="マイページ">
         <%= link_to end_user_path(current_end_user.id), 'data-turbolinks': false do %>
           <% if current_end_user.images.present? %>
