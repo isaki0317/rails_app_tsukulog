@@ -76,7 +76,7 @@
   &_item {
     width: 40vw;
     height: 40vh;
-    border-radius: 5px;
+    border-radius: 16px;
     background-color: white;
     margin: 20px 2.2vw;
     padding: 0 12px 10px 12px;
@@ -165,14 +165,14 @@
         .inner-box {
 
           .item-detail {
-            font-size: 16px;
-            line-height: 28px;
+            font-size: 1.5rem;
+            line-height: 26px;
           }
           .item-detail-foot {
             padding-top: 5px;
             border-top: 1px rgba(192,192,192,0.7) dashed;
-            font-size: 16px;
-            line-height: 28px;
+            font-size: 1.5rem;
+            line-height: 26px;
           }
         }
       }
