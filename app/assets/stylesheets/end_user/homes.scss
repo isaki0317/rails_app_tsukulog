@@ -56,6 +56,7 @@
 .about-main {
   max-width: 100vw;
   padding: 4vh 5vw;
+  margin-bottom: 5vh;
   background-color: rgba(230,230,230,0.2);
   display: flex;
   flex-flow: row wrap;
@@ -97,6 +98,7 @@
       .item-inner-left {
         width: 19.5vw;
         height: 30.5vh;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -110,6 +112,45 @@
         }
         .top-item-logo {
           font-size: 12em;
+        }
+        .top-notice-circle {
+          font-size: 5em;
+          color: rgba(255,240,0,0.7);
+          position: absolute;
+          right: 70px;
+          top: 50px;
+        }
+
+        .item-left-img-4 {
+          width: 19.5vw;
+          height: 30.5vh;
+          background-image: image-url('chat_sample.jpg');
+          background-size: cover;
+          border-radius: 4px;
+        }
+
+        .item-left-img-5 {
+          width: 19.5vw;
+          height: 30.5vh;
+          background-image: image-url('search_sample.jpg');
+          background-size: cover;
+          border-radius: 4px;
+        }
+
+        .item-left-img-7 {
+          width: 19.5vw;
+          height: 30.5vh;
+          background-image: image-url('rakuten_search.jpg');
+          background-size: cover;
+          border-radius: 4px;
+        }
+
+        .item-left-img-8 {
+          width: 19.5vw;
+          height: 30.5vh;
+          background-image: image-url('post_sample.jpg');
+          background-size: cover;
+          border-radius: 4px;
         }
       }
 
@@ -125,13 +166,13 @@
 
           .item-detail {
             font-size: 16px;
-            line-height: 26px;
+            line-height: 28px;
           }
           .item-detail-foot {
             padding-top: 5px;
             border-top: 1px rgba(192,192,192,0.7) dashed;
             font-size: 16px;
-            line-height: 26px;
+            line-height: 28px;
           }
         }
       }
@@ -141,6 +182,7 @@
 
 .top-head_nav {
   position: fixed;
+  z-index: 1;
   bottom: 55px;
   right: 130px;
   display: flex;
