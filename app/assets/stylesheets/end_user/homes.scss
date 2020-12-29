@@ -14,7 +14,7 @@
 
     .top-title {
       text-align: center;
-      font-size: 7.5em;
+      font-size: 7em;
       font-family: 'Frijole', cursive;
     }
     h3.sabtitle {
@@ -78,6 +78,64 @@
     border-radius: 5px;
     background-color: white;
     margin: 20px 2.2vw;
+    padding: 0 12px 10px 12px;
+
+    .item-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+
+      .title-underline {
+        background: linear-gradient(transparent 70%, yellow 70%);
+      }
+    }
+
+    .item-inner-flex {
+      display: flex;
+
+      .item-inner-left {
+        width: 19.5vw;
+        height: 30.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .item-left-img-1 {
+          width: 19.5vw;
+          height: 30.5vh;
+          background-image: image-url('top_item_1.jpg');
+          background-size: cover;
+          border-radius: 4px;
+        }
+        .top-item-logo {
+          font-size: 12em;
+        }
+      }
+
+      .item-inner-right {
+        width: 19.5vw;
+        height: 30.5vh;
+        padding: 0 9px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .inner-box {
+
+          .item-detail {
+            font-size: 16px;
+            line-height: 26px;
+          }
+          .item-detail-foot {
+            padding-top: 5px;
+            border-top: 1px rgba(192,192,192,0.7) dashed;
+            font-size: 16px;
+            line-height: 26px;
+          }
+        }
+      }
+    }
   }
 }
 
