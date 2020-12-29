@@ -72,4 +72,13 @@ Rails.application.configure do
     authentication: 'login',
     enable_starttls_auto: true,
   }
+
+  config.after_initialize do
+    Bullet.enable = true #Bullet gemを有効
+    Bullet.alert = false #ブラウザにJavaScriptアラートをポップアップ
+    Bullet.bullet_logger = true #Bulletログファイル（Rails.root/log/bullet.log）に記録
+    Bullet.console = true #警告をブラウザーのconsole.logに記録
+    Bullet.rails_logger = true #警告を直接Railsログに追加
+  end
+
 end
