@@ -53,6 +53,7 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
 - whenever （定時処理）
 - HTTPS接続 (Certbot)
 - Rubocop-airbnb
+- bundle(N+1問題)
 - 例外処理(ブロック機能createアクション時の[フォロー解除・過去の通知削除・トークルーム削除]をTransactionで一括りにしています)
 - プレースホルダ(SQLインジェクション対策を意識)
 
