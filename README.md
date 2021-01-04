@@ -27,6 +27,8 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
  https://docs.google.com/spreadsheets/d/1i7w0K9miIVeMCW5Xw7jBwlSvwkMNjEt_FOvWAdbosvs/edit?usp=sharing
 ###### ER図
  https://drive.google.com/file/d/1wnwKP0v4uMlW8p6hq26SZ2CkRc-UpVtO/view?usp=sharing
+###### インフラ構成図
+ https://drive.google.com/file/d/1DExrkPGoHR2C5r2xMdi617N_EYCmxZKv/view?usp=sharing
 
 ### 環境・使用技術
 #### 開発環境
@@ -41,7 +43,7 @@ DIYに関しての雑誌特集はよく見かけるようになりましたが�
 - Ruby 2.6.3
 - Rails 5.2.4.4
 #### 本番環境
-- AWS (EC2、RDS for MySQL、Route53、S3)
+- AWS (EC2、RDS for MySQL、Route53、S3、CloudWatch)
 - MySQL2
 - Nginx、 Puma
 #### テスト
