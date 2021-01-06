@@ -152,7 +152,7 @@
   border: 1px solid rgba(211,211,211,0.5);
   border-radius: 0.2em;
   position: fixed!important;
-  top: 7.2rem;
+  top: 10vh;
   right: 18vw;
 }
 .post-nav > h5.title_bar {
@@ -320,7 +320,8 @@
   border: 1px solid rgba(211,211,211,0.5);
   background-color: white;
   position: fixed!important;
-  top: 7.2rem;
+  top: 10vh;
+  // top: 7.2rem;
   right: 18vw;
 
   .search {
@@ -395,8 +396,15 @@
   width: 21vw;
   border: 1px solid gray;
   border-radius: 0.67em;
-  cursor: pointer;
 }
+
+.img-size-show {
+  border: 1px solid gray;
+  border-radius: 0.67em;
+  max-height: 16vh;
+  width: 8vw;
+}
+
 .top-right > .btn-default {
   padding: 3px;
   margin-right: 10px;

@@ -35,6 +35,14 @@ th, td, ul, li, span{
   color: black;
 }
 
+a {
+  text-decoration: none!important;
+}
+
+.user-name_style:hover {
+  color: #337ab7;
+}
+
 p {
   font-size: 1.4rem;
 }
@@ -90,7 +98,6 @@ footer {
 }
 
 .header-logo {
-  text-decoration: none;
   color: black;
   }
   .header-logo:hover {
@@ -421,10 +428,10 @@ ul.pagination {
 }
 
 // リンクに対するstyle
-.link-style-none {
-  text-decoration: none;
-  color: black;
-}
+// .link-style-none {
+//   text-decoration: none;
+//   color: black;
+// }
 
 .header-room-list {
   display: flex;

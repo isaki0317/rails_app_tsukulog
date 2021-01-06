@@ -10,7 +10,7 @@
               <%= image_tag "sample.jpg", size: '50x50', class: "post_user_image" %>
             <% end %>
         </span>
-        <span><%= @post.end_user.name %></span>
+        <span class="user-name_style"><%= @post.end_user.name %></span>
           <% end %>
       </div>
       <div class="top-right text-right">
@@ -98,9 +98,9 @@
         <div class="work-box">
           <div class="work_image text-center">
             <% if work.images.present? %>
-              <img src='<%= work.images.small.url %>' class="img-size" alt="工程の写真">
+              <img src='<%= work.images.small.url %>' class="img-size-show" alt="工程の写真">
             <% else %>
-              <%= image_tag "sample.jpg", class: "img-size" %>
+              <%= image_tag "sample.jpg", class: "img-size-show" %>
             <% end %>
           </div>
           <div class="work_detail">
