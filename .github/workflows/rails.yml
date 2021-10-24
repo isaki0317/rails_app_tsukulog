@@ -1,27 +1,29 @@
-name: Rails CI/CD
+# 本番環境を動かしていないため、コメントアウト
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+# name: Rails CI/CD
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Deploy
-      env:
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        USER_NAME: ${{ secrets.USER_NAME }}
-        HOST_NAME: ${{ secrets.HOST_NAME }}
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd DIY_app &&
-        git pull origin master &&
-        ~/.rbenv/shims/bundle install &&
-        ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
-        ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
-        kill $(cat tmp/pids/puma.pid) &&
-        ~/.rbenv/shims/rails s -e production'
+# on:
+#   push:
+#     branches: [master]
+#   pull_request:
+#     branches: [master]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Deploy
+#       env:
+#         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+#         USER_NAME: ${{ secrets.USER_NAME }}
+#         HOST_NAME: ${{ secrets.HOST_NAME }}
+#       run: |
+#         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+#         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd DIY_app &&
+#         git pull origin master &&
+#         ~/.rbenv/shims/bundle install &&
+#         ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
+#         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
+#         kill $(cat tmp/pids/puma.pid) &&
+#         ~/.rbenv/shims/rails s -e production'
